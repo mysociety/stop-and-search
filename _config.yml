@@ -1,5 +1,5 @@
-title: Local Intelligence Hub
-baseurl: "/local-intelligence-hub" # the subpath of your site, e.g. /blog
+title: Stop and Search
+baseurl: "/stop-and-search" # the subpath of your site, e.g. /blog
 url: "https://mysociety.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 host: 0.0.0.0
 
