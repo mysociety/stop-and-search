@@ -1,10 +1,12 @@
-# Local Intelligence Hub
+# Stop and Search
 
-A prototype built as part of mySociety’s August 2022 prototyping week exploring how The Climate Coalition might we give climate campaign organisations and communities better access to the data they need to enable local and national action on climate.
+A prototype built as part of a project with Black Thrive Global on presenting UK stop and search data and exploring racial disparities in the use of stop and search by the UK police.
+
+The original prototype was taken from another [mySociety project](https://github.com/mysociety/local-intelligence-hub/tree/prototype).
 
 ## Use it online
 
-Visit <https://mysociety.github.io/local-intelligence-hub>.
+Visit <https://mysociety.github.io/stop-and-search>.
 
 All modern browsers are supported. Internet Explorer is not. See `.browserlistrc` for details.
 
