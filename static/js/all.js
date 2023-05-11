@@ -2,7 +2,7 @@ import * as _ from '../vendor/underscore/js/underscore.esm.min.js'
 import $ from '../vendor/jquery/js/jquery.esm.js'
 import { Modal, Tab } from '../vendor/bootstrap/js/bootstrap.esm.min.js'
 import L from '../vendor/leaflet/js/leaflet-1.8.0.esm.js'
-import constituencies from './constituencies.esm.js'
+import councils from './councils.esm.js'
 
 $(function(){
     window.map = setUpMap()
@@ -67,7 +67,7 @@ var render = function(templateId, data) {
 }
 
 var getAreaColor = function(feature) {
-    var n = parseInt( feature.properties.PCON13CD.slice(-1) )
+    var n = parseInt( feature.properties.gss.slice(-1) )
     var activeShaders = $('.js-active-shaders .js-shader').length
     var colors = [
         '#ffffcc',
@@ -90,7 +90,7 @@ var getAreaColor = function(feature) {
 }
 
 // Something to give the impression of filters reducing
-// the number of matching constituencies. By basing the
+// the number of matching councils. By basing the
 // visibility on the constituency’s ID we’re able to run
 // this function again and again, and the feature will
 // be consistently hidden or shown (rather than randomly
@@ -99,7 +99,7 @@ var getAreaColor = function(feature) {
 // dropdowns, we give the impression that changes to the
 // filters affect the number of results.
 var getVisibilityForArea = function(feature) {
-    var n = parseInt( feature.properties.PCON13CD.slice(1) )
+    var n = parseInt( feature.properties.gss.slice(1) )
     var $activeFilters = $('.js-active-filters .js-filter')
 
     if ( $activeFilters.length ) {
@@ -153,7 +153,7 @@ var setUpMap = function() {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map)
 
-    window.geojson = L.geoJson(constituencies, {
+    window.geojson = L.geoJson(councils, {
         style: getFeatureStyle,
         onEachFeature: function(feature, layer){
             layer.on({
