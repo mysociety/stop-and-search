@@ -67,7 +67,7 @@ var render = function(templateId, data) {
 }
 
 var getAreaColor = function(feature) {
-    var n = parseInt( feature.properties.gss.slice(-1) )
+    var n = parseInt( feature.properties.id.slice(-1) )
     var activeShaders = $('.js-active-shaders .js-shader').length
     var colors = [
         '#ffffcc',
@@ -99,7 +99,7 @@ var getAreaColor = function(feature) {
 // dropdowns, we give the impression that changes to the
 // filters affect the number of results.
 var getVisibilityForArea = function(feature) {
-    var n = parseInt( feature.properties.gss.slice(1) )
+    var n = parseInt( feature.properties.id.slice(1) )
     var $activeFilters = $('.js-active-filters .js-filter')
 
     if ( $activeFilters.length ) {

@@ -65,7 +65,7 @@ do
     fi
 
     # Add the properties to the GeoJSON
-    current_feature=$(jq "{type: \"Feature\", geometry: ., properties: {name: ${name}, gss: \"${gss_id}\", id: ${id}}}" "${response_file}" 2>/dev/null)
+    current_feature=$(jq "{type: \"Feature\", geometry: ., properties: {name: ${name}, id: \"${gss_id}\", mapit_id: ${id}}}" "${response_file}" 2>/dev/null)
 
     # Check if jq exited with an error
     if [ $? -ne 0 ]; then
