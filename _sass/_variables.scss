@@ -1,16 +1,26 @@
 // Color system
 
-$gray-900: #073a41;
+$yiq-contrasted-threshold: 128; // Value from 0 to 255
 
-$orange: #ed6832;
-$yellow: #fec835;
-$blue: #21a8df;
-$green-600: #068670; // 4.51 contrast with #fff
-$green: #1ba781;
-$green-400: #89c489;
-$green-100: #edf5e1;
+// Primary
+$white: #FFFFFF;
+$orange: #F18D21;
+$black: #000000;
 
-$primary: $green-600;
+// Secondary
+$gray-100:   #FFFFF0;
+$gray-900:   #1F2525;
+$blue:       #5B81C9;
+$purple:     #7A72BD;
+$green:      #369694;
+$teal:       #85DBD9;
+$teal-900:   #046563;
+$orange-900: #BB521E;
+$pink:       #FDE9FF;
+$yellow:     #FFD483;
+
+// Fonts: Primary font is Avalon, secondary is Archivo, and tertiary is Roboto.
+$primary: $teal-900;
 
 // Options
 
@@ -21,6 +31,23 @@ $enable-negative-margins: true;
 
 // Spacing
 
+$spacer: 1rem;
+$spacers: (
+  (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 3),
+    6: ($spacer * 4),
+    7: ($spacer * 5),
+    8: ($spacer * 6),
+    9: ($spacer * 7),
+    10: ($spacer * 8)
+  )
+);
+
 // Position
 
 // Body
@@ -29,7 +56,7 @@ $enable-negative-margins: true;
 
 // Links
 
-$link-color: $green-600;
+$link-color: $teal-900;
 $link-shade-percentage: 20%;
 $link-hover-color: shift-color($link-color, $link-shade-percentage);
 
@@ -61,8 +88,9 @@ $container-max-widths: (
 // Components
 
 // Typography
-
-$font-family-sans-serif: "Public Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$enable-responsive-font-sizes: true;
+$headings-font-family: 'Archivo', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-sans-serif: 'Roboto', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
 $headings-font-weight: 800;
 $headings-line-height: 1.1;
@@ -92,6 +120,13 @@ $form-label-font-weight: bold;
 // Navs
 
 // Navbar
+$nav-link-padding-y: 0.75rem;
+$nav-link-color: $white;
+$nav-link-hover-color: $teal;
+$navbar-nav-link-padding-x: 0.75rem;
+// $dropdown-link-color:               $black;
+// $dropdown-link-hover-color:         $white;
+// $dropdown-link-hover-bg:            $black;
 
 // Dropdowns
 
