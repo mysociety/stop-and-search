@@ -10,12 +10,24 @@
                     <div class="col-md-12 mb-4 mb-md-0">
                         <div class="list-group">
                             <div class="list-group-item list-group-item-action js-add-dataset">
+                                <strong>Year</strong>
+                                <small class="d-block">Filter data to a specific year or years</small>
+                            </div>
+                            <div class="list-group-item list-group-item-action js-add-dataset">
                                 <strong>Black stop rate</strong>
                                 <small class="d-block">Percentage of the black population which have been stopped</small>
                             </div>
                             <div class="list-group-item list-group-item-action js-add-dataset">
+                                <strong>Black non-stop rate</strong>
+                                <small class="d-block">Percentage of the black population which have not been stopped</small>
+                            </div>
+                            <div class="list-group-item list-group-item-action js-add-dataset">
                                 <strong>White stop rate</strong>
                                 <small class="d-block">Percentage of the white population which have been stopped</small>
+                            </div>
+                            <div class="list-group-item list-group-item-action js-add-dataset">
+                                <strong>White non-stop rate</strong>
+                                <small class="d-block">Percentage of the white population which have not been stopped</small>
                             </div>
                         </div>
                     </div>
@@ -27,6 +39,22 @@
 
 <script type="text/javascript">
 window.datasets = [{
+    name: "Year",
+    comparators: [
+        "equal to",
+        "before",
+        "before or equal to",
+        "since",
+        "equal to or since"
+    ],
+    options: [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023"
+    ]
+}, {
     name: "Black stop rate",
     comparators: [
         "is less than",
@@ -34,7 +62,21 @@ window.datasets = [{
     ],
     defaultValue: "50"
 }, {
+    name: "Black non-stop rate",
+    comparators: [
+        "is less than",
+        "is more than"
+    ],
+    defaultValue: "50"
+}, {
     name: "White stop rate",
+    comparators: [
+        "is less than",
+        "is more than"
+    ],
+    defaultValue: "50"
+}, {
+    name: "White non-stop rate",
     comparators: [
         "is less than",
         "is more than"
