@@ -1,37 +1,60 @@
 ---
 layout: default
 ---
-{% include header.html %}
+<div class="px-4 px-lg-5 py-3 bg-black">
+    <div class="container">
+        {% include header.html %}
+    </div>
+</div>
+
 <div class="py-5 py-lg-8 bg-teal-100">
     <div class="container">
         <h1 class="display-2 mb-3">Stop and Search</h1>
-        <p class="fs-4" style="max-width: 26em;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="fs-5" style="max-width: 26em;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="fs-5 fw-bold" style="max-width: 30em;">Browse and breakdown data by ethnicity</p>
+        <ul class="mb-4 list-unstyled">
+            <li class="my-1 d-flex align-items-center">
+                {% include icons/check.html width="1.2em" height="1.2em" classes="me-2 flex-grow-0 flex-shrink-0 text-green-400" %}
+                <span><strong class="text-primary">Stop rates</strong></span>
+            </li>
+            <li class="my-1 d-flex align-items-center">
+                {% include icons/check.html width="1.2em" height="1.2em" classes="me-2 flex-grow-0 flex-shrink-0 text-green-400" %}
+                <span><strong class="text-primary">Outcomes of stops</strong></span>
+            </li>
+            <li class="my-1 d-flex align-items-center">
+                {% include icons/check.html width="1.2em" height="1.2em" classes="me-2 flex-grow-0 flex-shrink-0 text-green-400" %}
+                <span><strong class="text-primary">Reasons for stops</strong></span>
+            </li>
+        </ul>
+        <a href="{{ '/explore' | relative_url }}" class="btn btn-lg btn-primary">Start exploring</a>
     </div>
 </div>
+
+<section class="py-5 bg-black">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4 text-center text-md-start">
+                <p class="fs-1 text-teal-500 mb-0 fw-bold lh-1">65%</p>
+                <p class="text-white">Lorem ipsum dolor sit amet</p>
+            </div>
+    
+            <div class="col-12 col-md-4 text-center text-md-start">
+                <p class="fs-1 text-teal-500 mb-0 fw-bold lh-1">32%</p>
+                <p class="text-white">Lorem ipsum dolor</p>
+            </div>
+    
+            <div class="col-12 col-md-4 text-center text-md-start">
+                <p class="fs-1 text-teal-500 mb-0 fw-bold lh-1">76%</p>
+                <p class="text-white">Lorem ipsum dolor sit amet</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <div class="py-5">
     <div class="container mt-lg-3">
         <div class="row">
-            <div class="col-lg-6 mb-5">
-                <h2 class="mb-4 text-primary">National data explorer</h2>
-                <p style="max-width: 30em;">Browse and breakdown data by ethnicity</p>
-                <ul class="mb-4 list-unstyled">
-                    <li class="my-1 d-flex align-items-center">
-                        {% include icons/check.html width="1.2em" height="1.2em" classes="me-2 flex-grow-0 flex-shrink-0 text-green-400" %}
-                        <span><strong class="text-primary">Stop rates</strong></span>
-                    </li>
-                    <li class="my-1 d-flex align-items-center">
-                        {% include icons/check.html width="1.2em" height="1.2em" classes="me-2 flex-grow-0 flex-shrink-0 text-green-400" %}
-                        <span><strong class="text-primary">Outcomes of stops</strong></span>
-                    </li>
-                    <li class="my-1 d-flex align-items-center">
-                        {% include icons/check.html width="1.2em" height="1.2em" classes="me-2 flex-grow-0 flex-shrink-0 text-green-400" %}
-                        <span><strong class="text-primary">Reasons for stops</strong></span>
-                    </li>
-                </ul>
-                <a href="{{ '/explore' | relative_url }}" class="btn btn-lg btn-primary">Start exploring</a>
-            </div>
-
             {% comment %} <div class="col-lg-6 mb-5 ps-lg-5">
                 <h2 class="mb-4 text-primary">Jump to an area</h2>
                 <p class="mb-4" style="max-width: 26em;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
@@ -53,11 +76,17 @@ layout: default
                 </a>
             </div> {% endcomment %}
 
-            <div class="col-lg-6 mb-5 ps-lg-5">
+            <div class="col-lg-6 mb-5">
                 <h2 class="mb-4 text-primary">Jump to an area</h2>
+<<<<<<< HEAD
                 <p class="mb-4" style="max-width: 26em;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
                 <label class="form-label" for="search">Search by council name, police force, or postcode</label>
                 <form class="row mt-2 mb-2" style="max-width: 30rem;" action="{{ '/area' | relative_url }}">
+=======
+                <p class="mb-4" style="max-width: 26em;">See detailed Stop & Search data in the area. Find information about: Stop rates by ethnicity, outcomes and reasons of stops.</p>
+                <label class="form-label" for="search">Search by area name or postcode</label>
+                <form id="home-search" class="row mt-2 mb-2" style="max-width: 30rem;" action="{{ '/area' | relative_url }}">
+>>>>>>> b4823fc (Tweaks to navbar and homepage)
                     <div class="col">
                         <div class="search-input search-input-lg">
                             {% include icons/search.html %}
@@ -68,7 +97,7 @@ layout: default
                         <button type="submit" class="btn btn-primary btn-lg">Search</button>
                     </div>
                 </form>
-                <a class="d-flex align-items-center btn btn-link px-0" href="{{ '/area' | relative_url }}">
+                <a class="btn btn-outline-primary px-2" href="{{ '/area' | relative_url }}">
                     {% include icons/geolocate.html classes="me-2" %}
                     Use my current location
                 </a>
@@ -76,5 +105,6 @@ layout: default
         </div>
     </div>
 </div>
+
 
 <div class="footer"></div>
