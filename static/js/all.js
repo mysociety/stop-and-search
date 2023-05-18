@@ -3,6 +3,7 @@ import $ from '../vendor/jquery/js/jquery.esm.js'
 import { Modal, Tab } from '../vendor/bootstrap/js/bootstrap.esm.min.js'
 import L from '../vendor/leaflet/js/leaflet-1.8.0.esm.js'
 import councils from './councils.esm.js'
+import policeForces from './police-forces.esm.js'
 
 $(function(){
     window.map = setUpMap()
@@ -59,6 +60,18 @@ $(function(){
         $('#addData').removeData('targetList')
         $('#addData .modal-title').text('Add data')
     })
+
+    $(document).on('click', '.js-view-as-councils', function(){
+        window.map = updateFeatures(window.map, councils)
+        $(this).siblings('button').removeClass('btn-primary').addClass('btn-outline-secondary')
+        $(this).addClass('btn-primary').removeClass('btn-outline-secondary')
+    })
+
+    $(document).on('click', '.js-view-as-police-forces', function(){
+        window.map = updateFeatures(window.map, policeForces)
+        $(this).siblings('button').removeClass('btn-primary').addClass('btn-outline-secondary')
+        $(this).addClass('btn-primary').removeClass('btn-outline-secondary')
+    })
 })
 
 var render = function(templateId, data) {
@@ -90,7 +103,7 @@ var getAreaColor = function(feature) {
 }
 
 // Something to give the impression of filters reducing
-// the number of matching councils. By basing the
+// the number of matching features. By basing the
 // visibility on the constituency’s ID we’re able to run
 // this function again and again, and the feature will
 // be consistently hidden or shown (rather than randomly
@@ -148,19 +161,28 @@ var setUpMap = function() {
 
     var map = L.map($map[0]).setView([54.0934, -2.8948], 7)
 
-    var tiles = L.tileLayer('https://tile.thunderforest.com/atlas/{z}/{x}/{y}.png?apikey=7ac28b44c7414ced98cd4388437c718d', {
+    L.tileLayer('https://tile.thunderforest.com/atlas/{z}/{x}/{y}.png?apikey=7ac28b44c7414ced98cd4388437c718d', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map)
 
-    window.geojson = L.geoJson(councils, {
+    return updateFeatures(map, councils)
+}
+
+var updateFeatures = function(map, features) {
+    if (window.geojson) {
+        window.geojson.off()
+        window.geojson.remove()
+    }
+
+    window.geojson = L.geoJson(features, {
         style: getFeatureStyle,
         onEachFeature: function(feature, layer){
             layer.on({
                 mouseover: highlightFeature,
                 mouseout: unhighlightFeature,
                 click: function(){
-                    window.location.href = './area'
+                    window.location.href = './area?id=' + feature.properties.id + '&type=' + (feature.properties.type || 'council')
                 }
             })
         }
