@@ -13,27 +13,124 @@ slug: area
 <div class="py-4 py-lg-5">
     <div class="container">
         <h1>{{ page.title }}</h1>
-        <ul class="list-inline mb-0">
-            <li class="list-inline-item"><a href="#" class="badge text-white bg-blue-600" style="text-decoration: none;">Blue wall</a></li>
+        {% comment %} <ul class="list-inline mb-0">
+            <li class="list-inline-item"><a href="#" class="badge text-white bg-blue-600" style="text-decoration: none;">Maybe</a></li>
             <li class="list-inline-item"><a href="#" class="badge text-white bg-orange-500" style="text-decoration: none;">Flood risk</a></li>
             <li class="list-inline-item"><a href="#" class="badge text-white bg-teal-500" style="text-decoration: none;">Green tech jobs</a></li>
             <li class="list-inline-item"><a href="#" class="badge text-gray-900 bg-gray-200" style="text-decoration: none;">+ Add tag</a></li>
-        </ul>
+        </ul> {% endcomment %}
 
         <div class="row gx-lg-5">
-            <div class="col-lg-6 col-xl-8">
-                <h2 class="mt-5 mb-0 pb-3 border-bottom text-primary">Constituency</h2>
+            <div class="col-lg-6 col-xl-4">
 
-                <div class="row gx-lg-5">
+                <h2 class="mt-5 mb-3 pb-3 border-bottom text-primary">Add metrics</h2>
+
+                <div class="mb-4 js-active-filters"></div>
+
+                <button type="button" class="btn btn-outline-secondary p-3 w-100 js-add-filter">
+                    Metrics options
+                </button>
+
+                {% include add-data-area-modal.html %}
+
+                <script type="text/x-template" id="templateFilter">
+                    <div class="bg-gray-100 border p-3 rounded mb-4 js-filter">
+                        <div class="d-flex mb-3">
+                            <h3 class="h6 mb-0 me-auto"><%= name %></h3>
+                            <button type="button" class="btn-close p-0 js-remove-filter" aria-label="Remove filter"></button>
+                        </div>
+                        <div class="d-flex">
+                            <select class="form-select form-select-sm flex-grow-0 flex-shrink-0 w-auto">
+                              <% _.each(comparators, function(comparator){ %>
+                                <option><%= comparator %></option>
+                              <% }) %>
+                            </select>
+                          <% if ( typeof options !== 'undefined' ) { %>
+                            <select class="form-select form-select-sm ms-3 flex-grow-1 flex-shrink-1">
+                              <% _.each(options, function(option){ %>
+                                <option><%= option %></option>
+                              <% }) %>
+                            </select>
+                          <% } else { %>
+                            <input type="text" value="<%= defaultValue %>" class="form-control form-control-sm ms-3 flex-grow-1 flex-shrink-1">
+                          <% } %>
+                        </div>
+                    </div>
+                </script>
+                
+                <script type="text/x-template" id="templateShader">
+                    <div class="bg-gray-100 border p-3 rounded mb-4 js-shader">
+                        <div class="d-flex">
+                            <h3 class="h6 mb-0 me-auto"><%= name %></h3>
+                            <button type="button" class="btn-close p-0 js-remove-shader" aria-label="Remove shader"></button>
+                        </div>
+                    </div>
+                </script>
+
+                <div class="d-flex align-items-center mt-5">
+                    <div class="flex-shrink-0">
+                        <img src="{{ '/static/img/mp.jpg' | relative_url }}" alt="James Madeupname" width="60" height="60" class="rounded-circle">
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h3 class="h4 mb-0">James<br>Madeupname</h3>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-lg-6">
-                        <h4 class="h6 text-primary mt-5">Public opinion: Support for Net Zero</h4>
+                        <h4 class="h6 text-primary mt-5">MP majority</h4>
+                        <p class="fs-4 lh-1 mb-0">1,582</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4 class="h6 text-primary mt-5">MP elected</h4>
+                        <p class="fs-4 lh-1 mb-0">2019</p>
+                    </div>
+                </div>
+
+                <h4 class="h6 text-primary mt-5">MP profiles</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#">twitter.com/jamesmadeupname_mp</a></li>
+                    <li class="mb-2"><a href="#">facebook.com/JMforBorsetshire</a></li>
+                    <li class="mb-2 text-truncate"><a href="#">theyworkforyou.com/mp/264701/james_madeupname/borsetshire_east</a></li>
+                </ul>
+
+                <h4 class="h6 text-primary mt-5">MP memberships</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#">Conservative Party</a></li>
+                    <li class="mb-2"><a href="#">Conservative Environment Network (CEN)</a></li>
+                    <li class="mb-2"><a href="#">European Research Group (ERG)</a></li>
+                </ul>
+
+                <h4 class="h6 text-primary mb-3 mt-5">Relationships with MP</h4>
+                <div class="list-group">
+                    <div class="list-group-item d-flex align-items-center">
+                        {% include icons/person.html classes="me-3 text-muted" width="2rem" height="2rem" %}
+                        <div class="">
+                            Campaign manager, National Trust
+                            <small class="d-block text-muted"><a href="#">Sign in</a> to make contact</small>
+                        </div>
+                    </div>
+                </div>
+                <small class="d-block mt-2 mt-lg-3 text-muted">
+                    Do you have a good relationship with this MP?
+                    <a href="#" class="d-inline-block">Let us know!</a>
+                </small>
+
+            </div>
+
+            <div class="col-lg-6 col-xl-8">
+                <h2 class="mt-5 mb-3 pb-3 border-bottom text-primary">Area dashboard</h2>
+
+                <div class="row gx-lg-5 mt-2">
+                    <div class="col-lg-6">
+                        <h4 class="h6 text-primary">Public opinion: Support for Net Zero</h4>
                         <p class="fs-4 lh-1 mb-0">54%</p>
 
                         <h4 class="h6 text-primary mt-5">Average IMD score</h4>
                         <p class="fs-4 lh-1 mb-0">7 (good)</p>
                     </div>
                     <div class="col-lg-6">
-                        <h4 class="h6 text-primary mt-5">Homes in fuel poverty</h4>
+                        <h4 class="h6 text-primary">Homes in fuel poverty</h4>
                         <p class="fs-4 lh-1 mb-0">11%</p>
 
                         <h4 class="h6 text-primary mt-5">Homes with good access to nature</h4>
@@ -105,60 +202,7 @@ slug: area
                 </div>
 
             </div>
-            <div class="col-lg-6 col-xl-4">
 
-                <h2 class="mt-5 mb-0 pb-3 border-bottom text-primary">MP</h2>
-
-                <div class="d-flex align-items-center mt-5">
-                    <div class="flex-shrink-0">
-                        <img src="{{ '/static/img/mp.jpg' | relative_url }}" alt="James Madeupname" width="60" height="60" class="rounded-circle">
-                    </div>
-                    <div class="flex-grow-1 ms-3">
-                        <h3 class="h4 mb-0">James<br>Madeupname</h3>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h4 class="h6 text-primary mt-5">MP majority</h4>
-                        <p class="fs-4 lh-1 mb-0">1,582</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <h4 class="h6 text-primary mt-5">MP elected</h4>
-                        <p class="fs-4 lh-1 mb-0">2019</p>
-                    </div>
-                </div>
-
-                <h4 class="h6 text-primary mt-5">MP profiles</h4>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><a href="#">twitter.com/jamesmadeupname_mp</a></li>
-                    <li class="mb-2"><a href="#">facebook.com/JMforBorsetshire</a></li>
-                    <li class="mb-2 text-truncate"><a href="#">theyworkforyou.com/mp/264701/james_madeupname/borsetshire_east</a></li>
-                </ul>
-
-                <h4 class="h6 text-primary mt-5">MP memberships</h4>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><a href="#">Conservative Party</a></li>
-                    <li class="mb-2"><a href="#">Conservative Environment Network (CEN)</a></li>
-                    <li class="mb-2"><a href="#">European Research Group (ERG)</a></li>
-                </ul>
-
-                <h4 class="h6 text-primary mb-3 mt-5">Relationships with MP</h4>
-                <div class="list-group">
-                    <div class="list-group-item d-flex align-items-center">
-                        {% include icons/person.html classes="me-3 text-muted" width="2rem" height="2rem" %}
-                        <div class="">
-                            Campaign manager, National Trust
-                            <small class="d-block text-muted"><a href="#">Sign in</a> to make contact</small>
-                        </div>
-                    </div>
-                </div>
-                <small class="d-block mt-2 mt-lg-3 text-muted">
-                    Do you have a good relationship with this MP?
-                    <a href="#" class="d-inline-block">Let us know!</a>
-                </small>
-
-            </div>
         </div>
 
     </div>
