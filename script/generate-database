@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require 'csv'
+require 'sqlite3'
+
+# Get the path of the CSV file from the command line arguments
+csv_file_path = ARGV[0]
+
+# Read the CSV file
+csv_data = CSV.read(csv_file_path, headers: true)
+
+# Prepare the database
+db = SQLite3::Database.new 'static/database.sqlite'
+
+# Drop the table if it exists
+db.execute "DROP TABLE IF EXISTS data"
+
+# Create a new table
+db.execute <<-SQL
+  CREATE TABLE data (
+    #{csv_data.headers.map { |header| "#{header.gsub(/[^0-9A-Za-z]/, '')} TEXT" }.join(', ')}
+  );
+SQL
+
+# Insert each row into the database
+csv_data.each do |row|
+  db.execute "INSERT INTO data VALUES ( #{(['?'] * row.fields.size).join(', ')} )", row.fields
+end
+
+# Close the database connection
+db.close
