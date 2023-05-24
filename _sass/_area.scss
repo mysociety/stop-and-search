@@ -1,0 +1,26 @@
+// METHODOLOGY 2023
+$metrics: (
+    'object',
+    'legislation',
+    'outcome',
+);
+
+@each $metric in $metrics {
+    // Hide all council-specific elements by default
+    .js-#{$metric} { 
+        display: none;
+    }
+
+    // When an active council type has been selected…
+    [data-methodology-active-metric="#{$metric}"] {
+        // Hide any default (non-metricd) elements
+        .js-default {
+            display: none;
+        }
+
+        // Show the relevant council type elements
+        .js-#{$metric} {
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,53 @@
+<form id="metric-filter"  action="" method="get">
+    <div class="row">
+        <div class="col-12 mb-3">
+            <label class="mb-1" for="year">Year</label>
+            <select class="form-select form-select-sm" name="year" id="year">
+                <option value="">All time</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+            </select>
+        </div>
+        <div class="col-12 mb-3">
+            <label class="mb-1" for="object-of-search">Object of search</label>
+            <select class="form-select form-select-sm" name="legislation" id="object-of-search">
+                <option value="">All</option>
+                <option value="op-1">Anything to threaten or harm anyone</option>
+                <option value="op-2">Article for use in theft</option>
+                <option value="op-3">Articles for use in criminal damage</option>
+                <option value="op-4">Controlled drugs</option>
+            </select>
+        </div>
+        <div class="col-12 mb-3">
+            <label class="mb-1" for="legislation">Legislation</label>
+            <select class="form-select form-select-sm" name="legislation" id="legislation">
+                <option value="">All</option>
+                <option value="Misuse of Drugs Act 1971 (section 23)">Aviation Security Act 1982 (section 27(1))</option>
+                <option value="Conservation of Seals Act 1970 (section 4)">Conservation of Seals Act 1970 (section 4)</option>
+                <option value="Criminal Justice Act 1988 (section 139B)">Criminal Justice Act 1988 (section 139B)</option>
+                <option value="Criminal Justice and Public Order Act 1994 (section 60)">Criminal Justice and Public Order Act 1994 (section 60)</option>
+            </select>
+        </div>
+        <div class="col-12 mb-4">
+            <label class="mb-1" for="outcome">Outcome</label>
+            <select class="form-select form-select-sm" name="outcome" id="outcome">
+                <option value="">All</option>
+                <option value="A no further action disposal">A no further action disposal</option>
+                <option value="Arrest">Arrest</option>
+                <option value="Caution (simple or conditional)">Caution (simple or conditional)</option>
+                <option value="Community resolution">Community resolution</option>
+                <option value="Khat or Cannabis warning">Khat or Cannabis warning</option>
+                <option value="NA">NA</option>
+                <option value="Penalty Notice for Disorder">Penalty Notice for Disorder</option>
+                <option value="Summons / charged by post">Summons / charged by post</option>
+            </select>
+        </div>
+        <div class="col-12 mb-0">
+            <button id="reset-metric" class="btn btn-outline-primary">
+                Reset metric
+            </button>
+        </div>
+    </div>
+</form>

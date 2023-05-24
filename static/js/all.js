@@ -200,3 +200,48 @@ var updateMap = function() {
 var updateShaderButton = function() {
     $('.js-add-shader').toggle( $('.js-active-shaders .js-shader').length === 0 )
 }
+
+// Area
+let dropdownObject = $('#object-of-search');
+let dropdownLegislation = $('#legislation');
+let dropdownOutcome = $('#outcome');
+let dropdownYear = $('#year');
+let resetMetric = $('#reset-metric')
+
+dropdownObject.on('change', function() {
+    if (dropdownObject.val() != '') {
+        $( ".js-outcome" ).fadeOut(0);
+        $( ".js-legislation" ).fadeOut(0);
+        $( ".js-object" ).fadeIn(500);
+        dropdownLegislation.val('');
+        dropdownOutcome.val('');
+        $('.metric-label').text($("#object-of-search option:selected").text());
+        ;
+    }
+});
+
+dropdownLegislation.on('change', function() {
+    if (dropdownLegislation.val() != '') {
+        $( ".js-object" ).fadeOut(0);
+        $( ".js-outcome" ).fadeOut(0);
+        $( ".js-legislation" ).fadeIn(500);
+        dropdownObject.val('');
+        dropdownOutcome.val('');
+        $('.metric-label').text($("#legislation option:selected").text());
+    }
+});
+
+dropdownOutcome.on('change', function() {
+    if (dropdownOutcome.val() != '') {
+        $( ".js-object" ).fadeOut(0);
+        $( ".js-legislation" ).fadeOut(0);
+        $( ".js-outcome" ).fadeIn(500);
+        dropdownObject.val('');
+        dropdownLegislation.val('');
+        $('.metric-label').text($("#outcome option:selected").text());
+    }
+});
+
+dropdownYear.on('change', function() {
+    $('.year-label').text($("#year option:selected").text());
+});
