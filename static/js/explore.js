@@ -149,6 +149,8 @@ var highlightFeature = function(e) {
         weight: 5
     })
 
+    layer.openPopup()
+
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront()
     }
@@ -190,6 +192,8 @@ var updateFeatures = function(map, features) {
                 click: function(){
                     window.location.href = './area?id=' + feature.properties.id + '&type=' + (feature.properties.type || 'council')
                 }
+            }).bindPopup(function (layer) {
+                return layer.feature.properties.name;
             })
         }
     }).addTo(map)
