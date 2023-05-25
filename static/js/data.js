@@ -1,9 +1,9 @@
 import $ from '../vendor/jquery/js/jquery.esm.js'
-import { initSqlJs } from '/static/vendor/sql.js/js/sql-wasm.esm.js'
+import { initSqlJs } from '../vendor/sql.js/js/sql-wasm.esm.js'
 import { openDB } from 'https://unpkg.com/idb@7.1.1/build/index.js'
 
 const params = new URLSearchParams(document.location.search)
-const databaseURL = '/static/database.sqlite'
+const databaseURL = `${staticPath}/database.sqlite`
 
 async function downloadAndCacheDatabase() {
   const db = await openDB('cacheDB', 1, {
@@ -27,7 +27,7 @@ async function downloadAndCacheDatabase() {
 
 const database = new Promise((resolve, reject) => {
   (async function () {
-    const sqlPromise = initSqlJs(file => `/static/vendor/sql.js/js/${file}`)
+    const sqlPromise = initSqlJs(file => `${staticPath}/vendor/sql.js/js/${file}`)
     const dataPromise = downloadAndCacheDatabase()
     const [SQL, buf] = await Promise.all([sqlPromise, dataPromise])
 
