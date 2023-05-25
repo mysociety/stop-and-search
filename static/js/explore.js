@@ -167,7 +167,7 @@ var setUpMap = function() {
         return undefined
     }
 
-    var map = L.map($map[0]).setView([54.0934, -2.8948], 7)
+    var map = L.map($map[0]).setView([52.417, -2.353], 7)
 
     L.tileLayer('https://tile.thunderforest.com/atlas/{z}/{x}/{y}.png?apikey=7ac28b44c7414ced98cd4388437c718d', {
         maxZoom: 19,
