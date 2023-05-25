@@ -18,7 +18,7 @@ db.execute "DROP TABLE IF EXISTS data"
 # Create a new table
 db.execute <<-SQL
   CREATE TABLE data (
-    #{csv_data.headers.map { |header| "#{header.gsub(/[^0-9A-Za-z]/, '')} TEXT" }.join(', ')}
+    #{csv_data.headers.map { |header| "#{header.gsub(/[^0-9A-Za-z_]/, '')} TEXT" }.join(', ')}
   );
 SQL
 
