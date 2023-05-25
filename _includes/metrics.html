@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12 mb-3">
             <label class="mb-1" for="year">Year</label>
-            <select class="form-select form-select-sm" name="year" id="year">
+            <select class="form-select form-select-sm dropdown-metric" name="year" id="year">
                 <option value="">All time</option>
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
@@ -12,7 +12,7 @@
         </div>
         <div class="col-12 mb-3">
             <label class="mb-1" for="object-of-search">Object of search</label>
-            <select class="form-select form-select-sm" name="legislation" id="object-of-search">
+            <select class="form-select form-select-sm dropdown-metric" name="legislation" id="object-of-search">
                 <option value="">All</option>
                 <option value="op-1">Anything to threaten or harm anyone</option>
                 <option value="op-2">Article for use in theft</option>
@@ -22,7 +22,7 @@
         </div>
         <div class="col-12 mb-3">
             <label class="mb-1" for="legislation">Legislation</label>
-            <select class="form-select form-select-sm" name="legislation" id="legislation">
+            <select class="form-select form-select-sm dropdown-metric" name="legislation" id="legislation">
                 <option value="">All</option>
                 <option value="Misuse of Drugs Act 1971 (section 23)">Aviation Security Act 1982 (section 27(1))</option>
                 <option value="Conservation of Seals Act 1970 (section 4)">Conservation of Seals Act 1970 (section 4)</option>
@@ -32,7 +32,7 @@
         </div>
         <div class="col-12 mb-4">
             <label class="mb-1" for="outcome">Outcome</label>
-            <select class="form-select form-select-sm" name="outcome" id="outcome">
+            <select class="form-select form-select-sm dropdown-metric" name="outcome" id="outcome">
                 <option value="">All</option>
                 <option value="A no further action disposal">A no further action disposal</option>
                 <option value="Arrest">Arrest</option>
@@ -45,7 +45,7 @@
             </select>
         </div>
         <div class="col-12 mb-0">
-            <button id="reset-metric" class="btn btn-outline-primary">
+            <button type="button" id="reset-metric" class="btn btn-outline-primary">
                 Reset metric
             </button>
         </div>

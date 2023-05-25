@@ -202,46 +202,29 @@ var updateShaderButton = function() {
 }
 
 // Area
-let dropdownObject = $('#object-of-search');
-let dropdownLegislation = $('#legislation');
-let dropdownOutcome = $('#outcome');
+let dropdownMetric = $('.dropdown-metric');
+let metricContent = $('.js-dinamic-metric-content');
 let dropdownYear = $('#year');
-let resetMetric = $('#reset-metric')
+let resetMetric = $('#reset-metric');
 
-dropdownObject.on('change', function() {
-    if (dropdownObject.val() != '') {
-        $( ".js-outcome" ).fadeOut(0);
-        $( ".js-legislation" ).fadeOut(0);
-        $( ".js-object" ).fadeIn(500);
-        dropdownLegislation.val('');
-        dropdownOutcome.val('');
-        $('.metric-label').text($("#object-of-search option:selected").text());
-        ;
-    }
+metricContent.hide();
+
+function updateValues($param) {
+    $('.metric-legislation').text($("#legislation option:selected").text());
+    $('.metric-object').text($("#object-of-search option:selected").text());
+    $('.metric-outcome').text($("#outcome option:selected").text());
+    $('.metric-year').text($("#year option:selected").text());
+}
+
+dropdownMetric.on('change', function() {
+    metricContent.fadeIn(500);
+    updateValues();
 });
 
-dropdownLegislation.on('change', function() {
-    if (dropdownLegislation.val() != '') {
-        $( ".js-object" ).fadeOut(0);
-        $( ".js-outcome" ).fadeOut(0);
-        $( ".js-legislation" ).fadeIn(500);
-        dropdownObject.val('');
-        dropdownOutcome.val('');
-        $('.metric-label').text($("#legislation option:selected").text());
-    }
-});
-
-dropdownOutcome.on('change', function() {
-    if (dropdownOutcome.val() != '') {
-        $( ".js-object" ).fadeOut(0);
-        $( ".js-legislation" ).fadeOut(0);
-        $( ".js-outcome" ).fadeIn(500);
-        dropdownObject.val('');
-        dropdownLegislation.val('');
-        $('.metric-label').text($("#outcome option:selected").text());
-    }
-});
-
-dropdownYear.on('change', function() {
-    $('.year-label').text($("#year option:selected").text());
-});
+resetMetric.on( "click", function() {
+    $("#year").val('');
+    $("#object-of-search").val('');
+    $("#legislation").val('');
+    $("#outcome").val('');
+    updateValues();
+} );
