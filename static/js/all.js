@@ -8,7 +8,7 @@ import policeForces from './police-forces.esm.js'
 $(function(){
     window.map = setUpMap()
 
-    var addDataModal = new Modal($('#addData')[0])
+    var filterDataModal = new Modal($('#filterData')[0])
 
     updateShaderButton()
 
@@ -28,19 +28,19 @@ $(function(){
     })
 
     $(document).on('click', '.js-add-filter', function(){
-        $('#addData').data('targetList', '.js-active-filters')
-        $('#addData .modal-title').text('Add filter')
-        addDataModal.show()
+        $('#filterData').data('targetList', '.js-active-filters')
+        $('#filterData .modal-title').text('Add filter')
+        filterDataModal.show()
     })
 
     $(document).on('click', '.js-add-shader', function(){
-        $('#addData').data('targetList', '.js-active-shaders')
-        $('#addData .modal-title').text('Add shader')
-        addDataModal.show()
+        $('#filterData').data('targetList', '.js-active-shaders')
+        $('#filterData .modal-title').text('Add shader')
+        filterDataModal.show()
     })
 
     $(document).on('click', '.js-add-dataset', function(){
-        var activeListSelector = $('#addData').data('targetList')
+        var activeListSelector = $('#filterData').data('targetList')
         var datasetName = $.trim( $(this).find('strong').text() )
         var datasetParams = _.findWhere(window.datasets, {name: datasetName})
 
@@ -56,9 +56,9 @@ $(function(){
         updateMap()
         updateShaderButton()
 
-        addDataModal.hide()
-        $('#addData').removeData('targetList')
-        $('#addData .modal-title').text('Add data')
+        filterDataModal.hide()
+        $('#filterData').removeData('targetList')
+        $('#filterData .modal-title').text('Add data')
     })
 
     $(document).on('click', '.js-view-as-councils', function(){
