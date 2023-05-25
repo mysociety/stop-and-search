@@ -108,6 +108,7 @@ $h3-font-size:  $font-size-base * 1.75;
 $h4-font-size:  $font-size-base * 1.5;
 $h5-font-size:  $font-size-base * 1.25;
 $h6-font-size:  $font-size-base;
+$h6-font-size-m6:  $font-size-base * 0.75;
 
 $font-sizes: (
   1: $h1-font-size,
@@ -116,7 +117,8 @@ $font-sizes: (
   4: $h4-font-size,
   5: $h5-font-size,
   6: $h6-font-size,
-  m1: $h1-font-size-m1
+  m1: $h1-font-size-m1,
+  m6: $h6-font-size-m6
 );
 
 // Tables
