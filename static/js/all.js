@@ -8,7 +8,13 @@ import policeForces from './police-forces.esm.js'
 $(function(){
     window.map = setUpMap()
 
-    var filterDataModal = new Modal($('#filterData')[0])
+    var $filterData = $('#filterData')
+
+    if ( ! $filterData.length ) {
+        return undefined
+    }
+
+    var filterDataModal = new Modal($filterData[0])
 
     updateShaderButton()
 
