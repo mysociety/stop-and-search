@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Create a directory for temporary files
+mkdir -p tmp
+
+# Check if any arguments were provided
+if [ $# -eq 0 ]; then
+    echo "No arguments provided. Please download https://geoportal.statistics.gov.uk/datasets/ons::local-authority-districts-december-2022-boundaries-uk-bfe/about as GeoJSON and provide the file path as an argument."
+    exit 1
+fi
+
+# Convert Easting/Northings into Latitude and Longitude
+ogr2ogr -f GeoJSON -s_srs EPSG:27700 -t_srs EPSG:4326 tmp/latlon.json $1
+
+# Use mapshaper to simplify the GeoJSON data
+mapshaper tmp/latlon.json -simplify dp 1% keep-shapes -o format=geojson precision=0.0001 tmp/compact.json 2>/dev/null
+
+# Filter features to England and Wales, and remap properties
+jq -c '{
+  type: .type,
+  features: [
+    .features[]
+    | select(.properties.LAD22CD | test("^(E|W)"))
+    | {
+      type: .type,
+      geometry: .geometry,
+      properties: {
+        id: .properties.LAD22CD,
+        name: .properties.LAD22NM,
+        type: "council"
+      }
+    }
+  ]
+}' tmp/compact.json > static/js/councils.json
