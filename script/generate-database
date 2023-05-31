@@ -1,7 +1,21 @@
 #!/usr/bin/env ruby
 
 require 'csv'
+require 'json'
 require 'sqlite3'
+
+if ARGV.empty?
+  puts "No arguments provided. Please pass the analysed CSV data file path as an argument."
+  exit
+end
+
+council_json = JSON.parse(File.read('static/js/councils.json'))
+councils = council_json['features'].map { _1['properties'] }
+
+police_force_json = JSON.parse(File.read('static/js/police-forces.json'))
+police_forces = police_force_json['features'].map { _1['properties'] }
+
+areas = councils + police_forces
 
 # Get the path of the CSV file from the command line arguments
 csv_file_path = ARGV[0]
@@ -13,18 +27,60 @@ csv_data = CSV.read(csv_file_path, headers: true)
 db = SQLite3::Database.new 'static/database.sqlite'
 
 # Drop the table if it exists
+db.execute "DROP TABLE IF EXISTS areas"
+
+# Create a new table
+db.execute <<-SQL
+  CREATE TABLE areas (
+    id VARCHAR NOT NULL PRIMARY KEY,
+    name VARCHAR,
+    type VARCHAR
+  );
+SQL
+
+# Insert each row into the database
+areas.each do |area|
+  db.execute "INSERT INTO areas VALUES ( ?, ?, ? )", [area['id'], area['name'], area['type']]
+end
+
+# Drop the table if it exists
 db.execute "DROP TABLE IF EXISTS data"
 
 # Create a new table
 db.execute <<-SQL
   CREATE TABLE data (
-    #{csv_data.headers.map { |header| "#{header.gsub(/[^0-9A-Za-z_]/, '')} TEXT" }.join(', ')}
+    area_id VARCHAR,
+    date INT,
+    metric VARCHAR,
+    metric_category VARCHAR,
+    ethnicity VARCHAR,
+    value NUM,
+    value_type VARCHAR,
+    FOREIGN KEY(area_id) REFERENCES areas(id)
   );
 SQL
 
 # Insert each row into the database
 csv_data.each do |row|
-  db.execute "INSERT INTO data VALUES ( #{(['?'] * row.fields.size).join(', ')} )", row.fields
+  db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
+    row['la_code'],
+    row['date'],
+    row['metric'],
+    row['metric_category'],
+    row['ethnicity'],
+    row['value'],
+    row['value_type']
+  ]
+
+  db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
+    police_forces.find { _1['name'] == row['force'] }['id'],
+    row['date'],
+    row['metric'],
+    row['metric_category'],
+    row['ethnicity'],
+    row['value'],
+    row['value_type']
+  ]
 end
 
 # Close the database connection

@@ -3,6 +3,11 @@ import { initSqlJs } from '../vendor/sql.js/js/sql-wasm.esm.js'
 import { openDB } from 'https://unpkg.com/idb@7.1.1/build/index.js'
 
 const params = new URLSearchParams(document.location.search)
+
+if (!params.has('id') || !params.has('type')) {
+  throw new Error('Missing parameters')
+}
+
 const databaseURL = `${staticPath}/database.sqlite`
 const versionURL = `${staticPath}/database.version`
 
@@ -54,26 +59,43 @@ function parseResults(stmt) {
   return results
 }
 
-const primaryColumn = params.get('type') == 'council' ? 'la_code' : 'force'
-const nameColumn = params.get('type') == 'council' ? 'la_name' : 'force'
-
-async function getData(where, count = null) {
+async function getArea() {
   return database.then(db => {
-    const limit = count ? `LIMIT ${count}` : ''
-    const query = `SELECT * FROM data WHERE ${where} AND ${primaryColumn}=:id ${limit}`
+    const query = `
+      SELECT areas.* FROM areas
+      WHERE id=:id AND type=:type
+      LIMIT 1
+    `
 
     const stmt = db.prepare(query)
-    stmt.bind({ ':id': params.get('id') })
+    stmt.bind({ ':id': params.get('id'), ':type': params.get('type') })
 
-    console.debug('DATA:', query)
+    return parseResults(stmt)
+  }).then(data => data[0])
+}
+
+const area = await getArea()
+
+async function getData(_where = null, _limit = null) {
+  return database.then(db => {
+    const where = _where ? `AND ${_where}` : ''
+    const limit = _limit ? `LIMIT ${_limit}` : ''
+    const query = `
+      SELECT data.* FROM data
+      INNER JOIN areas ON data.area_id = areas.id
+      WHERE areas.id = :id ${where} ${limit}
+    `
+
+    const stmt = db.prepare(query)
+    stmt.bind({ ':id': area.id })
+
     return parseResults(stmt)
   })
 }
 
-if (params.has('id') && params.has('type')) {
-  getData('date=2020').then(data => console.log(data))
-  getData('date=2019').then(data => console.log(data))
-  getData('1=1', 1).then(data => data[0][nameColumn]).then(function (name) {
-    $('.js-area-name').text(name)
-  })
-}
+getData().then(data => console.log(data))
+getData('date=2021').then(data => console.log(data))
+getData('date=2020').then(data => console.log(data))
+getData('date=2019').then(data => console.log(data))
+
+$('.js-area-name').text(area.name)
