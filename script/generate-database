@@ -29,3 +29,5 @@ end
 
 # Close the database connection
 db.close
+
+File.write('static/database.version', Time.now.strftime('%F %R'))

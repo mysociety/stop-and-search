@@ -4,6 +4,7 @@ import { openDB } from 'https://unpkg.com/idb@7.1.1/build/index.js'
 
 const params = new URLSearchParams(document.location.search)
 const databaseURL = `${staticPath}/database.sqlite`
+const versionURL = `${staticPath}/database.version`
 
 async function downloadAndCacheDatabase() {
   const db = await openDB('cacheDB', 1, {
@@ -12,16 +13,23 @@ async function downloadAndCacheDatabase() {
     }
   })
 
-  const cachedFile = await db.get('files', databaseURL)
-  if (cachedFile) {
-    console.log('USE CACHED FILE');
-    return cachedFile.data
+  const versionResponse = await fetch(versionURL)
+  const currentVersion = await versionResponse.text()
+  const cachedVersion = await db.get('files', versionURL)
+
+  if (cachedVersion && currentVersion == cachedVersion.data) {
+    const cachedFile = await db.get('files', databaseURL)
+    if (cachedFile) {
+      console.log('USE CACHED FILE');
+      return cachedFile.data
+    }
   }
 
   console.log('FETCH REMOTE FILE')
   const response = await fetch(databaseURL)
   const arrayBuffer = await response.arrayBuffer()
   await db.put('files', { id: databaseURL, data: arrayBuffer })
+  await db.put('files', { id: versionURL, data: currentVersion })
   return arrayBuffer
 }
 
