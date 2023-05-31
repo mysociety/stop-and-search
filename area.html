@@ -31,71 +31,43 @@ slug: area
                             <h3 class="fs-4 mb-2">Stop Rates by ethnicity</h3>
                             <p class="fs-6 mb-3 badge bg-primary metric-year">All time</p>
                         </div>
-                    </div>
 
-                    <div class="row gx-lg-5 mt-2">
-                        <div class="col-lg-6">
-                            <h4 class="fs-3 text-primary mb-3">Black</h4>
-                            <p class="fs-m1 lh-1 mb-1">54%</p>
-                            <div>
-                                <span class="fw-bold fs-4">3,890</span>
-                                <span class="fs-6">number of cases</span>
-                            </div>
-                            <div class="border border-primary">
-                                <div class="d-block py-3 px-2 bg-primary" style="width:54%"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <h4 class="fs-3 text-primary mb-3">White</h4>
-                            <p class="fs-m1 lh-1 mb-1">45%</p>
-                            <div>
-                                <span class="fw-bold fs-4">2,530</span>
-                                <span class="fs-6">number of cases</span>
-                            </div>
-                            <div class="border border-primary">
-                                <div class="d-block py-3 px-2 bg-primary" style="width:45%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 border-top py-4 js-dinamic-metric-content">
-                        <h3 class="fs-4 mb-3">Stop Rates by metrics</h3>
-                        <p class="fs-6 mb-3 badge bg-primary metric-year">All time</p>
-                        <div class="row mb-4 gx-lg-5">
-                            <div class="col-12 col-sm-4">
+                        <div class="row mb-4">
+                            <div class="col-12 col-sm-4 metric-object">
                                 <small class="d-block fw-bold">Object of search</small>
-                                <p class="mb-3 badge bg-primary metric-object">All</p>
+                                <p class="mb-3 badge bg-primary js-value">All</p>
                             </div>
-                            <div class="col-12 col-sm-4">
+                            <div class="col-12 col-sm-4 metric-legislation">
                                 <small class="d-block fw-bold">Legislation</small>
-                                <p class="mb-3 badge bg-primary metric-legislation">All</p>
+                                <p class="mb-3 badge bg-primary js-value">All</p>
                             </div>
-                            <div class="col-12 col-sm-4">
+                            <div class="col-12 col-sm-4 metric-outcome">
                                 <small class="d-block fw-bold">Outcome</small>
-                                <p class="mb-3 badge bg-primary metric-outcome">All</p>
+                                <p class="mb-3 badge bg-primary js-value">All</p>
                             </div>
                         </div>
-                        <div class="row gx-lg-5">
+
+                        <div class="row">
                             <div class="col-lg-6">
                                 <h4 class="fs-3 text-primary mb-3">Black</h4>
-                                <p class="fs-m1 lh-1 mb-1 js-dinamic-percentage">54%</p>
+                                <p class="fs-m1 lh-1 mb-1 js-dynamic-percentage">54%</p>
                                 <div>
-                                    <span class="fw-bold fs-4 js-dinamic-number">3,890</span>
+                                    <span class="fw-bold fs-4 js-dynamic-number">3,890</span>
                                     <span class="fs-6">number of cases</span>
                                 </div>
                                 <div class="border border-primary">
-                                    <div class="d-block py-3 px-2 bg-primary js-dinamic-bar" style="width:54%"></div>
+                                    <div class="d-block py-3 px-2 bg-primary js-dynamic-bar style="width:54%"></div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <h4 class="fs-3 text-primary mb-3">White</h4>
-                                <p class="fs-m1 lh-1 mb-1 js-dinamic-percentage">45%</p>
+                                <p class="fs-m1 lh-1 mb-1 js-dynamic-percentage">45%</p>
                                 <div>
-                                    <span class="fw-bold fs-4 js-dinamic-number">2,530</span>
+                                    <span class="fw-bold fs-4 js-dynamic-number">2,530</span>
                                     <span class="fs-6">number of cases</span>
                                 </div>
                                 <div class="border border-primary">
-                                    <div class="d-block py-3 px-2 bg-primary js-dinamic-bar" style="width:45%"></div>
+                                    <div class="d-block py-3 px-2 bg-primary js-dynamic-bar style="width:45%"></div>
                                 </div>
                             </div>
                         </div>
@@ -103,11 +75,9 @@ slug: area
 
                     <div class="mt-6">
                         <div class="row mb-4">
-                            <div class="col-12 col-sm-8">
-                                <h3 class="fs-4 mb-3">Odd Ratio</h3>
-                                <p class="mb-2">Chance of a black person to get stopped compare to a white person.</p>
-                                <p><strong>Example:</strong> an Odd ratio of 3 means that a black person is three times more likely to get stopped than a white person.</p>
-                            </div>
+                            <h3 class="fs-4 mb-3">Odds/ Risk Ratio</h3>
+                            <p class="mb-2">Chance of a black person to get stopped compare to a white person.</p>
+                            <p><strong>Example:</strong> a ratio of 3 means that a black person is three times more likely to get stopped than a white person.</p>
                         </div>
 
                         <div class="row text-end">
@@ -118,73 +88,85 @@ slug: area
                             <div class="col-8 border-top border-bottom border-grey-100 position-relative">
                                 <div class="forest-point bg-primary position-absolute" style="width: 25px;height: 5px;top: 50%;left: 53%;"></div>
                                 <div class="row  h-100 position-relative">
-                                    <div class="col-4  h-100 position-relative">
+                                    <div class="col-3 h-100 position-relative">
                                         <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
                                     </div>
-                                    <div class="col-4  h-100 position-relative">
+                                    <div class="col-3 h-100 position-relative">
                                         <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
                                     </div>
-                                    <div class="col-4  h-100 position-relative">
+                                    <div class="col-3 h-100 position-relative">
+                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
+                                    </div>
+                                    <div class="col-3 h-100 position-relative">
                                         <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row text-end js-dinamic-metric-content">
+                        <div class="row text-end js-dynamic-metric-content metric-object">
                             <div class="col-4 py-3">
-                                <p class="mb-0 lh-1 text-muted">Object of seach</p>
-                                <p class="mb-0 fw-bold metric-object">All</p>
+                                <p class="mb-0 lh-1 text-muted">Object of search</p>
+                                <p class="mb-0 fw-bold js-value">All</p>
                             </div>
                             <div class="col-8 border-top border-bottom border-grey-100 position-relative">
                                 <div class="forest-point bg-primary position-absolute" style="width: 25px;height: 5px;top: 50%;left: 50%;"></div>
                                 <div class="row  h-100 position-relative">
-                                    <div class="col-4  h-100 position-relative">
+                                    <div class="col-3 h-100 position-relative">
                                         <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
                                     </div>
-                                    <div class="col-4  h-100 position-relative">
+                                    <div class="col-3 h-100 position-relative">
                                         <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
                                     </div>
-                                    <div class="col-4  h-100 position-relative">
+                                    <div class="col-3 h-100 position-relative">
+                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
+                                    </div>
+                                    <div class="col-3 h-100 position-relative">
                                         <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row text-end js-dinamic-metric-content">
+                        <div class="row text-end js-dynamic-metric-content metric-legislation">
                             <div class="col-4 py-3">
                                 <p class="mb-0 lh-1 text-muted">Legislation</p>
-                                <p class="mb-0 fw-bold metric-legislation">All</p>
+                                <p class="mb-0 fw-bold js-value">All</p>
                             </div>
                             <div class="col-8 border-top border-bottom border-grey-100 position-relative">
                                 <div class="forest-point bg-primary position-absolute" style="width: 25px;height: 5px;top: 50%;left: 50%;"></div>
                                 <div class="row  h-100 position-relative">
-                                    <div class="col-4  h-100 position-relative">
+                                    <div class="col-3 h-100 position-relative">
                                         <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
                                     </div>
-                                    <div class="col-4  h-100 position-relative">
+                                    <div class="col-3 h-100 position-relative">
                                         <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
                                     </div>
-                                    <div class="col-4  h-100 position-relative">
+                                    <div class="col-3 h-100 position-relative">
+                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
+                                    </div>
+                                    <div class="col-3 h-100 position-relative">
                                         <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row text-end js-dinamic-metric-content">
+                        <div class="row text-end js-dynamic-metric-content metric-outcome">
                             <div class="col-4 py-3">
                                 <p class="mb-0 lh-1 text-muted">Outcome</p>
-                                <p class="mb-0 fw-bold metric-outcome">All</p>
+                                <p class="mb-0 fw-bold js-value">All</p>
                             </div>
                             <div class="col-8 border-top border-bottom border-grey-100 position-relative">
                                 <div class="forest-point bg-primary position-absolute" style="width: 25px;height: 5px;top: 50%;left: 63%;"></div>
                                 <div class="row  h-100 position-relative">
-                                    <div class="col-4  h-100 position-relative">
+                                    <div class="col-3 h-100 position-relative">
                                         <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
                                     </div>
-                                    <div class="col-4  h-100 position-relative">
+                                    <div class="col-3 h-100 position-relative">
                                         <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
                                     </div>
-                                    <div class="col-4  h-100 position-relative">
+                                    <div class="col-3 h-100 position-relative">
+                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
+                                    </div>
+                                    <div class="col-3 h-100 position-relative">
                                         <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
                                     </div>
                                 </div>
@@ -194,110 +176,10 @@ slug: area
                             <div class="col-4"></div>
                             <div class="col-8">
                                 <div class="row">
-                                    <div class="col-4 text-center">1</div>
-                                    <div class="col-4 text-center">3</div>
-                                    <div class="col-4 text-center">5</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-6">
-                        <div class="row mb-4">
-                            <div class="col-12 col-sm-8">
-                                <h3 class="fs-4 mb-3">Risk Ratio</h3>
-                                <p class="mb-2">Chance of a black person to get stopped compare to a white person.</p>
-                                <p><strong>Example:</strong> a Risk ratio of 3 means that a black person is three times more likely to get stopped than a white person.</p>
-                            </div>
-                        </div>
-
-                        <div class="row text-end">
-                            <div class="col-4 py-3">
-                                <p class="mb-0 lh-1 text-muted">Year</p>
-                                <p class="mb-0 fw-bold metric-year">All time</p>
-                            </div>
-                            <div class="col-8 border-top border-bottom border-grey-100 position-relative">
-                                <div class="forest-point bg-primary position-absolute" style="width: 25px;height: 5px;top: 50%;left: 53%;"></div>
-                                <div class="row  h-100 position-relative">
-                                    <div class="col-4  h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-4  h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-4  h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row text-end js-dinamic-metric-content">
-                            <div class="col-4 py-3">
-                                <p class="mb-0 lh-1 text-muted">Object of seach</p>
-                                <p class="mb-0 fw-bold metric-object">All</p>
-                            </div>
-                            <div class="col-8 border-top border-bottom border-grey-100 position-relative">
-                                <div class="forest-point bg-primary position-absolute" style="width: 25px;height: 5px;top: 50%;left: 50%;"></div>
-                                <div class="row  h-100 position-relative">
-                                    <div class="col-4  h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-4  h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-4  h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row text-end js-dinamic-metric-content">
-                            <div class="col-4 py-3">
-                                <p class="mb-0 lh-1 text-muted">Legislation</p>
-                                <p class="mb-0 fw-bold metric-legislation">All</p>
-                            </div>
-                            <div class="col-8 border-top border-bottom border-grey-100 position-relative">
-                                <div class="forest-point bg-primary position-absolute" style="width: 25px;height: 5px;top: 50%;left: 50%;"></div>
-                                <div class="row  h-100 position-relative">
-                                    <div class="col-4  h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-4  h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-4  h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row text-end js-dinamic-metric-content">
-                            <div class="col-4 py-3">
-                                <p class="mb-0 lh-1 text-muted">Outcome</p>
-                                <p class="mb-0 fw-bold metric-outcome">All</p>
-                            </div>
-                            <div class="col-8 border-top border-bottom border-grey-100 position-relative">
-                                <div class="forest-point bg-primary position-absolute" style="width: 25px;height: 5px;top: 50%;left: 63%;"></div>
-                                <div class="row  h-100 position-relative">
-                                    <div class="col-4  h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-4  h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-4  h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4"></div>
-                            <div class="col-8">
-                                <div class="row">
-                                    <div class="col-4 text-center">1</div>
-                                    <div class="col-4 text-center">3</div>
-                                    <div class="col-4 text-center">5</div>
+                                    <div class="col-3 text-center">0</div>
+                                    <div class="col-3 text-center">2</div>
+                                    <div class="col-3 text-center">4</div>
+                                    <div class="col-3 text-center">6</div>
                                 </div>
                             </div>
                         </div>
