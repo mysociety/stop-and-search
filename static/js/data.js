@@ -25,7 +25,7 @@ async function downloadAndCacheDatabase() {
   if (cachedVersion && currentVersion == cachedVersion.data) {
     const cachedFile = await db.get('files', databaseURL)
     if (cachedFile) {
-      console.log('USE CACHED FILE');
+      console.log('USE CACHED FILE')
       return cachedFile.data
     }
   }
@@ -93,9 +93,49 @@ async function getData(_where = null, _limit = null) {
   })
 }
 
-getData().then(data => console.log(data))
-getData('date=2021').then(data => console.log(data))
-getData('date=2020').then(data => console.log(data))
-getData('date=2019').then(data => console.log(data))
+$(function() {
+  $('.js-area-name').text(area.name)
 
-$('.js-area-name').text(area.name)
+  function updateData() {
+    const year = $("#year").val()
+
+    $('.js-data').each(function () {
+      const metric = $(this).data('metric')
+      const ethnicity = $(this).data('ethnicity')
+
+      const baseQuery = `metric="${metric}" AND ethnicity="${ethnicity}"`
+      const query = (year != '') ? `date=${year} AND ${baseQuery}` : baseQuery
+
+      const $this = $(this)
+
+      getData(query).then(function (data) {
+        let sum = 0
+        let count = 0
+        let value
+
+        data.forEach((obj) => {
+          if (typeof obj.value === 'number') {
+            sum += obj.value
+            count++
+          }
+        })
+
+        if (data[0].value_type == 'percentage') {
+          sum = sum / count
+          value = (sum).toFixed(2)
+        } else if (data[0].value_type == 'frequency') {
+          value = sum.toLocaleString()
+        }
+
+        if ($this.data('target') == 'width') {
+          $this.css('width', `${value}%`)
+        } else {
+          $this.text(value)
+        }
+      })
+    })
+  }
+
+  $('.dropdown-metric').on('change', updateData)
+  updateData()
+})
