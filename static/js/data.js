@@ -1,6 +1,6 @@
 import $ from '../vendor/jquery/js/jquery.esm.js'
 import { initSqlJs } from '../vendor/sql.js/js/sql-wasm.esm.js'
-import { openDB } from 'https://unpkg.com/idb@7.1.1/build/index.js'
+import { openDB } from '../vendor/idb/js/index.js'
 
 const params = new URLSearchParams(document.location.search)
 
