@@ -86,21 +86,7 @@ slug: area
                                 <p class="mb-0 fw-bold metric-year">All time</p>
                             </div>
                             <div class="col-8 border-top border-bottom border-grey-100 position-relative">
-                                <div class="forest-point bg-primary position-absolute" style="width: 25px;height: 5px;top: 50%;left: 53%;"></div>
-                                <div class="row  h-100 position-relative">
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                </div>
+                                <div id="plot-year"></div>
                             </div>
                         </div>
                         <div class="row text-end js-dynamic-metric-content metric-object">
@@ -109,21 +95,7 @@ slug: area
                                 <p class="mb-0 fw-bold js-value">All</p>
                             </div>
                             <div class="col-8 border-top border-bottom border-grey-100 position-relative">
-                                <div class="forest-point bg-primary position-absolute" style="width: 25px;height: 5px;top: 50%;left: 50%;"></div>
-                                <div class="row  h-100 position-relative">
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                </div>
+                                <div id="plot-object-of-search"></div>
                             </div>
                         </div>
                         <div class="row text-end js-dynamic-metric-content metric-legislation">
@@ -132,21 +104,7 @@ slug: area
                                 <p class="mb-0 fw-bold js-value">All</p>
                             </div>
                             <div class="col-8 border-top border-bottom border-grey-100 position-relative">
-                                <div class="forest-point bg-primary position-absolute" style="width: 25px;height: 5px;top: 50%;left: 50%;"></div>
-                                <div class="row  h-100 position-relative">
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                </div>
+                                <div id="plot-legislation"></div>
                             </div>
                         </div>
                         <div class="row text-end js-dynamic-metric-content metric-outcome">
@@ -155,32 +113,13 @@ slug: area
                                 <p class="mb-0 fw-bold js-value">All</p>
                             </div>
                             <div class="col-8 border-top border-bottom border-grey-100 position-relative">
-                                <div class="forest-point bg-primary position-absolute" style="width: 25px;height: 5px;top: 50%;left: 63%;"></div>
-                                <div class="row  h-100 position-relative">
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                    <div class="col-3 h-100 position-relative">
-                                        <div class="bg-gray-200 h-100 position-absolute" style="padding:0 0.5px; width: 0; left:50%"></div>
-                                    </div>
-                                </div>
+                                <div id="plot-outcome"></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-4"></div>
                             <div class="col-8">
-                                <div class="row">
-                                    <div class="col-3 text-center">0</div>
-                                    <div class="col-3 text-center">2</div>
-                                    <div class="col-3 text-center">4</div>
-                                    <div class="col-3 text-center">6</div>
-                                </div>
+                                <div id="plot-footer"></div>
                             </div>
                         </div>
                     </div>
