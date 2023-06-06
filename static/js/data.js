@@ -1,6 +1,7 @@
 import $ from '../vendor/jquery/js/jquery.esm.js'
 import { initSqlJs } from '../vendor/sql.js/js/sql-wasm.esm.js'
 import { openDB } from '../vendor/idb/js/index.js'
+import { updateAll as refreshForestPlots } from './forest-plots.js'
 
 const params = new URLSearchParams(document.location.search)
 
@@ -138,4 +139,5 @@ $(function() {
 
   $('.dropdown-metric').on('change', updateData)
   updateData()
+  refreshForestPlots()
 })
