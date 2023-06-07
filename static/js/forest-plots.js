@@ -1,6 +1,9 @@
 import Plotly from '../vendor/plotly/js/plotly.esm.js'
 
 function setup(id, _layout = {}) {
+  const element = document.getElementById(id)
+  if (!element) { return }
+
   const data = [
     {
       name: "OR",
@@ -50,6 +53,7 @@ function getAllDataFloats(dataKey) {
 
 function update(id) {
   const element = document.getElementById(id)
+  if (!element) { return }
 
   const or = parseFloat(element.getAttribute('data-or'))
   const or_ci_low = parseFloat(element.getAttribute('data-or_ci_low'))
