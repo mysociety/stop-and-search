@@ -5,7 +5,7 @@ require 'json'
 require 'sqlite3'
 
 if ARGV.empty?
-  puts "No arguments provided. Please pass the analysed CSV data file path as an argument."
+  puts "No arguments provided. Please pass the analysed councils and forces CSV data file paths as arguments."
   exit
 end
 
@@ -18,10 +18,12 @@ police_forces = police_force_json['features'].map { _1['properties'] }
 areas = councils + police_forces
 
 # Get the path of the CSV file from the command line arguments
-csv_file_path = ARGV[0]
+council_csv_file_path = ARGV[0]
+forces_csv_file_path = ARGV[1]
 
 # Read the CSV file
-csv_data = CSV.read(csv_file_path, headers: true)
+council_csv_data = CSV.read(council_csv_file_path, headers: true)
+forces_csv_data = CSV.read(forces_csv_file_path, headers: true)
 
 # Prepare the database
 db = SQLite3::Database.new 'static/database.sqlite'
@@ -61,7 +63,7 @@ db.execute <<-SQL
 SQL
 
 # Insert each row into the database
-csv_data.each do |row|
+council_csv_data.each do |row|
   db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
     row['la_code'],
     row['date'],
@@ -71,9 +73,11 @@ csv_data.each do |row|
     row['value'],
     row['value_type']
   ]
+end
 
+forces_csv_data.each do |row|
   db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
-    police_forces.find { _1['name'] == row['force'] }['id'],
+    row['force_code'],
     row['date'],
     row['metric'],
     row['metric_category'],
