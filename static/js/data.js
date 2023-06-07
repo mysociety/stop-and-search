@@ -137,7 +137,27 @@ $(function() {
     })
   }
 
+  function updatePlots() {
+    const year = $("#year").val()
+
+    const promises = $('.js-plot').map(function () {
+      if (year == '') { return }
+      const query = `date=${year} AND value_type="ratio"` 
+      const element = $(this).get(0)
+
+      return getData(query).then(function (data) {
+        data.forEach((obj) => {
+          element.setAttribute(`data-${obj.metric_category}`, obj.value)
+        })
+      })
+    })
+
+    Promise.all(promises).then(refreshForestPlots)
+  }
+
   $('.dropdown-metric').on('change', updateData)
   updateData()
-  refreshForestPlots()
+
+  $('.dropdown-metric').on('change', updatePlots)
+  updatePlots()
 })
