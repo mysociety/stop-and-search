@@ -1,4 +1,3 @@
-import $ from '../vendor/jquery/js/jquery.esm.js'
 import Plotly from '../vendor/plotly/js/plotly.esm.js'
 
 function setup(id, _layout = {}) {
@@ -39,33 +38,37 @@ function setup(id, _layout = {}) {
   Plotly.newPlot(id, data, layout, config)
 }
 
-$(function() {
-  if ($('[data-or]').length == 0) { return }
+setup("plot-year")
+setup("plot-object-of-search")
+setup("plot-legislation")
+setup("plot-outcome")
+setup("plot-footer", { height: 30, margin: { b: 30, l: 0, r: 0, t: 0 } })
 
-  setup("plot-year")
-  setup("plot-object-of-search")
-  setup("plot-legislation")
-  setup("plot-outcome")
-  setup("plot-footer", { height: 30, margin: { b: 30, l: 0, r: 0, t: 0 } })
-})
+function getAllDataFloats(dataKey) {
+  var elements = document.querySelectorAll(`[${dataKey}]`)
+
+  return Array.from(elements).map(function(element) {
+    return parseFloat(element.getAttribute(dataKey))
+  })
+}
 
 function update(id) {
-  const $element = $(`#${id}`)
+  const element = document.getElementById(id)
 
-  const or = $element.data('or')
-  const or_ci_low = $element.data('or_ci_low')
-  const or_ci_upp = $element.data('or_ci_upp')
+  const or = parseFloat(element.getAttribute('data-or'))
+  const or_ci_low = parseFloat(element.getAttribute('data-or_ci_low'))
+  const or_ci_upp = parseFloat(element.getAttribute('data-or_ci_upp'))
 
-  const rr = $element.data('rr')
-  const rr_ci_low = $element.data('rr_ci_low')
-  const rr_ci_upp = $element.data('rr_ci_upp')
+  const rr = parseFloat(element.getAttribute('data-rr'))
+  const rr_ci_low = parseFloat(element.getAttribute('data-rr_ci_low'))
+  const rr_ci_upp = parseFloat(element.getAttribute('data-rr_ci_upp'))
 
-  const or_min = Math.min(...$('[data-or_ci_low]').map(function() { return parseFloat($(this).data('or_ci_low')) }).get())
-  const rr_min = Math.min(...$('[data-rr_ci_low]').map(function() { return parseFloat($(this).data('rr_ci_low')) }).get())
+  const or_min = Math.min(...getAllDataFloats('data-or_ci_low'))
+  const rr_min = Math.min(...getAllDataFloats('data-rr_ci_low'))
   const min    = Math.floor(Math.min(or_min, rr_min)) - 1
 
-  const or_max = Math.max(...$('[data-or_ci_upp]').map(function() { return parseFloat($(this).data('or_ci_upp')) }).get())
-  const rr_max = Math.max(...$('[data-rr_ci_upp]').map(function() { return parseFloat($(this).data('rr_ci_upp')) }).get())
+  const or_max = Math.max(...getAllDataFloats('data-or_ci_upp'))
+  const rr_max = Math.max(...getAllDataFloats('data-rr_ci_upp'))
   const max    = Math.ceil(Math.max(or_max, rr_max)) + 1
 
   const newData = {}
@@ -88,8 +91,6 @@ function update(id) {
 }
 
 function updateAll() {
-  if ($('[data-or]').length == 0) { return }
-
   update("plot-year")
   update("plot-object-of-search")
   update("plot-legislation")
