@@ -4,22 +4,18 @@ function setup(id, _layout = {}) {
   const data = [
     {
       name: "OR",
-      y: [2],
       error_x: { type: "data", symmetric: false, color: "green", thickness: 3 },
       hoverinfo: "text",
       mode: "markers",
       type: "scatter",
-      marker: { size: 10, color: "blue"
-      }
+      marker: { size: 10, color: "blue" }
     }, {
       name: "RR",
-      y: [1],
       error_x: { type: "data", symmetric: false, color: "green", thickness: 3 },
       hoverinfo: "text",
       mode: "markers",
       type: "scatter",
-      marker: { size: 10, color: "orange"
-      }
+      marker: { size: 10, color: "orange" }
     }
   ]
 
@@ -76,6 +72,7 @@ function update(id) {
   if (or && or_ci_low && or_ci_upp && rr && rr_ci_low && rr_ci_upp) {
     Object.assign(newData, {
       x: [[or], [rr]],
+      y: [[2], [1]],
       'error_x.array': [[or_ci_upp - or], [rr_ci_upp - rr]],
       'error_x.arrayminus': [[or - or_ci_low], [rr - rr_ci_low]],
       text: [
