@@ -1,0 +1,67 @@
+<div class="footer py-5 py-md-6 bg-black">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-7">
+          <a href="{{ '/' | relative_url }}" class="text-white fs-5">
+            {% include icons/stop-search-logo-white.html width="7em" height="3em" %}
+            <span class="visually-hidden">Stop and Search logo</span>
+          </a>
+          <p style="max-width:550px;">It would be great to add a little intro with the goal of the project</p>
+
+
+          <div class="d-flex flex-column flex-md-row justify-content-between">
+            <div style="max-width:300px">
+              <p class="mt-5 mb-0">Project by</p>
+              <a href="https://blackthrive.org/">
+
+                <img width="100" src="{{ '/static/img/black-thrive-global-logo.png' | relative_url }}" alt="Black Thrive logo">
+              </a>
+            </div>
+
+            <div style="max-width:300px">
+              <p class="mt-5 mb-0">Sponsored by</p>
+              <a class="text-white" href="https://wellcome.org/">
+                {% include icons/wellcome-logo.html width="90px" %}
+                <span class="visually-hidden">mySociety logo</span>
+              </a>
+            </div>
+
+            <div style="max-width:300px">
+              <p class="mt-5 mb-n2">Built by</p>
+              <a href="https://www.mysociety.org/">
+                {% include icons/mysociety-logo-white.html width="200px" height="3em" %}
+                <span class="visually-hidden">mySociety logo</span>
+              </a>
+              <p class="fs-m6"><a class="link-light" href="https://www.mysociety.org/">mySociety</a> is a registered charity in England and Wales (1076346) and a limited company (03277032). We provide commercial services through our wholly owned subsidiary <a class="link-light" href="https://www.societyworks.org/">SocietyWorks</a> Ltd (05798215).</p>
+            </div>
+          </div>
+      </div>
+
+      <div class="col-12 col-md-4 offset-md-1 mt-4 mt-md-0">
+        <h3 class="fs-6">Stop and Search data</h3>
+        <p class="fs-m6">Source: data.police.uk licensed under the Open Government Licence v.3.0</p>
+
+        <h3 class="fs-6">Boundary data</h3>
+        <p class="fs-m6">Source: Office for National Statistics licensed under the Open Government Licence v.3.0</p>
+        <p class="fs-m6">Contains OS data © Crown copyright and database right 2023</p>
+
+        <a class="d-block link-light text-decoration-none fs-m6 mb-3" href="https://github.com/mysociety/stop-and-search">
+          {% include icons/icon-github.html width="45px" height="45px" %}
+          <span class="">Stop and Search Repo</span>
+        </a>
+
+        <a class="d-block link-light text-decoration-none fs-m6" href="https://github.com/BlackThrive/extractss">
+          {% include icons/icon-github.html width="45px" height="45px" %}
+          <span class="">ExtractSS</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1/dist/es-module-shims.min.js" crossorigin="anonymous"></script>
+<script type="esms-options">{ "polyfillEnable": ["json-modules"] }</script>
+<script type="importmap">{ "imports": { "@popperjs/core": "{{ '/static/vendor/popper/js/popper.min.js' | relative_url }}" } }</script>
+<script>window.staticPath = "{{ '/static' | relative_url }}"</script>
+<script type="module" src="{{ '/static/js/all.js' | relative_url }}"></script>
