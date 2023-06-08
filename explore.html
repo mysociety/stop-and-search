@@ -11,73 +11,64 @@ slug: explore
 </div>
 
 
-<div class="explore">
+<div class="explore" id="exploreApp">
 
     <div class="explore-filters p-4 p-lg-5">
         <h1 class="h2 mb-3">{{ page.title }}</h1>
 
         <p>Explorer stop and search data by English/Welsh councils or police force.</p>
 
-        <div class="btn-group w-100" role="group" aria-label="Basic example">
-            <button class="btn btn-primary js-view-as-councils">Councils</button>
-            <button class="btn btn-outline-secondary js-view-as-police-forces">Police Forces</button>
+        <div class="btn-group w-100" role="group" aria-label="Boundaries">
+            <button @click="changeBoundary('council')" class="btn" v-bind:class="(boundaryType == 'council')?'btn-primary':'btn-outline-secondary'">Councils</button>
+            <button @click="changeBoundary('police-force')" class="btn" v-bind:class="(boundaryType == 'police-force')?'btn-primary':'btn-outline-secondary'">Police Forces</button>
         </div>
 
         <h2 class="h4 mt-4 mt-lg-5 mb-4 text-primary">Step 1: Add filters</h2>
 
-        <div class="mb-4 js-active-filters"></div>
+        <div ref="filtersContainer" class="mb-4" hidden>
+            <div v-for="filter in selectedFilters" class="bg-gray-100 border p-3 rounded mb-4">
+                <div class="d-flex mb-3">
+                    <h3 class="h6 mb-0 me-auto">${ filter.title }</h3>
+                    <button @click="removeFilter(filter.name)" type="button" class="btn-close p-0" aria-label="Remove filter"></button>
+                </div>
+                <div class="d-flex">
+                    <select v-if="filter.is_range" v-model="filter.selectedType" class="form-select form-select-sm flex-grow-0 flex-shrink-1 me-3">
+                      <option v-for="ds_type in filter.types" :value="ds_type.name">${ ds_type.title }</option>
+                    </select>
+                    <select v-model="filter.selectedComparator" class="form-select form-select-sm flex-grow-0 flex-shrink-1">
+                      <option v-for="(title, comparator) in filter.comparators" :value="comparator">${ title }</option>
+                    </select>
+                    <select v-if="filter.options" v-model="filter.selectedValue" class="form-select form-select-sm ms-3 flex-grow-1 flex-shrink-1">
+                        <option v-for="option in filter.options" :value="option">${ option }</option>
+                    </select>
+                    <input v-else type="text" v-model="filter.selectedValue" class="form-control form-control-sm ms-3 flex-grow-1 flex-shrink-1">
+                </div>
+            </div>
+        </div>
 
-        <button type="button" class="btn btn-outline-secondary p-3 w-100 js-add-filter">
+        <button @click="selectFilter" type="button" class="btn btn-outline-secondary p-3 w-100">
             Filter data
         </button>
 
         <h2 class="h4 mt-4 mt-lg-5 mb-3 mb-lg-4 text-primary">Step 2: Shade results (optional)</h2>
 
-        <div class="mb-4 js-active-shaders"></div>
+        <div ref="shaderContainer" class="mb-4" hidden>
+            <div v-if="selectedShader" class="bg-gray-100 border p-3 rounded mb-4">
+                <div class="d-flex">
+                    <h3 class="h6 mb-0 me-auto">${ selectedShader.title }</h3>
+                    <button @click="removeShader(selectShader.name)" type="button" class="btn-close p-0" aria-label="Remove shader"></button>
+                </div>
+            </div>
+        </div>
 
-        <button type="button" class="btn btn-outline-secondary p-3 w-100 js-add-shader">
+        <button v-if="!selectedShader" @click="selectShader" type="button" class="btn btn-outline-secondary p-3 w-100">
             Shade data
         </button>
     </div>
 
     <div class="explore-results bg-gray-100">
-        <div class="explore-map"></div>
+        <div class="explore-map" ref="map"></div>
     </div>
 
+    {% include filter-data-modal.html %}
 </div>
-
-{% include filter-data-modal.html %}
-
-<script type="text/x-template" id="templateFilter">
-    <div class="bg-gray-100 border p-3 rounded mb-4 js-filter">
-        <div class="d-flex mb-3">
-            <h3 class="h6 mb-0 me-auto"><%= name %></h3>
-            <button type="button" class="btn-close p-0 js-remove-filter" aria-label="Remove filter"></button>
-        </div>
-        <div class="d-flex">
-            <select class="form-select form-select-sm flex-grow-0 flex-shrink-0 w-auto">
-              <% _.each(comparators, function(comparator){ %>
-                <option><%= comparator %></option>
-              <% }) %>
-            </select>
-          <% if ( typeof options !== 'undefined' ) { %>
-            <select class="form-select form-select-sm ms-3 flex-grow-1 flex-shrink-1">
-              <% _.each(options, function(option){ %>
-                <option><%= option %></option>
-              <% }) %>
-            </select>
-          <% } else { %>
-            <input type="text" value="<%= defaultValue %>" class="form-control form-control-sm ms-3 flex-grow-1 flex-shrink-1">
-          <% } %>
-        </div>
-    </div>
-</script>
-
-<script type="text/x-template" id="templateShader">
-    <div class="bg-gray-100 border p-3 rounded mb-4 js-shader">
-        <div class="d-flex">
-            <h3 class="h6 mb-0 me-auto"><%= name %></h3>
-            <button type="button" class="btn-close p-0 js-remove-shader" aria-label="Remove shader"></button>
-        </div>
-    </div>
-</script>

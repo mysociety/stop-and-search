@@ -3,6 +3,8 @@ import { initSqlJs } from '../vendor/sql.js/js/sql-wasm.esm.js'
 import { openDB } from '../vendor/idb/js/index.js'
 import { updateAll as refreshForestPlots } from './forest-plots.js'
 
+try {
+
 const params = new URLSearchParams(document.location.search)
 
 if (!params.has('id') || !params.has('type')) {
@@ -161,3 +163,7 @@ $(function() {
   $('.dropdown-metric').on('change', updatePlots)
   updatePlots()
 })
+
+} catch (error) {
+  console.error(error)
+}
