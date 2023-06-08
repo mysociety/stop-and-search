@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-12 col-lg-4">
+      <dl>
+        {% comment %} I want to give each country/local government their
+        own colour so it's more visually distinctive {% endcomment %}
+          <dt class="fs-m6 fw-bold">Country</dt>
+          <dd class="mb-4 badge bg-success">England</dd>
+
+          <dt class="fs-m6 fw-bold">Region</dt>
+          <dd class="mb-4 badge bg-success">North England</dd>
+
+          <dt class="fs-m6 fw-bold">Local Government</dt>
+          <dd class="mb-4 badge bg-danger">Conservative</dd>
+      </dl>
+    </div>
+    <div class="col-12 col-lg-4">
+      <dl>
+          <dt class="fs-m6 fw-bold">Police commissioner</dt>
+          <dd class="mb-4">John Doe</dd>
+          <dt class="fs-m6 fw-bold">Police Force</dt>
+          <dd class="mb-4">North East</dd>
+      </dl>
+
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <dl class="d-flex flex-row flex-nowrap align-items-center mb-4">
+        <img class="rounded-circle me-2" width="75" height="75" src="{{ '/static/img/mp.jpg' | relative_url }}" alt="John Doe profile pic">
+        <div>
+          <dt class="fs-m6 fw-bold">Local MP</dt>
+          <dd class="mb-0">John Doe</dd>
+        </div>
+      </dl>
+
+        <h3 class="fs-6 mb-1">Is this your representative?</h3>
+        <p class="fs-6">You can write to them</p> 
+        {% comment %} It would be cool if we can add the post code when checking an area. Not sure if that is possible {% endcomment %}
+        <a href="https://www.writetothem.com/who?pc=B2+4QA" class="btn btn-primary btn-sm">Go to WriteToThem</a>
+
+    </div>
+</div>

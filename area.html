@@ -25,10 +25,15 @@ slug: area
             <div class="col-lg-7 col-xl-9">
                 <h2 class="mt-3 mb-3 pb-3 border-bottom text-primary">Area dashboard</h2>
 
+                {% comment %} Not sure how you'd like to implement this
+                only one of them should be display depending if the user is checking a council area or police force area {% endcomment %}
+                {% comment %} {% include area-info.html %} {% endcomment %}
+                {% include area-police-force-info.html %}
+
                 <div class="mb-8">
-                    <div class="row mt-4">
+                    <div class="row mt-5">
                         <div class="col-lg-6">
-                            <h3 class="fs-4 mb-2">Stop Rates by ethnicity</h3>
+                            <h3 class="fs-4 mb-3">Stop Rates by ethnicity</h3>
                             <p class="fs-6 mb-3 badge bg-primary metric-year">All time</p>
                         </div>
 
