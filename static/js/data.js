@@ -11,6 +11,15 @@ if (!params.has('id') || !params.has('type')) {
   throw new Error('Missing parameters')
 }
 
+$('[data-area-type]').each(function() {
+  const element = $(this).get(0)
+  if (element.getAttribute('data-area-type') === params.get('type')) {
+    element.removeAttribute('hidden')
+  } else {
+    element.setAttribute('hidden', 'hidden')
+  }
+})
+
 const databaseURL = `${staticPath}/database.sqlite`
 const versionURL = `${staticPath}/database.version`
 
