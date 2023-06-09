@@ -62,27 +62,35 @@ slug: area
                             <div class="col-12 col-lg-5 d-flex flex-column flex-md-row text-end">
                                 <div>
                                     <h4 class="fs-3 text-primary mb-3">Black</h4>
-                                    <p class="fs-m1 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54</span>%</p>
+                                    <p class="fs-m1 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage">54%</span></p>
                                     <div>
                                         <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
                                         <span class="fs-6">number of cases</span>
                                     </div>
+                                    <div>
+                                        <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="stop_rate" data-ethnicity="Black">10%</span>
+                                        <span class="fs-6">of the Black population</span>
+                                    </div>
                                 </div>
 
                                 <div class="border border-primary d-flex align-items-end text-white ms-3">
-                                    <div class="d-block py-3 px-4 bg-primary js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-target="height" style="height:54%"></div>
+                                    <div class="d-block py-3 px-4 bg-primary js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="height" style="height:54%"></div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-5 d-flex flex-column flex-md-row text-start">
                                 <div class="border border-primary d-flex align-items-end text-white me-3">
-                                    <div class="d-block py-3 px-4 bg-primary js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-target="height" style="height:45%"></div>
+                                    <div class="d-block py-3 px-4 bg-primary js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="height" style="height:45%"></div>
                                 </div>
                                 <div>
                                     <h4 class="fs-3 text-primary mb-3">White</h4>
-                                    <p class="fs-m1 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45</span>%</p>
+                                    <p class="fs-m1 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage">45%</span></p>
                                     <div>
                                         <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
                                         <span class="fs-6">number of cases</span>
+                                    </div>
+                                    <div>
+                                        <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="stop_rate" data-ethnicity="White">2%</span>
+                                        <span class="fs-6">of the White population</span>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +100,7 @@ slug: area
                     <div class="mt-6">
                         <div class="row mb-4">
                             <div class="col-12">
-                                <h3 class="fs-4 mb-2">Forest plots</h3>
+                                <h3 class="fs-4 mb-2">Risk ratio</h3>
                                 <p class="badge bg-primary mb-3">Risk ratio</p>
                                 <div class="mb-4 p-3 bg-green-100" style="max-width:500px">
                                     <h4 class="fs-6">Select a ratio</h4>
@@ -150,16 +158,20 @@ slug: area
                             <div class="col-12">
                                 <div class="p-3 bg-light border">
                                     <h4>What does it mean?</h4>
-                                    <dl>
-                                        <dt>0</dt>
-                                        <dd class="mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</dd>
-    
-                                        <dt>1</dt>
-                                        <dd class="mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</dd>
-    
-                                        <dt>2</dt>
-                                        <dd class="mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</dd>
-                                    </dl>
+                                    <h5>Risk ratio</h5>
+                                    <p>In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr">3.1</span>. This means that Black people are <span class="js-data" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched.</p>
+                                    <details>
+                                      <summary>Show me more infomation</summary>
+                                      <p>The risk ratio describes the likelihood of a Black person being stopped and searched relative to the likelihood of a White person being stopped and searched.</p>
+                                      <p>If the risk ratio is 1, it means that the likelihood of being stopped is the same for Black and White people.</p>
+                                      <p>If the risk ratio is greater than 1, it means that the likelihood of being stopped is greater for Black people compared to White people. For example, a risk ratio of 2 would indicate that Black people are 2 times more likely to be stopped and searched than White people.</p>
+                                      <p>If the risk ratio is less than 1, it means that the likelihood of being stopped is lower for Black people compared to White people. For example, a risk ratio of 0.5 would indicate that Black people are 50% less likely to be stopped and searched compared to White people.</p>
+                                    </details>
+                                </div>
+                                <div class="p-3 mt-4 bg-light border">
+                                    <h5>Confidence intervals</h5>
+                                    <p>The confidence interval is <span class="js-data" data-metric="rr" data-metric-category="rr_ci_low">2.9</span> to <span class="js-data" data-metric="rr" data-metric-category="rr_ci_upp">3.1</span></p>
+                                    <p>Because the risk ratio is an estimate, we cannot be 100% certain that the value is correct. However, we can estimate the range of values that the risk ratio is likely to be. This is what the bars on the graph represent (known as the 95% confidence interval). In essence, wider bars indicate less certainty in the risk ratio (because there is a wider range of possible values it could be), whilst narrower bars indicate more certainty in the risk ratio (because there is a narrower range of possible values it could be).</p>
                                 </div>
                             </div>
                         </div>
