@@ -7,11 +7,11 @@ function setup(id, _layout = {}) {
   const data = [
     {
       name: "RR",
-      error_x: { type: "data", symmetric: false, color: "green", thickness: 3 },
+      error_x: { type: "data", symmetric: false, color: "#046563", thickness: 3 },
       hoverinfo: "text",
       mode: "markers",
       type: "scatter",
-      marker: { size: 10, color: "orange" }
+      marker: { size: 10, color: "#046563" }
     }
   ]
 
