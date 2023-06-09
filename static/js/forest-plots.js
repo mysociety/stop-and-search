@@ -6,13 +6,6 @@ function setup(id, _layout = {}) {
 
   const data = [
     {
-      name: "OR",
-      error_x: { type: "data", symmetric: false, color: "green", thickness: 3 },
-      hoverinfo: "text",
-      mode: "markers",
-      type: "scatter",
-      marker: { size: 10, color: "blue" }
-    }, {
       name: "RR",
       error_x: { type: "data", symmetric: false, color: "green", thickness: 3 },
       hoverinfo: "text",
@@ -24,7 +17,7 @@ function setup(id, _layout = {}) {
 
   const layout = Object.assign({}, {
     xaxis: { showline: true, zeroline: false, fixedrange: true },
-    yaxis: { range: [0, 3], showgrid: false, zeroline: false, showticklabels: false, fixedrange: true },
+    yaxis: { range: [0, 2], showgrid: false, zeroline: false, showticklabels: false, fixedrange: true },
     hoverlabel: { bgcolor: "lightgray" },
     showlegend: false,
     width: 600,
@@ -55,32 +48,25 @@ function update(id) {
   const element = document.getElementById(id)
   if (!element) { return }
 
-  const or = parseFloat(element.getAttribute('data-or'))
-  const or_ci_low = parseFloat(element.getAttribute('data-or_ci_low'))
-  const or_ci_upp = parseFloat(element.getAttribute('data-or_ci_upp'))
-
   const rr = parseFloat(element.getAttribute('data-rr'))
   const rr_ci_low = parseFloat(element.getAttribute('data-rr_ci_low'))
   const rr_ci_upp = parseFloat(element.getAttribute('data-rr_ci_upp'))
 
-  const or_min = Math.min(...getAllDataFloats('data-or_ci_low'))
   const rr_min = Math.min(...getAllDataFloats('data-rr_ci_low'))
-  const min    = Math.floor(Math.min(or_min, rr_min)) - 1
+  const min    = Math.floor(rr_min) - 1
 
-  const or_max = Math.max(...getAllDataFloats('data-or_ci_upp'))
   const rr_max = Math.max(...getAllDataFloats('data-rr_ci_upp'))
-  const max    = Math.ceil(Math.max(or_max, rr_max)) + 1
+  const max    = Math.ceil(rr_max) + 1
 
   const newData = {}
 
-  if (or && or_ci_low && or_ci_upp && rr && rr_ci_low && rr_ci_upp) {
+  if (rr && rr_ci_low && rr_ci_upp) {
     Object.assign(newData, {
-      x: [[or], [rr]],
-      y: [[2], [1]],
-      'error_x.array': [[or_ci_upp - or], [rr_ci_upp - rr]],
-      'error_x.arrayminus': [[or - or_ci_low], [rr - rr_ci_low]],
+      x: [[rr]],
+      y: [[1]],
+      'error_x.array': [[rr_ci_upp - rr]],
+      'error_x.arrayminus': [[rr - rr_ci_low]],
       text: [
-        [`${or.toFixed(2)}(${or_ci_low.toFixed(2)},${or_ci_upp.toFixed(2)})`],
         [`${rr.toFixed(2)}(${rr_ci_low.toFixed(2)},${rr_ci_upp.toFixed(2)})`]
       ]
     })

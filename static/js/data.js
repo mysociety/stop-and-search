@@ -195,10 +195,6 @@ $(function() {
         element.setAttribute(`data-${category}`, categorySum / categoryCount)
       }
 
-      setPlotValue(element, metricData, 'or')
-      setPlotValue(element, metricData, 'or_ci_low')
-      setPlotValue(element, metricData, 'or_ci_upp')
-
       setPlotValue(element, metricData, 'rr')
       setPlotValue(element, metricData, 'rr_ci_low')
       setPlotValue(element, metricData, 'rr_ci_upp')
