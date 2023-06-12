@@ -88,14 +88,13 @@ async function getArea() {
 
 const area = await getArea()
 
-async function getData(_where = null, _limit = null) {
+async function getData(_where = null) {
   return database.then(db => {
     const where = _where ? `AND ${_where}` : ''
-    const limit = _limit ? `LIMIT ${_limit}` : ''
     const query = `
       SELECT data.* FROM data
       INNER JOIN areas ON data.area_id = areas.id
-      WHERE areas.id = :id ${where} ${limit}
+      WHERE areas.id = :id ${where}
     `
 
     const stmt = db.prepare(query)
