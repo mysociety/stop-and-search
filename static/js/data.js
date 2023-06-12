@@ -88,17 +88,20 @@ async function getArea() {
 
 const area = await getArea()
 
-async function getData(_where = null) {
+async function getData(conditions = { '1 = ?': 1 }) {
   return database.then(db => {
-    const where = _where ? `AND ${_where}` : ''
+    const keys = Object.keys(conditions)
+    const values = Object.values(conditions).flat(1)
+    const conditionString = keys.join(' AND ')
+
     const query = `
       SELECT data.* FROM data
       INNER JOIN areas ON data.area_id = areas.id
-      WHERE areas.id = :id ${where}
+      WHERE ${conditionString}
     `
 
     const stmt = db.prepare(query)
-    stmt.bind({ ':id': area.id })
+    stmt.bind(values)
 
     return parseResults(stmt)
   })
@@ -108,11 +111,12 @@ $(function() {
   $('.js-area-name').text(area.name)
 
   function fetchData() {
+    const conditions = { 'areas.id = ?': area.id }
     const year = $("#year").val()
-    const query = (year != '') ? `date=${year}` : null
+    if (year != '') { conditions['date = ?'] = year }
 
     // Fetch all data for an area for a given year
-    getData(query).then(function (data) {
+    getData(conditions).then(function (data) {
       updateData(data)
       updatePlots(data)
     })
