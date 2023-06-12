@@ -30,13 +30,31 @@ slug: area
 
             <div class="col-lg-7 col-xl-9">
                 <h2 class="mt-3 mb-3 pb-3 border-bottom text-primary">Area dashboard</h2>
+                <div class="row mb-6" data-area-type="police-force" hidden>
+                    <div class="col-12 col-lg-6">
+                        <dl>
+                          {% comment %} I want to give each country/local government their
+                          own colour so it's more visually distinctive {% endcomment %}
+                            <dt class="fs-m6 fw-bold">Country</dt>
+                            <dd class="mb-4 badge bg-success">England</dd>
+                    
+                            <dt class="fs-m6 fw-bold">Region</dt>
+                            <dd class="mb-4 badge bg-success">North England</dd>
+                        </dl>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <dl>
+                            <dt class="fs-m6 fw-bold">Police commissioner</dt>
+                            <dd class="mb-4">John Doe</dd>
+                            <dt class="fs-m6 fw-bold">Police Force</dt>
+                            <dd class="mb-4">North East</dd>
+                        </dl>
+                        <a href="#local-government-section" class="btn btn-secondary btn-sm">Check this area local government</a>
+                    </div>
+                </div>
 
                 <div data-area-type="council">
                     {% include area-info.html %}
-                </div>
-
-                <div data-area-type="police-force" hidden>
-                    {% include area-police-force-info.html %}
                 </div>
 
                 <div class="mb-8">
@@ -183,6 +201,10 @@ slug: area
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div data-area-type="police-force" hidden>
+                        {% include area-police-force-info.html %}
                     </div>
                 </div>
             </div>
