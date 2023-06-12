@@ -165,8 +165,7 @@ $(function() {
           value = `${value}%`
           break
         case 'ratio-as-percentage':
-          value = (((metricTypeSum / metricTypeCount) - 1) * 100)
-          if (value < 0) { value = (1 - (1 / (metricTypeSum / metricTypeCount))) * -100 }
+          value = Math.abs(((metricTypeSum / metricTypeCount) - 1) * 100)
           value = `${value.toFixed()}%`
           break
         case 'ratio-as-more-or-less':
