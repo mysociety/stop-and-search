@@ -216,6 +216,30 @@ const app = createApp({
         'metric IN (?)': ['stop_rate']
       }).then((data) => this.boundaryData = data)
     },
+    getBoundaryData(id) {
+      return this.boundaryData.filter((data) => data.area_id === id)
+    },
+    shouldShowBoundary(id) {
+      const data = this.getBoundaryData(id)
+
+      const results = this.selectedFilters.map(function (filter) {
+        let ethnicityData
+        switch (filter.name) {
+          case 'black-stop-rate': ethnicityData = data.filter((d) => d.ethnicity == 'Black'); break
+          case 'white-stop-rate': ethnicityData = data.filter((d) => d.ethnicity == 'White'); break
+        }
+
+        const sum = ethnicityData.reduce((acc, obj) => acc + obj.value, 0)
+        const count = ethnicityData.length
+        const value = sum / count
+
+        if (filter.selectedComparator == 'lt' && value >= filter.selectedValue) { return false }
+        if (filter.selectedComparator == 'gte' && value < filter.selectedValue) { return false }
+        return true
+      })
+
+      return results.every(Boolean)
+    },
     updateFeatures() {
       if (this.geojson) {
         this.geojson.off()
@@ -231,6 +255,9 @@ const app = createApp({
             weight: 2,
             opacity: 1,
           }
+        },
+        filter: (boundary) => {
+          return this.shouldShowBoundary(boundary.properties.id)
         },
         onEachFeature: (boundary, layer) => {
           layer.bindTooltip(boundary.properties.name)
