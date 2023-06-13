@@ -71,22 +71,26 @@ function parseResults(stmt) {
   return results
 }
 
-async function getArea() {
+async function getArea(conditions = { '1 = ?': 1 }) {
   return database.then(db => {
+    const keys = Object.keys(conditions)
+    const values = Object.values(conditions).flat(1)
+    const conditionString = keys.join(' AND ')
+
     const query = `
       SELECT areas.* FROM areas
-      WHERE id=:id AND type=:type
+      WHERE ${conditionString}
       LIMIT 1
     `
 
     const stmt = db.prepare(query)
-    stmt.bind({ ':id': params.get('id'), ':type': params.get('type') })
+    stmt.bind(values)
 
     return parseResults(stmt)
   }).then(data => data[0])
 }
 
-const area = await getArea()
+const area = await getArea({ 'id = ?': params.get('id'), 'type = ?': params.get('type') })
 
 async function getData(conditions = { '1 = ?': 1 }) {
   return database.then(db => {
