@@ -204,6 +204,37 @@ const app = createApp({
 
       return results.every(Boolean)
     },
+    getShadeForBoundary(id) {
+      if (!this.selectedShader) { return '#ed6832' }
+
+      function interpolate(value1, value2, percentage) {
+        return Math.round(value1 + (value2 - value1) * (percentage / 100));
+      }
+
+      function getColorShade(percentage) {
+        const colour = {
+          r: interpolate(245, 120, percentage),
+          g: interpolate(170,  42, percentage),
+          b: interpolate(140,  10, percentage)
+        }
+
+        return `rgb(${colour.r},${colour.g},${colour.b})`
+      }
+
+      const data = this.getBoundaryData(id)
+
+      let ethnicityData
+      switch (this.selectedShader.name) {
+        case 'black-stop-rate': ethnicityData = data.filter((d) => d.ethnicity == 'Black'); break
+        case 'white-stop-rate': ethnicityData = data.filter((d) => d.ethnicity == 'White'); break
+      }
+
+      const sum = ethnicityData.reduce((acc, obj) => acc + obj.value, 0)
+      const count = ethnicityData.length
+      const value = sum / count
+
+      return getColorShade((value*100).toFixed(2))
+    },
     updateFeatures() {
       if (!this.map) { return }
 
@@ -215,7 +246,7 @@ const app = createApp({
       this.geojson = L.geoJson(this.boundaries(), {
         style: (boundary) => {
           return {
-            fillColor: '#ed6832',
+            fillColor: this.getShadeForBoundary(boundary.properties.id),
             fillOpacity: 0.7,
             color: 'white',
             weight: 2,
