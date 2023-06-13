@@ -91,6 +91,11 @@ const app = createApp({
   },
   mounted() {
     this.restoreState()
+
+    Promise.resolve().
+      then(this.setUpMap).
+      then(this.updateFeatures)
+
     this.$refs.filtersContainer.removeAttribute('hidden')
     this.$refs.shaderContainer.removeAttribute('hidden')
     this.$refs.modal.addEventListener('hidden.bs.modal', (e) => {
@@ -100,7 +105,7 @@ const app = createApp({
   methods: {
     changeBoundary(newBoundaryType) {
       this.boundaryType = newBoundaryType
-      this.updateFeatures()
+      Promise.resolve().then(this.updateFeatures)
     },
     selectFilter() {
       this.currentType = 'filter'
@@ -168,7 +173,7 @@ const app = createApp({
     },
     updateState() {
       window.history.replaceState(this.state(), '', this.url())
-      this.updateMap()
+      this.updateFeatures()
     },
     restoreState() {
       const params = new URL(window.location).searchParams
@@ -185,8 +190,6 @@ const app = createApp({
           this.addFilter(name, { comparator, value })
         }
       }
-
-      this.updateMap()
     },
     setUpMap() {
       this.map = L.map(this.$refs.map).setView([52.417, -2.353], 7)
@@ -232,10 +235,6 @@ const app = createApp({
           })
         }
       }).addTo(this.map)
-    },
-    updateMap() {
-      if (!this.map) { this.setUpMap() }
-      this.updateFeatures()
     },
   }
 })
