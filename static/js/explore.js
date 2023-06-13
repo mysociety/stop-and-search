@@ -205,6 +205,8 @@ const app = createApp({
       return results.every(Boolean)
     },
     updateFeatures() {
+      if (!this.map) { return }
+
       if (this.geojson) {
         this.geojson.off()
         this.geojson.remove()
