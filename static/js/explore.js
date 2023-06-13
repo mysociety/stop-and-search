@@ -18,59 +18,23 @@ const app = createApp({
       map: null,
       browseDatasets: false,
       filters: [{
-        name: "year",
-        title: "Year",
-        desc: "Filter data to a specific year or years",
-        comparators: {
-          "year": "equal to",
-          "lt": "before",
-          "lte": "before or equal to",
-          "gt": "since",
-          "gte": "equal to or since"
-        },
-        options: [
-          "2019",
-          "2020",
-          "2021",
-          "2022",
-          "2023"
-        ]
-      }, {
         name: "black-stop-rate",
         title: "Black stop rate",
         desc: "Percentage of the black population which have been stopped",
         comparators: {
           "lt": "is less than",
-          "gte": "is more than"
+          "gte": "is equal or more than"
         },
-        defaultValue: "50"
-      }, {
-        name: "black-non-stop-rate",
-        title: "Black non-stop rate",
-        desc: "Percentage of the black population which have not been stopped",
-        comparators: {
-          "lt": "is less than",
-          "gte": "is more than"
-        },
-        defaultValue: "50"
+        defaultValue: "1"
       }, {
         name: "white-stop-rate",
         title: "White stop rate",
         desc: "Percentage of the white population which have been stopped",
         comparators: {
           "lt": "is less than",
-          "gte": "is more than"
+          "gte": "is equal or more than"
         },
-        defaultValue: "50"
-      }, {
-        name: "white-non-stop-rate",
-        title: "White non-stop rate",
-        desc: "Percentage of the white population which have not been stopped",
-        comparators: {
-          "lt": "is less than",
-          "gte": "is more than"
-        },
-        defaultValue: "50"
+        defaultValue: "0.5"
       }]
     }
   },
