@@ -3,23 +3,6 @@ import { initSqlJs } from '../vendor/sql.js/js/sql-wasm.esm.js'
 import { openDB } from '../vendor/idb/js/index.js'
 import { updateAll as refreshForestPlots } from './forest-plots.js'
 
-try {
-
-const params = new URLSearchParams(document.location.search)
-
-if (!params.has('id') || !params.has('type')) {
-  throw new Error('Missing parameters')
-}
-
-$('[data-area-type]').each(function() {
-  const element = $(this).get(0)
-  if (element.getAttribute('data-area-type') === params.get('type')) {
-    element.removeAttribute('hidden')
-  } else {
-    element.setAttribute('hidden', 'hidden')
-  }
-})
-
 const databaseURL = `${staticPath}/database.sqlite`
 const versionURL = `${staticPath}/database.version`
 
@@ -90,8 +73,6 @@ async function getArea(conditions = { '1 = ?': 1 }) {
   }).then(data => data[0])
 }
 
-const area = await getArea({ 'id = ?': params.get('id'), 'type = ?': params.get('type') })
-
 async function getData(conditions = { '1 = ?': 1 }) {
   return database.then(db => {
     const keys = Object.keys(conditions)
@@ -111,8 +92,27 @@ async function getData(conditions = { '1 = ?': 1 }) {
   })
 }
 
+try {
+
+const params = new URLSearchParams(document.location.search)
+
+if (!params.has('id') || !params.has('type')) {
+  throw new Error('Missing parameters')
+}
+
+const area = await getArea({ 'id = ?': params.get('id'), 'type = ?': params.get('type') })
+
 $(function() {
   $('.js-area-name').text(area.name)
+
+  $('[data-area-type]').each(function() {
+    const element = $(this).get(0)
+    if (element.getAttribute('data-area-type') === params.get('type')) {
+      element.removeAttribute('hidden')
+    } else {
+      element.setAttribute('hidden', 'hidden')
+    }
+  })
 
   function fetchData() {
     const conditions = { 'areas.id = ?': area.id }
