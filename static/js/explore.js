@@ -1,6 +1,7 @@
 import { Modal } from '../vendor/bootstrap/js/bootstrap.esm.min.js'
 import { createApp } from '../vendor/vue/js/vue.esm-browser.prod.js'
 import L from '../vendor/leaflet/js/leaflet-1.8.0.esm.js'
+import { getData } from './data.js'
 import councils from './councils.esm.js'
 import policeForces from './police-forces.esm.js'
 
@@ -10,6 +11,7 @@ const app = createApp({
     return {
       currentType: 'filter',
       boundaryType: 'council',
+      boundaryData: null,
       selectedFilters: [],
       selectedShader: null,
       geojson: null,
@@ -92,7 +94,7 @@ const app = createApp({
   mounted() {
     this.restoreState()
 
-    Promise.resolve().
+    this.cacheBoundaryData().
       then(this.setUpMap).
       then(this.updateFeatures)
 
@@ -105,7 +107,7 @@ const app = createApp({
   methods: {
     changeBoundary(newBoundaryType) {
       this.boundaryType = newBoundaryType
-      Promise.resolve().then(this.updateFeatures)
+      this.cacheBoundaryData().then(this.updateFeatures)
     },
     selectFilter() {
       this.currentType = 'filter'
@@ -207,6 +209,12 @@ const app = createApp({
         case 'council': return councils
         case 'police-force': return policeForces
       }
+    },
+    cacheBoundaryData() {
+      return getData({
+        'areas.type = ?': this.boundaryType,
+        'metric IN (?)': ['stop_rate']
+      }).then((data) => this.boundaryData = data)
     },
     updateFeatures() {
       if (this.geojson) {
