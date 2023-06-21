@@ -175,27 +175,24 @@ const app = createApp({
       }
     },
     cacheBoundaryData() {
+      const that = this
       return getData({
         'areas.type = ?': this.boundaryType,
+        'date = ?': 0,
         'metric IN (?)': ['stop_rate']
-      }).then((data) => this.boundaryData = data)
-    },
-    getBoundaryData(id) {
-      return this.boundaryData.filter((data) => data.area_id === id)
+      }).then(function(data) {
+        that.boundaryData = data.reduce((acc, obj) => {
+          const { area_id, metric, ethnicity, value } = obj
+          if (!acc[area_id]) { acc[area_id] = {} }
+          acc[area_id][`${ethnicity.toLowerCase()}-stop-rate`] = value
+          return acc
+        }, {})
+      })
     },
     shouldShowBoundary(id) {
-      const data = this.getBoundaryData(id)
-
+      const that = this
       const results = this.selectedFilters.map(function (filter) {
-        let ethnicityData
-        switch (filter.name) {
-          case 'black-stop-rate': ethnicityData = data.filter((d) => d.ethnicity == 'Black'); break
-          case 'white-stop-rate': ethnicityData = data.filter((d) => d.ethnicity == 'White'); break
-        }
-
-        const sum = ethnicityData.reduce((acc, obj) => acc + obj.value, 0)
-        const count = ethnicityData.length
-        const value = sum / count
+        const value = that.boundaryData[id][filter.name]
 
         if (filter.selectedComparator == 'lt' && value >= filter.selectedValue) { return false }
         if (filter.selectedComparator == 'gte' && value < filter.selectedValue) { return false }
@@ -221,18 +218,7 @@ const app = createApp({
         return `rgb(${colour.r},${colour.g},${colour.b})`
       }
 
-      const data = this.getBoundaryData(id)
-
-      let ethnicityData
-      switch (this.selectedShader.name) {
-        case 'black-stop-rate': ethnicityData = data.filter((d) => d.ethnicity == 'Black'); break
-        case 'white-stop-rate': ethnicityData = data.filter((d) => d.ethnicity == 'White'); break
-      }
-
-      const sum = ethnicityData.reduce((acc, obj) => acc + obj.value, 0)
-      const count = ethnicityData.length
-      const value = sum / count
-
+      const value = this.boundaryData[id][this.selectedShader.name]
       return getColorShade((value*100).toFixed(2))
     },
     updateFeatures() {
