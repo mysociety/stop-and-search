@@ -67,9 +67,10 @@ const areaPage = function() {
   })
 
   function fetchData() {
-    const conditions = { 'areas.id = ?': area.id }
-    const year = $("#year").val()
-    if (year != '') { conditions['date = ?'] = year }
+    const conditions = {
+      'areas.id = ?': area.id,
+      'date = ?': $("#year").val()
+    }
 
     // Fetch all data for an area for a given year
     getData(conditions).then(function (data) {
@@ -97,47 +98,42 @@ const areaPage = function() {
       const metricTypeData = (valueTypes.length > 1) ?
         metricData.filter(obj => obj.value_type === type) :
         metricData
-      const metricTypeSum = metricTypeData.reduce((acc, obj) => acc + obj.value, 0)
-      const metricTypeCount = metricTypeData.length
-      console.debug('metricTypeData', type, metricTypeData, metricTypeSum, metricTypeCount)
+      const metricTypeValue = (type === 'frequency') ?
+        metricTypeData.reduce((acc, obj) => acc + obj.value, 0) :
+        metricTypeData.reduce((acc, obj) => acc + obj.value, 0) / metricTypeData.length
+      console.debug('metricTypeData', type, metricTypeValue)
 
       const ethnicity = $(this).data('ethnicity')
-      const ethnicityData = metricTypeData.filter(obj => obj.ethnicity === ethnicity && typeof obj.value === 'number')
-      const ethnicitySum = ethnicityData.reduce((acc, obj) => acc + obj.value, 0)
-      const ethnicityCount = ethnicityData.length
-      console.debug('ethnicity', ethnicity, ethnicityData, ethnicitySum, ethnicityCount)
-
-      const ethnicityOtherData = metricTypeData.filter(obj => obj.ethnicity !== ethnicity && typeof obj.value === 'number')
-      const ethnicityOtherSum = ethnicityOtherData.reduce((acc, obj) => acc + obj.value, 0)
-      const ethnicityOtherCount = ethnicityOtherData.length
-      console.debug('ethnicityOther', `!${ethnicity}`, ethnicityOtherData, ethnicityOtherSum, ethnicityOtherCount)
+      const ethnicityData = metricTypeData.filter(obj => obj.ethnicity === ethnicity && typeof obj.value === 'number')[0]
+      const ethnicityValue = (ethnicityData) ? ethnicityData.value : 0
+      if (ethnicity) { console.debug('ethnicity', ethnicity, ethnicityValue) }
 
       let value
       const format = $(this).data('format') || type
       switch (format) {
         case 'comparison-percentage':
-          value = (((ethnicitySum / ethnicityCount) / (metricTypeSum / metricTypeCount)) * 50).toFixed()
+          value = ((ethnicityValue / metricTypeValue) * 50).toFixed()
           value = `${value}%`
           break
         case 'percentage':
-          value = (ethnicitySum / ethnicityCount).toFixed(2)
+          value = ethnicityValue.toFixed(2)
           value = `${value}%`
           break
         case 'ratio-as-percentage':
-          value = Math.abs(((metricTypeSum / metricTypeCount) - 1) * 100)
+          value = Math.abs((metricTypeValue - 1) * 100)
           value = `${value.toFixed()}%`
           break
         case 'ratio-as-more-or-less':
-          value = (((metricTypeSum / metricTypeCount) - 1) * 100)
+          value = ((metricTypeValue - 1) * 100)
           if (value == 0) { value = 'as'}
           else if (value < 0) { value = 'less' }
           else { value = 'more' }
           break
         case 'ratio':
-          value = (metricTypeSum / metricTypeCount).toFixed(2)
+          value = metricTypeValue.toFixed(2)
           break
         case 'frequency':
-          value = ethnicitySum.toLocaleString()
+          value = ethnicityValue.toLocaleString()
           break
       }
 

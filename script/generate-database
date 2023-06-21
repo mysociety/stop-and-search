@@ -91,6 +91,34 @@ forces_csv_data.each do |row|
   ]
 end
 
+all_time = db.execute('SELECT area_id, "0" AS date, metric, metric_category, ' \
+                      'ethnicity, AVG(value) AS average, SUM(value) AS sum, ' \
+                      'value_type FROM data ' \
+                      'GROUP BY area_id, metric, metric_category, ethnicity').
+                      map do |d|
+  {
+    'area_id' => d[0],
+    'date' => d[1],
+    'metric' => d[2],
+    'metric_category' => d[3],
+    'ethnicity' => d[4],
+    'value' => d[7] == 'frequency' ? d[6] : d[5],
+    'value_type' => d[7]
+  }
+end
+
+all_time.each do |row|
+  db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
+    row['area_id'],
+    row['date'],
+    row['metric'],
+    row['metric_category'],
+    row['ethnicity'],
+    row['value'],
+    row['value_type']
+  ]
+end
+
 # Close the database connection
 db.close
 
