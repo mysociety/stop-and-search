@@ -64,6 +64,8 @@ SQL
 
 # Insert each row into the database
 council_csv_data.each do |row|
+  next if row['metric'] == 'or'
+
   db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
     row['la_code'],
     row['date'],
@@ -76,6 +78,8 @@ council_csv_data.each do |row|
 end
 
 forces_csv_data.each do |row|
+  next if row['metric'] == 'or'
+
   db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
     row['force_code'],
     row['date'],
