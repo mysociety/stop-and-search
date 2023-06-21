@@ -203,16 +203,7 @@ const app = createApp({
       })
     },
     shouldShowBoundary(id) {
-      const that = this
-      const results = this.selectedFilters.map(function (filter) {
-        const value = that.boundaryData[id][filter.name]
-
-        if (filter.selectedComparator == 'lt' && value >= filter.selectedValue) { return false }
-        if (filter.selectedComparator == 'gte' && value < filter.selectedValue) { return false }
-        return true
-      })
-
-      return results.every(Boolean)
+      return (this.boundaryData[id]) ? this.boundaryData[id].visible : true
     },
     getShadeForBoundary(id) {
       if (!this.selectedShader) { return '#ed6832' }
@@ -234,6 +225,17 @@ const app = createApp({
       const value = this.boundaryData[id][this.selectedShader.name]
       return getColorShade((value*100).toFixed(2))
     },
+    updateVisibleBoundaries() {
+      const that = this
+      Object.keys(this.boundaryData).forEach(key => {
+        that.boundaryData[key].visible = that.selectedFilters.map(function (filter) {
+          const value = that.boundaryData[key][filter.name]
+          if (filter.selectedComparator == 'lt' && value >= filter.selectedValue) { return false }
+          if (filter.selectedComparator == 'gte' && value < filter.selectedValue) { return false }
+          return true
+        }).every(Boolean)
+      })
+    },
     updateFeatures() {
       if (!this.map) { return }
 
@@ -241,6 +243,8 @@ const app = createApp({
         this.geojson.off()
         this.geojson.remove()
       }
+
+      this.updateVisibleBoundaries()
 
       this.geojson = L.geoJson(this.boundaries(), {
         style: (boundary) => {
