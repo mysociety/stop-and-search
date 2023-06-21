@@ -1,5 +1,5 @@
 import { Modal } from '../vendor/bootstrap/js/bootstrap.esm.min.js'
-import { createApp } from '../vendor/vue/js/vue.esm-browser.prod.js'
+import { createApp, toRaw } from '../vendor/vue/js/vue.esm-browser.prod.js'
 import L from '../vendor/leaflet/js/leaflet-1.8.0.esm.js'
 import { getData } from './data.js'
 import councils from './councils.esm.js'
@@ -14,6 +14,7 @@ const app = createApp({
       boundaryData: null,
       selectedFilters: [],
       selectedShader: null,
+      shaderSeries: [],
       geojson: null,
       map: null,
       browseDatasets: false,
@@ -223,7 +224,14 @@ const app = createApp({
       }
 
       const value = this.boundaryData[id][this.selectedShader.name]
-      return getColorShade((value*100).toFixed(2))
+
+      const series = toRaw(this.shaderSeries)
+      const index = series.findIndex((v) => v === value)
+
+      const percentage = Math.round((index / series.length) * 100);
+      const roundedPercentage = Math.round(percentage / 10) * 10;
+
+      return getColorShade(roundedPercentage)
     },
     updateVisibleBoundaries() {
       const that = this
@@ -235,6 +243,19 @@ const app = createApp({
           return true
         }).every(Boolean)
       })
+
+      this.updateShaderRanges()
+    },
+    updateShaderRanges() {
+      this.shaderSeries = []
+      if (!this.selectedShader) { return }
+
+      const visibleBoundaries = Object.values(this.boundaryData).
+        filter((boundary) => boundary.visible)
+
+      this.shaderSeries = visibleBoundaries.map(boundary => {
+        return boundary[this.selectedShader.name]
+      }).sort((a, b) => a - b)
     },
     updateFeatures() {
       if (!this.map) { return }
