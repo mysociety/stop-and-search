@@ -71,7 +71,7 @@ const app = createApp({
   methods: {
     changeBoundary(newBoundaryType) {
       this.boundaryType = newBoundaryType
-      this.cacheBoundaryData().then(this.updateFeatures)
+      this.updateFeatures()
     },
     selectFilter() {
       this.currentType = 'filter'
@@ -177,7 +177,6 @@ const app = createApp({
     cacheBoundaryData() {
       const that = this
       return getData({
-        'areas.type = ?': this.boundaryType,
         'date = ?': 0,
         'metric IN (?)': ['stop_rate']
       }).then(function(data) {
