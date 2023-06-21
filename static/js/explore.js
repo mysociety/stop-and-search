@@ -18,6 +18,16 @@ const app = createApp({
       map: null,
       browseDatasets: false,
       filters: [{
+        name: "rr",
+        title: "Disproportionally",
+        desc: "The ratio of disproportate stops between black and white ethnicities",
+        comparators: {
+          "lt": "is less than",
+          "gte": "is equal or more than"
+        },
+        defaultComparator: 'gte',
+        defaultValue: "1"
+      }, {
         name: "black-stop-rate",
         title: "Black stop rate",
         desc: "Percentage of the black population which have been stopped",
@@ -92,7 +102,7 @@ const app = createApp({
       const filter = this.getFilter(filterName)
 
       filter.selectedComparator = current.comparator ||
-        Object.keys(filter.comparators)[0]
+        filter.defaultComparator || Object.keys(filter.comparators)[0]
       filter.selectedValue = current.value || filter.defaultValue
 
       if (!filter.selectedValue && filter.options) {
@@ -178,12 +188,16 @@ const app = createApp({
       const that = this
       return getData({
         'date = ?': 0,
-        'metric IN (?)': ['stop_rate']
+        'metric IN (?, ?)': ['rr', 'stop_rate']
       }).then(function(data) {
         that.boundaryData = data.reduce((acc, obj) => {
-          const { area_id, metric, ethnicity, value } = obj
+          const { area_id, metric, metric_category, ethnicity, value } = obj
           if (!acc[area_id]) { acc[area_id] = {} }
-          acc[area_id][`${ethnicity.toLowerCase()}-stop-rate`] = value
+          if (metric === 'stop_rate') {
+            acc[area_id][`${ethnicity.toLowerCase()}-stop-rate`] = value
+          } else if (metric === 'rr' && metric_category == 'rr') {
+            acc[area_id][metric] = value
+          }
           return acc
         }, {})
       })
