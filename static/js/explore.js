@@ -282,7 +282,9 @@ const app = createApp({
           return this.shouldShowBoundary(boundary.properties.id)
         },
         onEachFeature: (boundary, layer) => {
-          layer.bindTooltip(boundary.properties.name)
+          layer.bindTooltip(
+            boundary.properties.name + ((this.selectedShader) ? ' ' + this.boundaryData[boundary.properties.id][this.selectedShader.name].toFixed(2) : '')
+          )
           layer.on({
             mouseover: (e) => { e.target.setStyle({ weight: 5 }) },
             mouseout: (e) => { e.target.setStyle({ weight: 2}) },
