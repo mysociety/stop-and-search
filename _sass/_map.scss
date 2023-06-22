@@ -1,0 +1,21 @@
+#map-legend-wrapper {
+  z-index: 1000;
+  right: 0;
+  top: 0;
+  max-width: 300px;
+  background-color: transparentize($color: $white, $amount: 0.15);
+
+  .map-legend-item {
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  $legend-item-height: 30px;
+  .map-legend-color {
+    width: $legend-item-height;
+    height: $legend-item-height;
+  }
+}
