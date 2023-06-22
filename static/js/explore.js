@@ -216,9 +216,9 @@ const app = createApp({
 
       function getColorShade(percentage) {
         const colour = {
-          r: interpolate(245, 120, percentage),
-          g: interpolate(170,  42, percentage),
-          b: interpolate(140,  10, percentage)
+          r: interpolate(245, 54, percentage),
+          g: interpolate(170, 19, percentage),
+          b: interpolate(140,  5, percentage)
         }
 
         return `rgb(${colour.r},${colour.g},${colour.b})`
