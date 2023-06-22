@@ -68,6 +68,18 @@ slug: explore
 
     <div class="explore-results bg-gray-100">
         <div class="explore-map" ref="map"></div>
+        <div id="map-legend-wrapper" class="position-absolute p-3">
+            {% comment %} This title needs to change for whatever the user has selected {% endcomment %}
+            <h3 class="mb-4 fs-4">Black stop rates</h3>
+            <div class="map-legend-item d-flex flex-row align-items-start">
+                <div class="map-legend-color border me-2 rounded" style="background-color: #000"></div>
+                <span >Above >80 but it has a long name</span>
+            </div>
+            <div class="map-legend-item d-flex flex-row align-items-center">
+                <div class="map-legend-color border me-2 rounded" style="background-color: #000"></div>
+                <span >Above >80 </span>
+            </div>
+        </div>
     </div>
 
     {% include filter-data-modal.html %}
