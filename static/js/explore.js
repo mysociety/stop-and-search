@@ -68,6 +68,7 @@ const app = createApp({
   },
   mounted() {
     this.restoreState()
+    if (!this.selectedShader) { this.addShader('rr') }
 
     this.cacheBoundaryData().
       then(this.setUpMap).
