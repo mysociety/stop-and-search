@@ -36,13 +36,27 @@ db.execute <<-SQL
   CREATE TABLE areas (
     id VARCHAR NOT NULL PRIMARY KEY,
     name VARCHAR,
-    type VARCHAR
+    type VARCHAR,
+    county VARCHAR,
+    region VARCHAR,
+    country VARCHAR
   );
 SQL
 
 # Insert each row into the database
 areas.each do |area|
-  db.execute "INSERT INTO areas VALUES ( ?, ?, ? )", [area['id'], area['name'], area['type']]
+  row = council_csv_data.find { |row| row['la_code'] == area['id'] }
+
+  if row
+    area['county'] = row['county'] unless row['county'] == 'NA'
+    area['region'] = row['region'] unless row['region'] == 'NA'
+    area['country'] = row['country'] unless row['country'] == 'NA'
+  end
+
+  db.execute "INSERT INTO areas VALUES ( ?, ?, ?, ?, ?, ? )", [
+    area['id'], area['name'], area['type'],
+    area['county'], area['region'], area['country']
+  ]
 end
 
 # Drop the table if it exists

@@ -57,6 +57,24 @@ function updateValues() {
 const areaPage = function() {
   $('.js-area-name').text(area.name)
 
+  if (!area.county) {
+    $('.js-area-county').hide()
+  } else {
+    $('.js-area-county').text(area.county).show()
+  }
+
+  if (!area.region) {
+    $('.js-area-region').hide()
+  } else {
+    $('.js-area-region').text(area.region).show()
+  }
+
+  if (!area.country) {
+    $('.js-area-country').hide()
+  } else {
+    $('.js-area-country').text(area.country).show()
+  }
+
   $('[data-area-type]').each(function() {
     const element = $(this).get(0)
     if (element.getAttribute('data-area-type') === params.get('type')) {
@@ -155,7 +173,7 @@ const areaPage = function() {
 
       function setPlotValue(category) {
         const categoryData = yearData.filter(obj => obj.metric_category === category)[0]
-        const categoryValue = categoryData.value
+        const categoryValue = categoryData ? categoryData.value : 0
         element.setAttribute(`data-${category}`, categoryValue)
       }
 

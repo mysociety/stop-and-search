@@ -14,15 +14,18 @@ slug: area
     <div class="container">
         <div class="row gx-lg-5 mb-3">
             <div class="col-12 col-lg-3">
-                <h1 class="fs-2 mb-2"><span class="js-area-name">{{ page.title }}</span></h1>
+                <h1 class="fs-2 mb-2 js-area-name">{{ page.title }}</h1>
                 <dl class="d-flex flex-row mb-0">
                     {% comment %} I want to give each country/local government their
                     own colour so it's more visually distinctive {% endcomment %}
                     <dt class="visually-hidden">Country</dt>
-                    <dd class="badge bg-info me-2 fs-6">England</dd>
+                    <dd class="badge bg-info me-2 fs-6 js-area-country">England</dd>
 
                     <dt class="visually-hidden">Region</dt>
-                    <dd class="badge bg-info me-2 fs-6">North England</dd>
+                    <dd class="badge bg-info me-2 fs-6 js-area-region">North England</dd>
+
+                    <dt class="visually-hidden">County</dt>
+                    <dd class="badge bg-info me-2 fs-6 js-area-county">Borsetshire</dd>
 
                     {% comment %} <dt class="visually-hidden">Local Government</dt>
                     <dd class="badge bg-danger">Conservative</dd> {% endcomment %}
