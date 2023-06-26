@@ -13,7 +13,7 @@ slug: area
 <div class="py-4 py-lg-5 js-default">
     <div class="container">
         <div class="row gx-lg-5 mb-3">
-            <div class="col-12 col-lg-3">
+            <div class="col-12 col-lg-6">
                 <h1 class="fs-2 mb-2"><span class="js-area-name">{{ page.title }}</span></h1>
                 <dl class="d-flex flex-row mb-0">
                     {% comment %} I want to give each country/local government their
@@ -71,7 +71,7 @@ slug: area
                             <a href="#risk-ratio-section">Check risk ratio</a>
                         </div>
                     </div>
-                    <div class="row mt-3">
+                    <div class="row mt-3 mb-6">
                         <div class="col-lg-12 d-flex flex-row mb-4">
                             <h3 class="fs-4 me-2">Stop Rates in <span class="js-area-name">Borsetshire East</span></h3>
                             {% comment %} <h3 class="fs-4 me-2">Stop Rates by ethnicity</h3> {% endcomment %}
@@ -81,7 +81,7 @@ slug: area
                         {% comment %}
                         <div class="row mb-4">
                             <div class="col-12 col-sm-4 metric-object">
-                                <small class="d-block fw-bold">Object of search</small>
+                                <small class="d-block fw-bold">Reason for search</small>
                                 <p class="mb-3 badge bg-primary js-value">All</p>
                             </div>
                             <div class="col-12 col-sm-4 metric-legislation">
@@ -116,7 +116,7 @@ slug: area
                         <div class="row">
                             <div class="col-12 col-lg-5 d-flex flex-column flex-md-row text-end">
                                 <div>
-                                    <h4 class="fs-3 text-primary mb-3">Black</h4>
+                                    <h4 class="fs-3 text-et-black mb-3">Black</h4>
                                     <p class="fs-m1 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
                                     <div>
                                         <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
@@ -132,7 +132,7 @@ slug: area
                                     <div class="d-block py-0 px-4 bg-primary js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="height" style="height:45%"></div>
                                 </div>
                                 <div>
-                                    <h4 class="fs-3 text-primary mb-3">White</h4>
+                                    <h4 class="fs-3 text-et-white mb-3">White</h4>
                                     <p class="fs-m1 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
                                     <div>
                                         <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
@@ -143,23 +143,145 @@ slug: area
                         </div>
                     </div>
 
-                    <div class="mt-8">
+                    <div class="accordion" id="accordionBreakdown">
+                        <div class="accordion-item">
+                          <h3 class="accordion-header" id="byYear">
+                            <button class="accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              By year
+                            </button>
+                          </h3>
+                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="byYear" data-bs-parent="#accordionBreakdown">
+                            <div class="accordion-body">
+                                <div>
+                                    <h3 class="fs-6 mb-4 badge bg-black">2020</h3>
+                                    {% comment %} Hide it because, at the moment there is no need to change the current layour, however this layout will become useless once we add the other ethinicites, where we would probably benefit of having one % percetage bar for everyone and with legends and each ethinicity with their own colour.  {% endcomment %}
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <div class="border bg-et-white">
+                                                <div class="d-block py-0 py-4 border-end border-white border-3 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:54%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5">
+                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+                                            <div>
+                                                <h4 class="fs-3 text-et-black mb-3">Black</h4>
+                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
+                                                <div>
+                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
+                                                    <span class="fs-6">stops</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row text-start">
+                                            <div>
+                                                <h4 class="fs-3 text-et-white mb-3">White</h4>
+                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
+                                                <div>
+                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
+                                                    <span class="fs-6">stops</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3 class="fs-6 mb-4 badge bg-black">2019</h3>
+                                    {% comment %} Hide it because, at the moment there is no need to change the current layour, however this layout will become useless once we add the other ethinicites, where we would probably benefit of having one % percetage bar for everyone and with legends and each ethinicity with their own colour.  {% endcomment %}
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <div class="border border-primary">
+                                                <div class="d-block py-0 py-4 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:54%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5">
+                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+                                            <div>
+                                                <h4 class="fs-3 text-et-black mb-3">Black</h4>
+                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
+                                                <div>
+                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
+                                                    <span class="fs-6">stops</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row text-start">
+                                            <div>
+                                                <h4 class="fs-3 text-et-white mb-3">White</h4>
+                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
+                                                <div>
+                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
+                                                    <span class="fs-6">stops</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item">
+                          <h3 class="accordion-header" id="bySearch">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              Accordion Item #2
+                            </button>
+                          </h3>
+                          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="bySearch" data-bs-parent="#accordionBreakdown">
+                            <div class="accordion-body">
+                              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item">
+                          <h3 class="accordion-header" id="byLegislation">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              Accordion Item #3
+                            </button>
+                          </h3>
+                          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="byLegislation" data-bs-parent="#accordionBreakdown">
+                            <div class="accordion-body">
+                              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="byOutcome">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Accordion Item #3
+                              </button>
+                            </h3>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="byOutcome" data-bs-parent="#accordionBreakdown">
+                              <div class="accordion-body">
+                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                              </div>
+                            </div>
+                          </div>
+
+                      </div>
+                    </div>
+
+                    <div class="mt-6 mt-md-8">
                         <div class="row">
                             <div id="risk-ratio-section" class="col-12">
-                                    <h3 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr">3.1</span></h3>
-                                    <p>This means that Black people are <span class="js-data" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched.</p>
-                                    <details>
-                                      <summary>Show me more infomation</summary>
+                                    <h2 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr">3.1</span></h3>
+                                    <p class="fs-5">This means that <span class="text-primary fw-bold">Black people</span> are <span class="text-primary fw-bold js-data" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched.</p>
+                                    <details class="mb-5">
+                                      <summary class="mb-3">Show me more infomation</summary>
                                       <p>The risk ratio describes the likelihood of a Black person being stopped and searched relative to the likelihood of a White person being stopped and searched.</p>
                                       <p>If the risk ratio is 1, it means that the likelihood of being stopped is the same for Black and White people.</p>
                                       <p>If the risk ratio is greater than 1, it means that the likelihood of being stopped is greater for Black people compared to White people. For example, a risk ratio of 2 would indicate that Black people are 2 times more likely to be stopped and searched than White people.</p>
                                       <p>If the risk ratio is less than 1, it means that the likelihood of being stopped is lower for Black people compared to White people. For example, a risk ratio of 0.5 would indicate that Black people are 50% less likely to be stopped and searched compared to White people.</p>
                                     </details>
-                                <div class="p-3 mt-4 bg-light border">
-                                    <h5>Confidence intervals</h5>
-                                    <p>The confidence interval is <span class="js-data" data-metric="rr" data-metric-category="rr_ci_low">2.9</span> to <span class="js-data" data-metric="rr" data-metric-category="rr_ci_upp">3.1</span></p>
-                                    <p>Because the risk ratio is an estimate, we cannot be 100% certain that the value is correct. However, we can estimate the range of values that the risk ratio is likely to be. This is what the bars on the graph represent (known as the 95% confidence interval). In essence, wider bars indicate less certainty in the risk ratio (because there is a wider range of possible values it could be), whilst narrower bars indicate more certainty in the risk ratio (because there is a narrower range of possible values it could be).</p>
-                                </div>
+
                             </div>
                         </div>
                         <div class="row mb-4">
@@ -177,6 +299,11 @@ slug: area
                                 <p class="mb-2">Chance of a <span class="badge bg-black border border-dark">black person</span> to get stopped compare to a <span class="badge bg-light text-black border">white person</span></p>
                                 {% endcomment %}
                             </div>
+                            <div class="p-3 mt-4 bg-light border">
+                                <h5>Confidence intervals</h5>
+                                <p>The confidence interval is <span class="js-data" data-metric="rr" data-metric-category="rr_ci_low">2.9</span> to <span class="js-data" data-metric="rr" data-metric-category="rr_ci_upp">3.1</span></p>
+                                <p>Because the risk ratio is an estimate, we cannot be 100% certain that the value is correct. However, we can estimate the range of values that the risk ratio is likely to be. This is what the bars on the graph represent (known as the 95% confidence interval). In essence, wider bars indicate less certainty in the risk ratio (because there is a wider range of possible values it could be), whilst narrower bars indicate more certainty in the risk ratio (because there is a narrower range of possible values it could be).</p>
+                            </div>
                         </div>
 
                         <div class="row text-end">
@@ -190,7 +317,7 @@ slug: area
                         </div>
                         <div class="row text-end js-dynamic-metric-content metric-object">
                             <div class="col-3 py-3">
-                                <p class="mb-0 lh-1 text-muted">Object of search</p>
+                                <p class="mb-0 lh-1 text-muted">Reason for search</p>
                                 <p class="mb-0 fw-bold js-value">All</p>
                             </div>
                             <div class="col-9 border-top border-bottom border-grey-100 position-relative">

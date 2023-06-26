@@ -18,10 +18,52 @@ $teal-900:   #046563;
 $orange-900: #BB521E;
 $pink:       #FDE9FF;
 $yellow:     #FFD483;
+$cyan:       #2ddede;
+$red:        #cf131c;
+
+// Only to be used to represent ethnicity. Avoid using it for anything messaging related, like error or warnings.
+// The brightness and saturation has determined by adjusting the hue 25 deg, and setting up a contract  ratio between >7 and 7.5>. The idea is that ethnicity colours have a similar highlight and we don't have one been highlighted more than the rest.
+//More ethnicity colours here: https://www.figma.com/file/q3VHsl8knr3VMvboda6BQ5/Stop-and-Search?type=design&node-id=0%3A1&mode=design&t=nltsgbsSrGH3iwZV-1
+
+$et-black: #1446DA;
+$et-white: #AA0867;
+
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-900 !default;
 
 // Fonts: Primary font is Avalon, secondary is Archivo, and tertiary is Roboto.
 $primary: $teal-900;
 $info: darken($purple, 10%);
+
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark,
+  "et-black": $et-black,
+  "et-white": $et-white,
+) ;
+
 // Options
 
 $enable-shadows: true;
