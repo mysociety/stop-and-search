@@ -67,16 +67,12 @@ const areaPage = function() {
   })
 
   function fetchData() {
-    const conditions = {
-      'areas.id = ?': area.id,
-      'date = ?': $("#year").val()
-    }
-
     // Fetch all data for an area for a given year
-    getData(conditions).then(function (data) {
-      updateData(data)
-      updatePlots(data)
-    })
+    getData({ 'areas.id = ?': area.id, 'date = ?': $("#year").val() }).
+      then(function (data) { updateData(data) })
+
+    getData({ 'areas.id = ?': area.id, 'metric = ?': 'rr' }).
+      then(function (data) { updatePlots(data) })
   }
 
   function updateData(data) {
@@ -149,7 +145,7 @@ const areaPage = function() {
   function updatePlots(data) {
     $('.js-plot').each(function () {
       const element = $(this).get(0)
-      const metricData = data.filter(obj => obj.metric === 'or' || obj.metric === 'rr')
+      const yearData = data.filter(obj => obj.date === parseInt($('#year').val()))
 
       function setPlotValue(category) {
         const categoryData = yearData.filter(obj => obj.metric_category === category)[0]
@@ -162,7 +158,10 @@ const areaPage = function() {
       setPlotValue('rr_ci_upp')
     })
 
-    refreshForestPlots()
+    const min = Math.min(...data.filter(obj => obj.metric_category === 'rr_ci_low').map(obj => obj.value))
+    const max = Math.max(...data.filter(obj => obj.metric_category === 'rr_ci_upp').map(obj => obj.value))
+
+    refreshForestPlots(min, max)
   }
 
   $('.dropdown-metric').on('change', fetchData)

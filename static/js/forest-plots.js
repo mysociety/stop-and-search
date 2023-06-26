@@ -44,7 +44,7 @@ function getAllDataFloats(dataKey) {
   })
 }
 
-function update(id) {
+function update(id, rr_min, rr_max) {
   const element = document.getElementById(id)
   if (!element) { return }
 
@@ -52,11 +52,8 @@ function update(id) {
   const rr_ci_low = parseFloat(element.getAttribute('data-rr_ci_low'))
   const rr_ci_upp = parseFloat(element.getAttribute('data-rr_ci_upp'))
 
-  const rr_min = Math.min(...getAllDataFloats('data-rr_ci_low'))
-  const min    = Math.floor(rr_min) - 1
-
-  const rr_max = Math.max(...getAllDataFloats('data-rr_ci_upp'))
-  const max    = Math.ceil(rr_max) + 1
+  const min = Math.floor(rr_min) - 1
+  const max = Math.ceil(rr_max) + 1
 
   const newData = {}
 
@@ -77,12 +74,12 @@ function update(id) {
   Plotly.update(id, newData, newLayout)
 }
 
-function updateAll() {
-  update("plot-year")
-  update("plot-object-of-search")
-  update("plot-legislation")
-  update("plot-outcome")
-  update("plot-footer")
+function updateAll(min, max) {
+  update("plot-year", min, max)
+  update("plot-object-of-search", min, max)
+  update("plot-legislation", min, max)
+  update("plot-outcome", min, max)
+  update("plot-footer", min, max)
 }
 
 export { updateAll }
