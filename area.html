@@ -68,6 +68,12 @@ slug: area
 
             <div class="col-lg-9">
                 <div class="mb-8">
+                    <div class="row mb-6">
+                        <div class="col-10">
+                            <h3 class="fs-3 lh-base fw-normal">In <span class="js-area-name">Borsetshire East</span>, <span class="fs-2 text-primary fw-bold">Black people</span> are <span class="js-data fs-2 text-primary fw-bold" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched</h3>
+                            <a href="#risk-ratio-section">Check risk ratio</a>
+                        </div>
+                    </div>
                     <div class="row mt-3">
                         <div class="col-lg-6 d-flex flex-row mb-4">
                             <h3 class="fs-4 me-2">Stop Rates by ethnicity</h3>
@@ -129,7 +135,25 @@ slug: area
                         </div>
                     </div>
 
-                    <div class="mt-6">
+                    <div class="mt-8">
+                        <div class="row">
+                            <div id="risk-ratio-section" class="col-12">
+                                    <h3 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr">3.1</span></h3>
+                                    <p>This means that Black people are <span class="js-data" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched.</p>
+                                    <details>
+                                      <summary>Show me more infomation</summary>
+                                      <p>The risk ratio describes the likelihood of a Black person being stopped and searched relative to the likelihood of a White person being stopped and searched.</p>
+                                      <p>If the risk ratio is 1, it means that the likelihood of being stopped is the same for Black and White people.</p>
+                                      <p>If the risk ratio is greater than 1, it means that the likelihood of being stopped is greater for Black people compared to White people. For example, a risk ratio of 2 would indicate that Black people are 2 times more likely to be stopped and searched than White people.</p>
+                                      <p>If the risk ratio is less than 1, it means that the likelihood of being stopped is lower for Black people compared to White people. For example, a risk ratio of 0.5 would indicate that Black people are 50% less likely to be stopped and searched compared to White people.</p>
+                                    </details>
+                                <div class="p-3 mt-4 bg-light border">
+                                    <h5>Confidence intervals</h5>
+                                    <p>The confidence interval is <span class="js-data" data-metric="rr" data-metric-category="rr_ci_low">2.9</span> to <span class="js-data" data-metric="rr" data-metric-category="rr_ci_upp">3.1</span></p>
+                                    <p>Because the risk ratio is an estimate, we cannot be 100% certain that the value is correct. However, we can estimate the range of values that the risk ratio is likely to be. This is what the bars on the graph represent (known as the 95% confidence interval). In essence, wider bars indicate less certainty in the risk ratio (because there is a wider range of possible values it could be), whilst narrower bars indicate more certainty in the risk ratio (because there is a narrower range of possible values it could be).</p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row mb-4">
                             <div class="col-12">
                                 <h3 class="fs-4 mb-2">Risk ratio</h3>
@@ -189,27 +213,7 @@ slug: area
                                 <div id="plot-footer"></div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="p-3 bg-light border">
-                                    <h4>What does it mean?</h4>
-                                    <h5>Risk ratio</h5>
-                                    <p>In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr">3.1</span>. This means that Black people are <span class="js-data" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched.</p>
-                                    <details>
-                                      <summary>Show me more infomation</summary>
-                                      <p>The risk ratio describes the likelihood of a Black person being stopped and searched relative to the likelihood of a White person being stopped and searched.</p>
-                                      <p>If the risk ratio is 1, it means that the likelihood of being stopped is the same for Black and White people.</p>
-                                      <p>If the risk ratio is greater than 1, it means that the likelihood of being stopped is greater for Black people compared to White people. For example, a risk ratio of 2 would indicate that Black people are 2 times more likely to be stopped and searched than White people.</p>
-                                      <p>If the risk ratio is less than 1, it means that the likelihood of being stopped is lower for Black people compared to White people. For example, a risk ratio of 0.5 would indicate that Black people are 50% less likely to be stopped and searched compared to White people.</p>
-                                    </details>
-                                </div>
-                                <div class="p-3 mt-4 bg-light border">
-                                    <h5>Confidence intervals</h5>
-                                    <p>The confidence interval is <span class="js-data" data-metric="rr" data-metric-category="rr_ci_low">2.9</span> to <span class="js-data" data-metric="rr" data-metric-category="rr_ci_upp">3.1</span></p>
-                                    <p>Because the risk ratio is an estimate, we cannot be 100% certain that the value is correct. However, we can estimate the range of values that the risk ratio is likely to be. This is what the bars on the graph represent (known as the 95% confidence interval). In essence, wider bars indicate less certainty in the risk ratio (because there is a wider range of possible values it could be), whilst narrower bars indicate more certainty in the risk ratio (because there is a narrower range of possible values it could be).</p>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <div data-area-type="council">
