@@ -127,20 +127,46 @@ slug: area
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="row mb-4 metric-object">
-                            <h3 class="fs-3">Reason for search</h3>
-                            <div id="bar-object-of-search" class="js-bar" data-metric="object_of_search" data-title="Reason for search"></div>
+                    <div class="accordion" id="accordionBreakdown">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="bySearch">
+                                <button class="accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    By reason for search
+                                </button>
+                            </h3>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="bySearch" data-bs-parent="#accordionBreakdown">
+                                <div class="accordion-body">
+                                    <div id="bar-object-of-search" class="js-bar" data-metric="object_of_search" data-title="Reason for search"></div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="row mb-4 metric-object">
-                            <h3 class="fs-3">Legislation</h3>
-                            <div id="bar-legislation" class="js-bar" data-metric="legislation" data-title="Legislation"></div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="byLegislation">
+                                <button class="accordion-button collapsed fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    By legislation
+                                </button>
+                            </h3>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="byLegislation" data-bs-parent="#accordionBreakdown">
+                                <div class="accordion-body">
+                                    <div id="bar-legislation" class="js-bar" data-metric="legislation" data-title="Legislation"></div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="row mb-4 metric-object">
-                            <h3 class="fs-3">Outcome</h3>
-                            <div id="bar-outcome" class="js-bar" data-metric="outcome" data-title="Outcome"></div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="byOutcome">
+                                <button class="accordion-button collapsed fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                  By outcome
+                                </button>
+                            </h3>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="byOutcome" data-bs-parent="#accordionBreakdown">
+                                <div class="accordion-body">
+                                    <div id="bar-outcome" class="js-bar" data-metric="outcome" data-title="Outcome"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="row mt-6 mb-2">
