@@ -9,77 +9,63 @@ layout: default
 
 <div class="py-5 py-lg-8 bg-teal-100">
     <div class="container">
-        <h1 class="display-2 mb-3">Stop and Search</h1>
-        <p class="fs-5" style="max-width: 26em;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p class="fs-5 fw-bold" style="max-width: 30em;">Browse and breakdown data by ethnicity</p>
-        <ul class="mb-4 list-unstyled">
-            <li class="my-1 d-flex align-items-center">
-                {% include icons/check.html width="1.2em" height="1.2em" classes="me-2 flex-grow-0 flex-shrink-0 text-green-400" %}
-                <span><strong class="text-primary">Stop rates</strong></span>
-            </li>
-            <li class="my-1 d-flex align-items-center">
-                {% include icons/check.html width="1.2em" height="1.2em" classes="me-2 flex-grow-0 flex-shrink-0 text-green-400" %}
-                <span><strong class="text-primary">Outcomes of stops</strong></span>
-            </li>
-            <li class="my-1 d-flex align-items-center">
-                {% include icons/check.html width="1.2em" height="1.2em" classes="me-2 flex-grow-0 flex-shrink-0 text-green-400" %}
-                <span><strong class="text-primary">Reasons for stops</strong></span>
-            </li>
-        </ul>
-        <a href="{{ '/explore' | relative_url }}" class="btn btn-lg btn-primary">Start exploring</a>
+        <div class="row">
+            <h1 class="display-2 mb-3">Stop and Search</h1>
+            <div class="col-12 col-md-12">
+                <p class="fs-5">
+                  Welcome to the Black Thrive Stop and Search dashboard.
+                </p>
+                <p class="fs-5">
+                  The dashboard is designed to make stop and search data and insights from it more accessible to researchers and the general public.
+                </p>
+                <p class="fs-5">
+                  An important goal is to ensure that the key issues surrounding stop and search are highlighted to aid a more comprehensive and impactful public discussion of the usefulness of stop and search policy and the negative impact it can have on people.
+                </p>
+                <p class="fs-5">
+                  To this end, in addition to our own knowledge (which, as a Black-led organisation, incorporates insights on stop and search from a Black perspective) we have drawn on the expertise of key stakeholders (such as experts by lived experience, justice advocates and activists, and researchers) direct what is the most important information to provide and what are the best ways of presenting it.
+                </p>
+            </div>
+            <div class="col-6 col-md-6">
+                <p class="fs-5 fw-bold" style="max-width: 30em;">Browse and breakdown data by ethnicity</p>
+                <ul class="mb-4 list-unstyled">
+                    <li class="my-1 d-flex align-items-center">
+                        {% include icons/check.html width="1.2em" height="1.2em" classes="me-2 flex-grow-0 flex-shrink-0 text-green-400" %}
+                        <span><strong class="text-primary">Stop rates</strong></span>
+                    </li>
+                    <li class="my-1 d-flex align-items-center">
+                        {% include icons/check.html width="1.2em" height="1.2em" classes="me-2 flex-grow-0 flex-shrink-0 text-green-400" %}
+                        <span><strong class="text-primary">Outcomes of stops</strong></span>
+                    </li>
+                    <li class="my-1 d-flex align-items-center">
+                        {% include icons/check.html width="1.2em" height="1.2em" classes="me-2 flex-grow-0 flex-shrink-0 text-green-400" %}
+                        <span><strong class="text-primary">Reasons for stops</strong></span>
+                    </li>
+                </ul>
+                <a href="{{ '/explore' | relative_url }}" class="btn btn-lg btn-primary">Start exploring</a>
+            </div>
+        </div>
     </div>
 </div>
 
-<section class="py-5 bg-black">
+<section class="py-5 bg-gray-900">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-4 text-center text-md-start">
-                <p class="fs-1 text-teal-500 mb-0 fw-bold lh-1">65%</p>
-                <p class="text-white">Lorem ipsum dolor sit amet</p>
-            </div>
-    
-            <div class="col-12 col-md-4 text-center text-md-start">
-                <p class="fs-1 text-teal-500 mb-0 fw-bold lh-1">32%</p>
-                <p class="text-white">Lorem ipsum dolor</p>
-            </div>
-    
-            <div class="col-12 col-md-4 text-center text-md-start">
-                <p class="fs-1 text-teal-500 mb-0 fw-bold lh-1">76%</p>
-                <p class="text-white">Lorem ipsum dolor sit amet</p>
+            <div class="col-12 col-md-12 text-center text-md-start">
+                <p class="text-white">NOTE: This dashboard is a work in progress and this is not the final form it will take. There are some parts of the dashboard that are not fully functional and some data may not be accurate, so be aware that the information contained in this version should not be considered in any way definitive.</p>
             </div>
         </div>
     </div>
 </section>
 
 
+{% comment %}
 <div class="py-5">
     <div class="container mt-lg-3">
         <div class="row">
-            {% comment %} <div class="col-lg-6 mb-5 ps-lg-5">
-                <h2 class="mb-4 text-primary">Jump to an area</h2>
-                <p class="mb-4" style="max-width: 26em;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                <label class="form-label" for="search">Search by council name, police force, or postcode</label>
-                <form class="row mt-2 mb-2" style="max-width: 30rem;" action="{{ '/area' | relative_url }}">
-                    <div class="col">
-                        <div class="search-input search-input-lg">
-                            {% include icons/search.html %}
-                            <input type="search" id="search" class="form-control form-control-lg">
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary btn-lg">Search</button>
-                    </div>
-                </form>
-                <a class="d-flex align-items-center btn btn-link px-0" href="{{ '/area' | relative_url }}">
-                    {% include icons/geolocate.html classes="me-2" %}
-                    Use my current location
-                </a>
-            </div> {% endcomment %}
-
             <div class="col-lg-6 mb-5">
                 <h2 class="mb-4 text-primary">Jump to an area</h2>
                 <p class="mb-4" style="max-width: 26em;">See detailed Stop & Search data in the area. Find information about: Stop rates by ethnicity, outcomes and reasons of stops.</p>
-                <label class="form-label" for="search">Search by council name, police force, or postcode</label>
+                <label class="form-label" for="search">Search by council name, police force</label>
                 <form id="home-search" class="row mt-2 mb-2" style="max-width: 30rem;" action="{{ '/area' | relative_url }}">
                     <div class="col">
                         <div class="search-input search-input-lg">
@@ -99,3 +85,4 @@ layout: default
         </div>
     </div>
 </div>
+{% endcomment %}
