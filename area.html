@@ -65,15 +65,16 @@ slug: area
 
             <div class="col-lg-9">
                 <div class="mb-8">
-                    <div class="row mb-6">
+                    <div class="row mb-7">
                         <div class="col-10">
                             <h3 class="fs-3 lh-base fw-normal">In <span class="js-area-name">Borsetshire East</span>, <span class="fs-2 text-primary fw-bold">Black people</span> are <span class="js-data fs-2 text-primary fw-bold" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched</h3>
                             <a href="#risk-ratio-section">Check risk ratio</a>
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-lg-6 d-flex flex-row mb-4">
-                            <h3 class="fs-4 me-2">Stop Rates by ethnicity</h3>
+                        <div class="col-lg-12 d-flex flex-row mb-4">
+                            <h3 class="fs-4 me-2">Stop Rates in <span class="js-area-name">Borsetshire East</span></h3>
+                            {% comment %} <h3 class="fs-4 me-2">Stop Rates by ethnicity</h3> {% endcomment %}
                             <p class="fs-6 badge bg-primary metric-year">All time</p>
                         </div>
 
@@ -93,6 +94,24 @@ slug: area
                             </div>
                         </div>
                         {% endcomment %}
+
+                        <div class="row mb-5">
+                            <div class="col-12 col-lg-6 d-flex flex-column flex-md-row justify">
+                                {% comment %} Presumably the bar will not be neccesary for the overall
+                                because the % won't be high enough to have an impact {% endcomment %}
+                                {% comment %} <div class="border border-primary d-flex align-items-end text-white me-3">
+                                    <div class="d-block py-0 px-5 bg-primary js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="height" style="height:54%"></div>
+                                </div> {% endcomment %}
+                                <div>
+                                    {% comment %} <h4 class="fs-2 text-primary mb-3">Stop rate</h4> {% endcomment %}
+                                    <p class="fs-m1 fw-bold lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
+                                    <div>
+                                        <span class="fw-bold fs-2 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
+                                        <span class="fs-6">stops</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-12 col-lg-5 d-flex flex-column flex-md-row text-end">
