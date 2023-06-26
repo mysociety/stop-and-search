@@ -123,13 +123,13 @@ slug: area
                                         <span class="fs-6">stops</span>
                                     </div>
                                 </div>
-                                <div class="border border-primary d-flex align-items-end text-white ms-3">
-                                    <div class="d-block py-0 px-4 bg-primary js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="height" style="height:54%"></div>
+                                <div class="border border-et-black d-flex align-items-end text-white ms-3">
+                                    <div class="d-block py-0 px-4 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="height" style="height:54%"></div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-5 d-flex flex-column flex-md-row text-start">
-                                <div class="border border-primary d-flex align-items-end text-white me-3">
-                                    <div class="d-block py-0 px-4 bg-primary js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="height" style="height:45%"></div>
+                                <div class="border border-et-white d-flex align-items-end text-white me-3">
+                                    <div class="d-block py-0 px-4 bg-et-white js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="height" style="height:45%"></div>
                                 </div>
                                 <div>
                                     <h4 class="fs-3 text-et-white mb-3">White</h4>
@@ -165,7 +165,11 @@ slug: area
                                     <div class="row mb-5">
                                         <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
                                             <div>
-                                                <h4 class="fs-3 text-et-black mb-3">Black</h4>
+                                                <div class="d-flex flex-row mb-3 align-items-center">
+                                                    <div class="bg-et-black rounded me-2" style="width: 30px; height: 30px"></div>
+                                                    <h4 class="fs-5 mb-0">Black</h4>
+                                                </div>
+                                                
                                                 <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
                                                 <div>
                                                     <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
@@ -174,12 +178,16 @@ slug: area
                                             </div>
                                         </div>
 
-                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row text-start">
+                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
                                             <div>
-                                                <h4 class="fs-3 text-et-white mb-3">White</h4>
-                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
+                                                <div class="d-flex flex-row mb-3 align-items-center">
+                                                    <div class="bg-et-white rounded me-2" style="width: 30px; height: 30px"></div>
+                                                    <h4 class="fs-5 mb-0">White</h4>
+                                                </div>
+                                                
+                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">54%</span></p>
                                                 <div>
-                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
+                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">3,890</span>
                                                     <span class="fs-6">stops</span>
                                                 </div>
                                             </div>
