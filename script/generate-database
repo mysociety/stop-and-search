@@ -68,7 +68,7 @@ council_csv_data.each do |row|
 
   db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
     row['la_code'],
-    row['date'],
+    (row['date'] == 'NA' ? 0 : row['date']),
     row['metric'],
     row['metric_category'],
     row['ethnicity'],
@@ -82,7 +82,7 @@ forces_csv_data.each do |row|
 
   db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
     row['force_code'],
-    row['date'],
+    (row['date'] == 'NA' ? 0 : row['date']),
     row['metric'],
     row['metric_category'],
     row['ethnicity'],
@@ -93,7 +93,7 @@ end
 
 all_time = db.execute('SELECT area_id, "0" AS date, metric, metric_category, ' \
                       'ethnicity, AVG(value) AS average, SUM(value) AS sum, ' \
-                      'value_type FROM data ' \
+                      'value_type FROM data WHERE metric != "population" ' \
                       'GROUP BY area_id, metric, metric_category, ethnicity').
                       map do |d|
   {

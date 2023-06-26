@@ -68,7 +68,7 @@ const areaPage = function() {
 
   function fetchData() {
     // Fetch all data for an area for a given year
-    getData({ 'areas.id = ?': area.id, 'date = ?': $("#year").val() }).
+    getData({ 'areas.id = ?': area.id }).
       then(function (data) { updateData(data) })
 
     getData({ 'areas.id = ?': area.id, 'metric = ?': 'rr' }).
@@ -79,13 +79,19 @@ const areaPage = function() {
     $('.js-data').each(function () {
       console.debug('---------')
 
+      const year = parseInt($(this).data('year') || $('#year').val())
+      console.debug('year', year)
+
+      const yearData = data.filter(obj => obj.date === year)
+      console.debug('yearData', yearData)
+
       const metric = $(this).data('metric')
       console.debug('metric', metric)
 
       const metricCategory = $(this).data('metric-category') || metric
       console.debug('metricCategory', metricCategory)
 
-      const metricData = data.filter(obj => obj.metric === metric && (obj.metric_category === 'NA' || obj.metric_category === metricCategory))
+      const metricData = yearData.filter(obj => obj.metric === metric && (obj.metric_category === 'NA' || obj.metric_category === metricCategory))
       console.debug('metricData', metricData)
 
       const valueTypes = [...new Set(metricData.map(obj => obj.value_type))]
