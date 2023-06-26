@@ -15,7 +15,7 @@ $(function(){
   })
 
   resetMetric.on( "click", function() {
-    $("#year").val('')
+    $("#year").val('0')
     $("#object").val('')
     $("#legislation").val('')
     $("#outcome").val('')
