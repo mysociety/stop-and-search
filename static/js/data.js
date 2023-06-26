@@ -79,7 +79,7 @@ async function getData(conditions = { '1 = ?': 1 }) {
     const conditionString = keys.join(' AND ')
 
     const query = `
-      SELECT data.* FROM data
+      SELECT data.*, areas.type FROM data
       INNER JOIN areas ON data.area_id = areas.id
       WHERE ${conditionString}
     `

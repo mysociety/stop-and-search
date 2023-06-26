@@ -1,5 +1,5 @@
 import { Modal } from '../vendor/bootstrap/js/bootstrap.esm.min.js'
-import { createApp, toRaw } from '../vendor/vue/js/vue.esm-browser.prod.js'
+import { createApp } from '../vendor/vue/js/vue.esm-browser.prod.js'
 import L from '../vendor/leaflet/js/leaflet-1.8.0.esm.js'
 import { getData } from './data.js'
 import councils from './councils.esm.js'
@@ -76,6 +76,8 @@ const app = createApp({
 
     this.$refs.filtersContainer.removeAttribute('hidden')
     this.$refs.shaderContainer.removeAttribute('hidden')
+    this.$refs.legendContainer.removeAttribute('hidden')
+
     this.$refs.modal.addEventListener('hidden.bs.modal', (e) => {
       this.browseDatasets = false
     })
@@ -193,13 +195,15 @@ const app = createApp({
         'metric IN (?, ?)': ['rr', 'stop_rate']
       }).then(function(data) {
         that.boundaryData = data.reduce((acc, obj) => {
-          const { area_id, metric, metric_category, ethnicity, value } = obj
+          const { area_id, metric, metric_category, ethnicity, value, type } = obj
           if (!acc[area_id]) { acc[area_id] = {} }
           if (metric === 'stop_rate') {
             acc[area_id][`${ethnicity.toLowerCase()}-stop-rate`] = value
           } else if (metric === 'rr' && metric_category == 'rr') {
             acc[area_id][metric] = value
           }
+          acc[area_id].id = area_id
+          acc[area_id].type = type
           return acc
         }, {})
       })
@@ -210,29 +214,14 @@ const app = createApp({
     getShadeForBoundary(id) {
       if (!this.selectedShader) { return '#ed6832' }
 
-      function interpolate(value1, value2, percentage) {
-        return Math.round(value1 + (value2 - value1) * (percentage / 100));
-      }
-
-      function getColorShade(percentage) {
-        const colour = {
-          r: interpolate(245, 54, percentage),
-          g: interpolate(170, 19, percentage),
-          b: interpolate(140,  5, percentage)
-        }
-
-        return `rgb(${colour.r},${colour.g},${colour.b})`
-      }
-
       const value = this.boundaryData[id][this.selectedShader.name]
 
-      const series = toRaw(this.shaderSeries)
-      const index = series.findIndex((v) => v === value)
+      for (const i in this.shaderSeries) {
+        const obj = this.shaderSeries[i]
+        if (value <= obj.max) { return obj.colour }
+      }
 
-      const percentage = Math.round((index / series.length) * 100);
-      const roundedPercentage = Math.round(percentage / 10) * 10;
-
-      return getColorShade(roundedPercentage)
+      return this.shaderSeries[0] ? this.shaderSeries[0].colour : '#ed6832'
     },
     updateVisibleBoundaries() {
       const that = this
@@ -252,11 +241,47 @@ const app = createApp({
       if (!this.selectedShader) { return }
 
       const visibleBoundaries = Object.values(this.boundaryData).
-        filter((boundary) => boundary.visible)
+        filter((boundary) => boundary.visible && boundary.type === this.boundaryType)
 
-      this.shaderSeries = visibleBoundaries.map(boundary => {
+      function interpolate(value1, value2, percentage) {
+        return Math.round(value1 + (value2 - value1) * (percentage / 100));
+      }
+
+      function getColourShade(percentage) {
+        const colour = {
+          r: interpolate(245, 54, percentage),
+          g: interpolate(170, 19, percentage),
+          b: interpolate(140,  5, percentage)
+        }
+
+        return `rgb(${colour.r},${colour.g},${colour.b})`
+      }
+
+      const numberOfShades = 5
+
+      function getPercentiles(series) {
+        const percentiles = []
+        const increment = series.length > numberOfShades ? Math.floor(series.length / numberOfShades) : 1
+        let previousMax = null
+
+        for (let i = 100 / numberOfShades; i <= 100; i += 100 / numberOfShades) {
+          const index = Math.floor((i / 100) * (series.length - 1))
+          const max = series[index]
+
+          if (!max || max === previousMax) { continue }
+
+          percentiles.push({ max, colour: getColourShade(i) })
+          previousMax = max
+        }
+
+        return percentiles
+      }
+
+      const series = visibleBoundaries.map(boundary => {
         return boundary[this.selectedShader.name]
       }).sort((a, b) => a - b)
+
+      this.shaderSeries = getPercentiles(series)
     },
     updateFeatures() {
       if (!this.map) { return }

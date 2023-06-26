@@ -68,16 +68,17 @@ slug: explore
 
     <div class="explore-results bg-gray-100">
         <div class="explore-map" ref="map"></div>
-        <div id="map-legend-wrapper" class="position-absolute p-3">
-            {% comment %} This title needs to change for whatever the user has selected {% endcomment %}
-            <h3 class="mb-4 fs-4">Black stop rates</h3>
-            <div class="map-legend-item d-flex flex-row align-items-start">
-                <div class="map-legend-color border me-2 rounded" style="background-color: #000"></div>
-                <span >Above >80 but it has a long name</span>
-            </div>
-            <div class="map-legend-item d-flex flex-row align-items-center">
-                <div class="map-legend-color border me-2 rounded" style="background-color: #000"></div>
-                <span >Above >80 </span>
+
+        <div ref="legendContainer" hidden>
+          <div v-if="selectedShader && shaderSeries.length > 0" id="map-legend-wrapper" class="position-absolute p-3">
+                <h3 class="mb-4 fs-4">${ selectedShader.title }</h3>
+                <div v-for="(obj, i) in shaderSeries" class="map-legend-item d-flex flex-row align-items-center">
+                  <div class="map-legend-color border me-2 rounded" :style="{ backgroundColor: obj.colour }"></div>
+                  <span>
+                    <span v-if="i == 0">Up to ${ obj.max.toFixed(2) }</span>
+                    <span v-if="i > 0">From ${ (shaderSeries[i-1].max + 0.01).toFixed(2) } to ${ obj.max.toFixed(2) }</span>
+                  </span>
+                </div>
             </div>
         </div>
     </div>
