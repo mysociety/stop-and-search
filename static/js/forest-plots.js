@@ -20,12 +20,11 @@ function setup(id, _layout = {}) {
     yaxis: { range: [0, 2], showgrid: false, zeroline: false, showticklabels: false, fixedrange: true },
     hoverlabel: { bgcolor: "lightgray" },
     showlegend: false,
-    width: 600,
     height: 60,
     margin: { b: 0, l: 0, r: 0, t: 0 }
   }, _layout)
 
-  const config = { showSendToCloud: false, displayModeBar: false }
+  const config = { responsive: true, showSendToCloud: false, displayModeBar: false }
 
   Plotly.newPlot(id, data, layout, config)
 }
