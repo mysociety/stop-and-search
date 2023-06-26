@@ -164,8 +164,20 @@ const areaPage = function() {
       setPlotValue('rr_ci_upp')
     })
 
-    const min = Math.min(...data.filter(obj => obj.metric_category === 'rr_ci_low').map(obj => obj.value))
-    const max = Math.max(...data.filter(obj => obj.metric_category === 'rr_ci_upp').map(obj => obj.value))
+    const minValues = data.filter(obj => obj.metric_category === 'rr_ci_low').
+      map(function(obj) {
+        if (typeof obj.value === 'number') { return obj.value }
+        return 1
+      })
+    const min = Math.min(...minValues)
+
+    const maxValues = data.filter(obj => obj.metric_category === 'rr_ci_upp').
+      map(function(obj) {
+        if (typeof obj.value === 'number') { return obj.value }
+        return 1
+      })
+    const max = Math.max(...maxValues)
+    console.debug(min, max)
 
     refreshForestPlots(min, max)
   }
