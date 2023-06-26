@@ -55,7 +55,11 @@ function updateValues() {
 }
 
 const areaPage = function() {
-  $('.js-area-name').text(area.name)
+  if (area.type === 'police-force') {
+    $('.js-area-name').text(`${area.name.replace('Police', '')} PFA`)
+  } else {
+    $('.js-area-name').text(area.name.replace(', City of', '').replace(', County of', ''))
+  }
 
   if (!area.county) {
     $('.js-area-county').hide()
