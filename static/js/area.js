@@ -151,16 +151,15 @@ const areaPage = function() {
       const element = $(this).get(0)
       const metricData = data.filter(obj => obj.metric === 'or' || obj.metric === 'rr')
 
-      function setPlotValue(element, data, category) {
-        const categoryData = metricData.filter(obj => obj.metric_category === category)
-        const categorySum = categoryData.reduce((acc, obj) => acc + obj.value, 0)
-        const categoryCount = categoryData.length
-        element.setAttribute(`data-${category}`, categorySum / categoryCount)
+      function setPlotValue(category) {
+        const categoryData = yearData.filter(obj => obj.metric_category === category)[0]
+        const categoryValue = categoryData.value
+        element.setAttribute(`data-${category}`, categoryValue)
       }
 
-      setPlotValue(element, metricData, 'rr')
-      setPlotValue(element, metricData, 'rr_ci_low')
-      setPlotValue(element, metricData, 'rr_ci_upp')
+      setPlotValue('rr')
+      setPlotValue('rr_ci_low')
+      setPlotValue('rr_ci_upp')
     })
 
     refreshForestPlots()
