@@ -108,8 +108,8 @@ end
 all_time = db.execute('SELECT area_id, "0" AS date, metric, metric_category, ' \
                       'ethnicity, AVG(value) AS average, SUM(value) AS sum, ' \
                       'value_type FROM data WHERE metric != "population" ' \
-                      'GROUP BY area_id, metric, metric_category, ethnicity').
-                      map do |d|
+                      'GROUP BY area_id, metric, metric_category, ethnicity, ' \
+                      'value_type').map do |d|
   {
     'area_id' => d[0],
     'date' => d[1],

@@ -1,6 +1,7 @@
 import $ from '../vendor/jquery/js/jquery.esm.js'
 import { getArea, getData } from './data.js'
 import { updateAll as refreshForestPlots } from './forest-plots.js'
+import { setupAll as refreshBarCharts } from './bar-charts.js'
 
 $(function(){
   let dropdownMetric = $('.dropdown-metric')
@@ -95,6 +96,9 @@ const areaPage = function() {
 
     getData({ 'areas.id = ?': area.id, 'metric = ?': 'rr' }).
       then(function (data) { updatePlots(data) })
+
+    getData({ 'areas.id = ?': area.id, 'metric IN (?, ?, ?)': ['object_of_search', 'legislation', 'outcome'] }).
+      then(function (data) { updateBars(data) })
   }
 
   function updateData(data) {
@@ -202,6 +206,40 @@ const areaPage = function() {
     console.debug(min, max)
 
     refreshForestPlots(min, max)
+  }
+
+  function updateBars(data) {
+    $('.js-bar').each(function () {
+      const element = $(this).get(0)
+
+      const yearData = data.filter(obj => obj.date === parseInt($('#year').val()))
+
+      const metric = $(this).data('metric')
+      const metricData = yearData.filter(obj => obj.metric === metric)
+
+      const metricTypeData = metricData.filter(obj => obj.value_type === 'percentage')
+
+      function setBarValues(ethnicity) {
+        const ethnicityData = metricTypeData.filter(obj => obj.ethnicity === ethnicity && typeof obj.value === 'number')
+
+        const barData = ethnicityData.reduce(function (acc, obj) {
+          const value = parseFloat(obj.value.toFixed(2))
+          acc[obj.metric_category] = value
+          return acc
+        }, {})
+
+        const sortedArray = Object.entries(barData).sort((a, b) => b[1] - a[1]);
+        const sortedObj = Object.fromEntries(sortedArray);
+        const sortedJSON = JSON.stringify(sortedObj);
+
+        element.setAttribute(`data-${ethnicity}`, sortedJSON)
+      }
+
+      setBarValues('Black')
+      setBarValues('White')
+    })
+
+    refreshBarCharts()
   }
 
   $('.dropdown-metric').on('change', fetchData)
