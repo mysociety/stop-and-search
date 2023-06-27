@@ -4,7 +4,7 @@ import { getArea, getData } from './data.js'
 import { updateAll as refreshForestPlots } from './forest-plots.js'
 import { setupAll as refreshBarCharts } from './bar-charts.js'
 
-$(function(){
+const areaPage = function() {
   let dropdownMetric = $('.dropdown-metric')
   let metricContent = $('.js-dynamic-metric-content')
   let dropdownYear = $('#year')
@@ -27,41 +27,9 @@ $(function(){
     $("#legislation").val('')
     $("#outcome").val('')
     updateValues()
+    fetchData()
   })
-})
 
-function updateValues() {
-  const object = $("#object option:selected").text()
-  $('.metric-object .js-value').text(object)
-
-  if (object != 'All') {
-    $('.metric-object.js-dynamic-metric-content').fadeIn(500)
-  } else {
-    $('.metric-object.js-dynamic-metric-content').fadeOut(500)
-  }
-
-  const legislation = $("#legislation option:selected").text()
-  $('.metric-legislation .js-value').text(legislation)
-
-  if (legislation != 'All') {
-    $('.metric-legislation.js-dynamic-metric-content').fadeIn(500)
-  } else {
-    $('.metric-legislation.js-dynamic-metric-content').fadeOut(500)
-  }
-
-  const outcome = $("#outcome option:selected").text()
-  $('.metric-outcome .js-value').text(outcome)
-
-  if (outcome != 'All') {
-    $('.metric-outcome.js-dynamic-metric-content').fadeIn(500)
-  } else {
-    $('.metric-outcome.js-dynamic-metric-content').fadeOut(500)
-  }
-
-  $('.metric-year').text($("#year option:selected").text())
-}
-
-const areaPage = function() {
   if (area.type === 'police-force') {
     $('.js-area-name').text(`${area.name.replace('Police', '')} PFA`)
   } else {
@@ -94,6 +62,41 @@ const areaPage = function() {
       element.setAttribute('hidden', 'hidden')
     }
   })
+
+  $('.dropdown-metric').on('change', fetchData)
+  fetchData()
+}
+
+function updateValues() {
+  const object = $("#object option:selected").text()
+  $('.metric-object .js-value').text(object)
+
+  if (object != 'All') {
+    $('.metric-object.js-dynamic-metric-content').fadeIn(500)
+  } else {
+    $('.metric-object.js-dynamic-metric-content').fadeOut(500)
+  }
+
+  const legislation = $("#legislation option:selected").text()
+  $('.metric-legislation .js-value').text(legislation)
+
+  if (legislation != 'All') {
+    $('.metric-legislation.js-dynamic-metric-content').fadeIn(500)
+  } else {
+    $('.metric-legislation.js-dynamic-metric-content').fadeOut(500)
+  }
+
+  const outcome = $("#outcome option:selected").text()
+  $('.metric-outcome .js-value').text(outcome)
+
+  if (outcome != 'All') {
+    $('.metric-outcome.js-dynamic-metric-content').fadeIn(500)
+  } else {
+    $('.metric-outcome.js-dynamic-metric-content').fadeOut(500)
+  }
+
+  $('.metric-year').text($("#year option:selected").text())
+}
 
   function fetchData() {
     // Fetch all data for an area for a given year
@@ -247,10 +250,6 @@ const areaPage = function() {
 
     refreshBarCharts()
   }
-
-  $('.dropdown-metric').on('change', fetchData)
-  fetchData()
-}
 
 const params = new URLSearchParams(document.location.search)
 const area = await getArea({ 'id = ?': params.get('id'), 'type = ?': params.get('type') })
