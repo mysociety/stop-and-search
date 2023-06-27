@@ -12,6 +12,7 @@ slug: area
 
 <div class="py-4 py-lg-5 js-default">
     <div class="container">
+
         <div class="row gx-lg-5 mb-3">
             <div class="col-12 col-lg-6">
                 <h1 class="fs-2 mb-2"><span class="js-area-name">{{ page.title }}</span></h1>
@@ -41,7 +42,6 @@ slug: area
                 </dl>
                 <a href="#local-goverment" class="d-table me-lg-0 ms-lg-auto">Check local government</a>
             </div>
-
         </div>
 
         <div class="row">
@@ -49,6 +49,7 @@ slug: area
                 <h2 class="mt-3 mb-3 pb-3 border-bottom text-primary">Area dashboard</h2>
             </div>
         </div>
+
         <div class="row gx-lg-5 mt-3">
             <div class="col-lg-3">
                 <div class="position-lg-sticky mb-6" style="top:10px">
@@ -64,19 +65,18 @@ slug: area
             </div>
 
             <div class="col-lg-9">
-                <div class="mb-8">
-                    <div class="row mb-7">
-                        <div class="col-10">
-                            <h3 class="fs-3 lh-base fw-normal">In <span class="js-area-name">Borsetshire East</span>, <span class="fs-2 text-primary fw-bold">Black people</span> are <span class="js-data fs-2 text-primary fw-bold" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched</h3>
-                            <a href="#risk-ratio-section">Check risk ratio</a>
-                        </div>
+                <div class="row mb-7">
+                    <div class="col-10">
+                        <h3 class="fs-3 lh-base fw-normal">In <span class="js-area-name">Borsetshire East</span>, <span class="fs-2 text-primary fw-bold">Black people</span> are <span class="js-data fs-2 text-primary fw-bold" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched</h3>
+                        <a href="#risk-ratio-section">Check risk ratio</a>
                     </div>
-                    <div class="row mt-3 mb-6">
-                        <div class="col-lg-12 d-flex flex-row mb-4">
-                            <h3 class="fs-4 me-2">Stop Rates in <span class="js-area-name">Borsetshire East</span></h3>
-                            {% comment %} <h3 class="fs-4 me-2">Stop Rates by ethnicity</h3> {% endcomment %}
-                            <p class="fs-6 badge bg-primary metric-year">All time</p>
-                        </div>
+                </div>
+                <div class="row mt-3 mb-6">
+                    <div class="col-lg-12 d-flex flex-row mb-4">
+                        <h3 class="fs-4 me-2">Stop Rates in <span class="js-area-name">Borsetshire East</span></h3>
+                        {% comment %} <h3 class="fs-4 me-2">Stop Rates by ethnicity</h3> {% endcomment %}
+                        <p class="fs-6 badge bg-primary metric-year">All time</p>
+                    </div>
 
                         {% comment %}
                         <div class="row mb-4">
@@ -95,62 +95,62 @@ slug: area
                         </div>
                         {% endcomment %}
 
-                        <div class="row mb-5">
-                            <div class="col-12 col-lg-6 d-flex flex-column flex-md-row justify">
-                                {% comment %} Presumably the bar will not be neccesary for the overall
-                                because the % won't be high enough to have an impact {% endcomment %}
-                                {% comment %} <div class="border border-primary d-flex align-items-end text-white me-3">
-                                    <div class="d-block py-0 px-5 bg-primary js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="height" style="height:54%"></div>
-                                </div> {% endcomment %}
+                    <div class="row mb-5">
+                        <div class="col-12 col-lg-6 d-flex flex-column flex-md-row justify">
+                            {% comment %} Presumably the bar will not be neccesary for the overall
+                            because the % won't be high enough to have an impact {% endcomment %}
+                            {% comment %} <div class="border border-primary d-flex align-items-end text-white me-3">
+                                <div class="d-block py-0 px-5 bg-primary js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="height" style="height:54%"></div>
+                            </div> {% endcomment %}
+                            <div>
+                                {% comment %} <h4 class="fs-2 text-primary mb-3">Stop rate</h4> {% endcomment %}
+                                <p class="fs-m1 fw-bold lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
                                 <div>
-                                    {% comment %} <h4 class="fs-2 text-primary mb-3">Stop rate</h4> {% endcomment %}
-                                    <p class="fs-m1 fw-bold lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
-                                    <div>
-                                        <span class="fw-bold fs-2 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
-                                        <span class="fs-6">stops</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 col-lg-5 d-flex flex-column flex-md-row text-end">
-                                <div>
-                                    <h4 class="fs-3 text-et-black mb-3">Black</h4>
-                                    <p class="fs-m1 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
-                                    <div>
-                                        <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
-                                        <span class="fs-6">stops</span>
-                                    </div>
-                                </div>
-                                <div class="border border-et-black d-flex align-items-end text-white ms-3">
-                                    <div class="d-block py-0 px-4 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="height" style="height:54%"></div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-5 d-flex flex-column flex-md-row text-start">
-                                <div class="border border-et-white d-flex align-items-end text-white me-3">
-                                    <div class="d-block py-0 px-4 bg-et-white js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="height" style="height:45%"></div>
-                                </div>
-                                <div>
-                                    <h4 class="fs-3 text-et-white mb-3">White</h4>
-                                    <p class="fs-m1 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
-                                    <div>
-                                        <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
-                                        <span class="fs-6">stops</span>
-                                    </div>
+                                    <span class="fw-bold fs-2 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
+                                    <span class="fs-6">stops</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="accordion" id="accordionBreakdown">
-                        <div class="accordion-item">
-                          <h3 class="accordion-header" id="byYear">
-                            <button class="accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              By year
-                            </button>
-                          </h3>
-                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="byYear" data-bs-parent="#accordionBreakdown">
+                    <div class="row">
+                        <div class="col-12 col-lg-5 d-flex flex-column flex-md-row text-end">
+                            <div>
+                                <h4 class="fs-3 text-et-black mb-3">Black</h4>
+                                <p class="fs-m1 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
+                                <div>
+                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
+                                    <span class="fs-6">stops</span>
+                                </div>
+                            </div>
+                            <div class="border border-et-black d-flex align-items-end text-white ms-3">
+                                <div class="d-block py-0 px-4 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="height" style="height:54%"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 d-flex flex-column flex-md-row text-start">
+                            <div class="border border-et-white d-flex align-items-end text-white me-3">
+                                <div class="d-block py-0 px-4 bg-et-white js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="height" style="height:45%"></div>
+                            </div>
+                            <div>
+                                <h4 class="fs-3 text-et-white mb-3">White</h4>
+                                <p class="fs-m1 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
+                                <div>
+                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
+                                    <span class="fs-6">stops</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion" id="accordionBreakdown">
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="byYear">
+                        <button class="accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            By year
+                        </button>
+                        </h3>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="byYear" data-bs-parent="#accordionBreakdown">
                             <div class="accordion-body">
                                 <div class="mt-4">
                                     <h3 class="fs-6 mb-3 badge bg-black">2020</h3>
@@ -238,125 +238,125 @@ slug: area
                                 </div>
 
                             </div>
-                          </div>
                         </div>
+                    </div>
 
-                        <div class="accordion-item">
-                          <h3 class="accordion-header" id="bySearch">
-                            <button class="accordion-button collapsed accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                              By reason of search
-                            </button>
-                          </h3>
-                          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="bySearch" data-bs-parent="#accordionBreakdown">
-                            <div class="accordion-body">
-                                <div class="mt-4">
-                                    <h3 class="fs-6 mb-3 badge bg-black">Articles for use in theft</h3>
-                                    <div class="row mb-3">
-                                        <div class="col-12">
-                                            <div class="border bg-et-white">
-                                                <div class="d-block py-0 py-4 border-end border-white border-3 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:54%;"></div>
-                                            </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="bySearch">
+                        <button class="accordion-button collapsed accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            By reason of search
+                        </button>
+                        </h3>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="bySearch" data-bs-parent="#accordionBreakdown">
+                        <div class="accordion-body">
+                            <div class="mt-4">
+                                <h3 class="fs-6 mb-3 badge bg-black">Articles for use in theft</h3>
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <div class="border bg-et-white">
+                                            <div class="d-block py-0 py-4 border-end border-white border-3 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:54%;"></div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-5">
-                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
-                                            <div>
-                                                <div class="d-flex flex-row mb-3 align-items-center">
-                                                    <div class="bg-et-black rounded me-2" style="width: 30px; height: 30px"></div>
-                                                    <h4 class="fs-5 mb-0">Black</h4>
-                                                </div>
-                                                
-                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
-                                                <div>
-                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
-                                                    <span class="fs-6">stops</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
-                                            <div>
-                                                <div class="d-flex flex-row mb-3 align-items-center">
-                                                    <div class="bg-et-white rounded me-2" style="width: 30px; height: 30px"></div>
-                                                    <h4 class="fs-5 mb-0">White</h4>
-                                                </div>
-                                                
-                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">54%</span></p>
-                                                <div>
-                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">3,890</span>
-                                                    <span class="fs-6">stops</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="accordion-item">
-                          <h3 class="accordion-header" id="byLegislation">
-                            <button class="accordion-button collapsed accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                By Legislation
-                            </button>
-                          </h3>
-                          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="byLegislation" data-bs-parent="#accordionBreakdown">
-                            <div class="accordion-body">
-                                <div class="mt-4">
-                                    <h3 class="fs-6 mb-3 badge bg-black">Conservation of seals</h3>
-                                    <div class="row mb-3">
-                                        <div class="col-12">
-                                            <div class="border bg-et-white">
-                                                <div class="d-block py-0 py-4 border-end border-white border-3 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:54%;"></div>
+                                <div class="row mb-5">
+                                    <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+                                        <div>
+                                            <div class="d-flex flex-row mb-3 align-items-center">
+                                                <div class="bg-et-black rounded me-2" style="width: 30px; height: 30px"></div>
+                                                <h4 class="fs-5 mb-0">Black</h4>
+                                            </div>
+                                            
+                                            <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
+                                            <div>
+                                                <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
+                                                <span class="fs-6">stops</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-5">
-                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+
+                                    <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+                                        <div>
+                                            <div class="d-flex flex-row mb-3 align-items-center">
+                                                <div class="bg-et-white rounded me-2" style="width: 30px; height: 30px"></div>
+                                                <h4 class="fs-5 mb-0">White</h4>
+                                            </div>
+                                            
+                                            <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">54%</span></p>
                                             <div>
-                                                <div class="d-flex flex-row mb-3 align-items-center">
-                                                    <div class="bg-et-black rounded me-2" style="width: 30px; height: 30px"></div>
-                                                    <h4 class="fs-5 mb-0">Black</h4>
-                                                </div>
-                                                
-                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
-                                                <div>
-                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
-                                                    <span class="fs-6">stops</span>
-                                                </div>
+                                                <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">3,890</span>
+                                                <span class="fs-6">stops</span>
                                             </div>
                                         </div>
-
-                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
-                                            <div>
-                                                <div class="d-flex flex-row mb-3 align-items-center">
-                                                    <div class="bg-et-white rounded me-2" style="width: 30px; height: 30px"></div>
-                                                    <h4 class="fs-5 mb-0">White</h4>
-                                                </div>
-                                                
-                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">54%</span></p>
-                                                <div>
-                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">3,890</span>
-                                                    <span class="fs-6">stops</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
+
                                 </div>
                             </div>
-                          </div>
                         </div>
+                        </div>
+                    </div>
 
-                        <div class="accordion-item">
-                            <h3 class="accordion-header" id="byOutcome">
-                              <button class="accordion-button collapsed accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                By outcome
-                              </button>
-                            </h3>
-                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="byOutcome" data-bs-parent="#accordionBreakdown">
-                              <div class="accordion-body">
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="byLegislation">
+                        <button class="accordion-button collapsed accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            By Legislation
+                        </button>
+                        </h3>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="byLegislation" data-bs-parent="#accordionBreakdown">
+                        <div class="accordion-body">
+                            <div class="mt-4">
+                                <h3 class="fs-6 mb-3 badge bg-black">Conservation of seals</h3>
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <div class="border bg-et-white">
+                                            <div class="d-block py-0 py-4 border-end border-white border-3 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:54%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+                                        <div>
+                                            <div class="d-flex flex-row mb-3 align-items-center">
+                                                <div class="bg-et-black rounded me-2" style="width: 30px; height: 30px"></div>
+                                                <h4 class="fs-5 mb-0">Black</h4>
+                                            </div>
+                                            
+                                            <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
+                                            <div>
+                                                <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
+                                                <span class="fs-6">stops</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+                                        <div>
+                                            <div class="d-flex flex-row mb-3 align-items-center">
+                                                <div class="bg-et-white rounded me-2" style="width: 30px; height: 30px"></div>
+                                                <h4 class="fs-5 mb-0">White</h4>
+                                            </div>
+                                            
+                                            <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">54%</span></p>
+                                            <div>
+                                                <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">3,890</span>
+                                                <span class="fs-6">stops</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="byOutcome">
+                            <button class="accordion-button collapsed accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            By outcome
+                            </button>
+                        </h3>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="byOutcome" data-bs-parent="#accordionBreakdown">
+                            <div class="accordion-body">
                                 <div class="mt-4">
                                     <h3 class="fs-6 mb-3 badge bg-black">Arrest</h3>
                                     <div class="row mb-3">
@@ -399,88 +399,87 @@ slug: area
 
                                     </div>
                                 </div>
-                              </div>
                             </div>
-                          </div>
+                        </div>
+                    </div>
+                </div>
 
-                      </div>
+                <div class="mt-6 mt-md-8">
+                    <div class="row">
+                        <div id="risk-ratio-section" class="col-12">
+                            <h3 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr">3.1</span></h3>
+                            <p class="fs-5">This means that <span class="text-primary fw-bold">Black people</span> are <span class="text-primary fw-bold js-data" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched.</p>
+                            <details class="mb-5">
+                                <summary class="mb-3">Show me more infomation</summary>
+                                <p>The risk ratio describes the likelihood of a Black person being stopped and searched relative to the likelihood of a White person being stopped and searched.</p>
+                                <p>If the risk ratio is 1, it means that the likelihood of being stopped is the same for Black and White people.</p>
+                                <p>If the risk ratio is greater than 1, it means that the likelihood of being stopped is greater for Black people compared to White people. For example, a risk ratio of 2 would indicate that Black people are 2 times more likely to be stopped and searched than White people.</p>
+                                <p>If the risk ratio is less than 1, it means that the likelihood of being stopped is lower for Black people compared to White people. For example, a risk ratio of 0.5 would indicate that Black people are 50% less likely to be stopped and searched compared to White people.</p>
+                            </details>
+                        </div>
                     </div>
 
-                    <div class="mt-6 mt-md-8">
-                        <div class="row">
-                            <div id="risk-ratio-section" class="col-12">
-                                    <h2 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr">3.1</span></h3>
-                                    <p class="fs-5">This means that <span class="text-primary fw-bold">Black people</span> are <span class="text-primary fw-bold js-data" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched.</p>
-                                    <details class="mb-5">
-                                      <summary class="mb-3">Show me more infomation</summary>
-                                      <p>The risk ratio describes the likelihood of a Black person being stopped and searched relative to the likelihood of a White person being stopped and searched.</p>
-                                      <p>If the risk ratio is 1, it means that the likelihood of being stopped is the same for Black and White people.</p>
-                                      <p>If the risk ratio is greater than 1, it means that the likelihood of being stopped is greater for Black people compared to White people. For example, a risk ratio of 2 would indicate that Black people are 2 times more likely to be stopped and searched than White people.</p>
-                                      <p>If the risk ratio is less than 1, it means that the likelihood of being stopped is lower for Black people compared to White people. For example, a risk ratio of 0.5 would indicate that Black people are 50% less likely to be stopped and searched compared to White people.</p>
-                                    </details>
+                    <div class="row text-end">
+                        <div class="col-3 py-3">
+                            <p class="mb-0 lh-1 text-muted">Year</p>
+                            <p class="mb-0 fw-bold metric-year">All time</p>
+                        </div>
+                        <div class="col-9 border-top border-bottom border-grey-100 position-relative">
+                            <div id="plot-year" class="js-plot"></div>
+                        </div>
+                    </div>
 
-                            </div>
+                    <div class="row text-end js-dynamic-metric-content metric-object">
+                        <div class="col-3 py-3">
+                            <p class="mb-0 lh-1 text-muted">Reason for search</p>
+                            <p class="mb-0 fw-bold js-value">All</p>
                         </div>
+                        <div class="col-9 border-top border-bottom border-grey-100 position-relative">
+                            <div id="plot-object-of-search"></div>
+                        </div>
+                    </div>
 
-                        <div class="row text-end">
-                            <div class="col-3 py-3">
-                                <p class="mb-0 lh-1 text-muted">Year</p>
-                                <p class="mb-0 fw-bold metric-year">All time</p>
-                            </div>
-                            <div class="col-9 border-top border-bottom border-grey-100 position-relative">
-                                <div id="plot-year" class="js-plot"></div>
-                            </div>
+                    <div class="row text-end js-dynamic-metric-content metric-legislation">
+                        <div class="col-3 py-3">
+                            <p class="mb-0 lh-1 text-muted">Legislation</p>
+                            <p class="mb-0 fw-bold js-value">All</p>
                         </div>
-                        <div class="row text-end js-dynamic-metric-content metric-object">
-                            <div class="col-3 py-3">
-                                <p class="mb-0 lh-1 text-muted">Reason for search</p>
-                                <p class="mb-0 fw-bold js-value">All</p>
-                            </div>
-                            <div class="col-9 border-top border-bottom border-grey-100 position-relative">
-                                <div id="plot-object-of-search"></div>
-                            </div>
+                        <div class="col-9 border-top border-bottom border-grey-100 position-relative">
+                            <div id="plot-legislation"></div>
                         </div>
-                        <div class="row text-end js-dynamic-metric-content metric-legislation">
-                            <div class="col-3 py-3">
-                                <p class="mb-0 lh-1 text-muted">Legislation</p>
-                                <p class="mb-0 fw-bold js-value">All</p>
-                            </div>
-                            <div class="col-9 border-top border-bottom border-grey-100 position-relative">
-                                <div id="plot-legislation"></div>
-                            </div>
+                    </div>
+                    <div class="row text-end js-dynamic-metric-content metric-outcome">
+                        <div class="col-3 py-3">
+                            <p class="mb-0 lh-1 text-muted">Outcome</p>
+                            <p class="mb-0 fw-bold js-value">All</p>
                         </div>
-                        <div class="row text-end js-dynamic-metric-content metric-outcome">
-                            <div class="col-3 py-3">
-                                <p class="mb-0 lh-1 text-muted">Outcome</p>
-                                <p class="mb-0 fw-bold js-value">All</p>
-                            </div>
-                            <div class="col-9 border-top border-bottom border-grey-100 position-relative">
-                                <div id="plot-outcome"></div>
-                            </div>
+                        <div class="col-9 border-top border-bottom border-grey-100 position-relative">
+                            <div id="plot-outcome"></div>
                         </div>
-                        <div class="row mb-5">
-                            <div class="col-3"></div>
-                            <div class="col-9">
-                                <div id="plot-footer"></div>
-                            </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-3"></div>
+                        <div class="col-9">
+                            <div id="plot-footer"></div>
                         </div>
+                    </div>
 
-                        <div class="row mb-4">
+                    <div class="row mb-4">
+                        <div class="col-12">
                             <div class="p-3 mt-4 bg-light border">
                                 <h5 class="fs-5 fw-normal mb-4">The confidence interval is <span class="js-data fw-bold text-primary" data-metric="rr" data-metric-category="rr_ci_low">2.9</span> to <span class="js-data fw-bold text-primary" data-metric="rr" data-metric-category="rr_ci_upp">3.1</span></h5>
                                 <p>Because the risk ratio is an estimate, we cannot be 100% certain that the value is correct. However, we can estimate the range of values that the risk ratio is likely to be. This is what the bars on the graph represent (known as the 95% confidence interval). In essence, wider bars indicate less certainty in the risk ratio (because there is a wider range of possible values it could be), whilst narrower bars indicate more certainty in the risk ratio (because there is a narrower range of possible values it could be).</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <div data-area-type="council">
+
+                <div class="mt-6 mt-lg-8" data-area-type="council">
                     {% include area-info.html %}
                 </div>
-                <div data-area-type="police-force" hidden>
+                <div class="mt-6 mt-lg-8" data-area-type="police-force" hidden>
                     {% include area-police-force-local-government.html %}
                 </div>
-            </div>
         </div>
     </div>
 </div>
