@@ -421,27 +421,6 @@ slug: area
 
                             </div>
                         </div>
-                        <div class="row mb-4">
-                            <div class="col-12">
-                                <h3 class="fs-4 mb-2">Risk ratio</h3>
-
-                                {% comment %}
-                                <p class="badge bg-primary mb-3">Risk ratio</p>
-                                <div class="mb-4 p-3 bg-green-100" style="max-width:500px">
-                                    <h4 class="fs-6">Select a ratio</h4>
-                                    <button style="border-radius:0" class="btn btn-primary btn-sm border border-primary me-n1 border-end-0">Risk Ratio</button>
-                                    <button style="border-radius:0" class="btn btn-sm border border-primary">Odd Ratio</button>
-                                </div>
-
-                                <p class="mb-2">Chance of a <span class="badge bg-black border border-dark">black person</span> to get stopped compare to a <span class="badge bg-light text-black border">white person</span></p>
-                                {% endcomment %}
-                            </div>
-                            <div class="p-3 mt-4 bg-light border">
-                                <h5>Confidence intervals</h5>
-                                <p>The confidence interval is <span class="js-data" data-metric="rr" data-metric-category="rr_ci_low">2.9</span> to <span class="js-data" data-metric="rr" data-metric-category="rr_ci_upp">3.1</span></p>
-                                <p>Because the risk ratio is an estimate, we cannot be 100% certain that the value is correct. However, we can estimate the range of values that the risk ratio is likely to be. This is what the bars on the graph represent (known as the 95% confidence interval). In essence, wider bars indicate less certainty in the risk ratio (because there is a wider range of possible values it could be), whilst narrower bars indicate more certainty in the risk ratio (because there is a narrower range of possible values it could be).</p>
-                            </div>
-                        </div>
 
                         <div class="row text-end">
                             <div class="col-3 py-3">
@@ -483,6 +462,13 @@ slug: area
                             <div class="col-3"></div>
                             <div class="col-9">
                                 <div id="plot-footer"></div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="p-3 mt-4 bg-light border">
+                                <h5 class="fs-5 fw-normal mb-4">The confidence interval is <span class="js-data fw-bold text-primary" data-metric="rr" data-metric-category="rr_ci_low">2.9</span> to <span class="js-data fw-bold text-primary" data-metric="rr" data-metric-category="rr_ci_upp">3.1</span></h5>
+                                <p>Because the risk ratio is an estimate, we cannot be 100% certain that the value is correct. However, we can estimate the range of values that the risk ratio is likely to be. This is what the bars on the graph represent (known as the 95% confidence interval). In essence, wider bars indicate less certainty in the risk ratio (because there is a wider range of possible values it could be), whilst narrower bars indicate more certainty in the risk ratio (because there is a narrower range of possible values it could be).</p>
                             </div>
                         </div>
 
