@@ -1,3 +1,4 @@
+import { Modal } from '../vendor/bootstrap/js/bootstrap.esm.min.js'
 import $ from '../vendor/jquery/js/jquery.esm.js'
 import { getArea, getData } from './data.js'
 import { updateAll as refreshForestPlots } from './forest-plots.js'
@@ -8,6 +9,11 @@ $(function(){
   let metricContent = $('.js-dynamic-metric-content')
   let dropdownYear = $('#year')
   let resetMetric = $('#reset-metric')
+
+  $('[data-bs-toggle="modal"]').click(function (e) {
+    new Modal($(this).get(0))
+    e.preventDefault()
+  })
 
   metricContent.hide()
 

@@ -11,6 +11,9 @@
         </div>
         <div class="col-12 mb-3">
             <label class="mb-1" for="object">Reason for search</label>
+            <button class="p-0 mb-1 opacity-75 btn btn-link" data-bs-toggle="modal" data-bs-target="#reasonForSearchModal">
+                {% include icons/question.html width="2em" height="2em" %}
+            </button>
             <select class="form-select form-select-sm dropdown-metric" name="legislation" id="object">
                 <option value="">All</option>
                 <option value="op-1">Anything to threaten or harm anyone</option>
@@ -21,6 +24,9 @@
         </div>
         <div class="col-12 mb-3">
             <label class="mb-1" for="legislation">Legislation</label>
+            <button class="p-0 mb-1 opacity-75 btn btn-link" data-bs-toggle="modal" data-bs-target="#legislationModal">
+                {% include icons/question.html width="2em" height="2em" %}
+            </button>
             <select class="form-select form-select-sm dropdown-metric" name="legislation" id="legislation">
                 <option value="">All</option>
                 <option value="Misuse of Drugs Act 1971 (section 23)">Aviation Security Act 1982 (section 27(1))</option>
@@ -31,6 +37,9 @@
         </div>
         <div class="col-12 mb-4">
             <label class="mb-1" for="outcome">Outcome</label>
+            <button class="p-0 mb-1 opacity-75 btn btn-link" data-bs-toggle="modal" data-bs-target="#outcomeModal">
+                {% include icons/question.html width="2em" height="2em" %}
+            </button>
             <select class="form-select form-select-sm dropdown-metric" name="outcome" id="outcome">
                 <option value="">All</option>
                 <option value="A no further action disposal">A no further action disposal</option>
