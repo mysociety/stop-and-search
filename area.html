@@ -152,9 +152,8 @@ slug: area
                           </h3>
                           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="byYear" data-bs-parent="#accordionBreakdown">
                             <div class="accordion-body">
-                                <div>
-                                    <h3 class="fs-6 mb-4 badge bg-black">2020</h3>
-                                    {% comment %} Hide it because, at the moment there is no need to change the current layour, however this layout will become useless once we add the other ethinicites, where we would probably benefit of having one % percetage bar for everyone and with legends and each ethinicity with their own colour.  {% endcomment %}
+                                <div class="mt-4">
+                                    <h3 class="fs-6 mb-3 badge bg-black">2020</h3>
                                     <div class="row mb-3">
                                         <div class="col-12">
                                             <div class="border bg-et-white">
@@ -196,20 +195,23 @@ slug: area
                                     </div>
                                 </div>
 
-                                <div>
-                                    <h3 class="fs-6 mb-4 badge bg-black">2019</h3>
-                                    {% comment %} Hide it because, at the moment there is no need to change the current layour, however this layout will become useless once we add the other ethinicites, where we would probably benefit of having one % percetage bar for everyone and with legends and each ethinicity with their own colour.  {% endcomment %}
+                                <div class="mt-4">
+                                    <h3 class="fs-6 mb-3 badge bg-black">2019</h3>
                                     <div class="row mb-3">
                                         <div class="col-12">
-                                            <div class="border border-primary">
-                                                <div class="d-block py-0 py-4 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:54%;"></div>
+                                            <div class="border bg-et-white">
+                                                <div class="d-block py-0 py-4 border-end border-white border-3 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:54%;"></div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mb-5">
                                         <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
                                             <div>
-                                                <h4 class="fs-3 text-et-black mb-3">Black</h4>
+                                                <div class="d-flex flex-row mb-3 align-items-center">
+                                                    <div class="bg-et-black rounded me-2" style="width: 30px; height: 30px"></div>
+                                                    <h4 class="fs-5 mb-0">Black</h4>
+                                                </div>
+                                                
                                                 <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
                                                 <div>
                                                     <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
@@ -218,12 +220,70 @@ slug: area
                                             </div>
                                         </div>
 
-                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row text-start">
+                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
                                             <div>
-                                                <h4 class="fs-3 text-et-white mb-3">White</h4>
-                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
+                                                <div class="d-flex flex-row mb-3 align-items-center">
+                                                    <div class="bg-et-white rounded me-2" style="width: 30px; height: 30px"></div>
+                                                    <h4 class="fs-5 mb-0">White</h4>
+                                                </div>
+                                                
+                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">54%</span></p>
                                                 <div>
-                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
+                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">3,890</span>
+                                                    <span class="fs-6">stops</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item">
+                          <h3 class="accordion-header" id="bySearch">
+                            <button class="accordion-button collapsed accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              By reason of search
+                            </button>
+                          </h3>
+                          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="bySearch" data-bs-parent="#accordionBreakdown">
+                            <div class="accordion-body">
+                                <div class="mt-4">
+                                    <h3 class="fs-6 mb-3 badge bg-black">Articles for use in theft</h3>
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <div class="border bg-et-white">
+                                                <div class="d-block py-0 py-4 border-end border-white border-3 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:54%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5">
+                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+                                            <div>
+                                                <div class="d-flex flex-row mb-3 align-items-center">
+                                                    <div class="bg-et-black rounded me-2" style="width: 30px; height: 30px"></div>
+                                                    <h4 class="fs-5 mb-0">Black</h4>
+                                                </div>
+                                                
+                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
+                                                <div>
+                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
+                                                    <span class="fs-6">stops</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+                                            <div>
+                                                <div class="d-flex flex-row mb-3 align-items-center">
+                                                    <div class="bg-et-white rounded me-2" style="width: 30px; height: 30px"></div>
+                                                    <h4 class="fs-5 mb-0">White</h4>
+                                                </div>
+                                                
+                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">54%</span></p>
+                                                <div>
+                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">3,890</span>
                                                     <span class="fs-6">stops</span>
                                                 </div>
                                             </div>
@@ -236,40 +296,109 @@ slug: area
                         </div>
 
                         <div class="accordion-item">
-                          <h3 class="accordion-header" id="bySearch">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                              Accordion Item #2
-                            </button>
-                          </h3>
-                          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="bySearch" data-bs-parent="#accordionBreakdown">
-                            <div class="accordion-body">
-                              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="accordion-item">
                           <h3 class="accordion-header" id="byLegislation">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                              Accordion Item #3
+                            <button class="accordion-button collapsed accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                By Legislation
                             </button>
                           </h3>
                           <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="byLegislation" data-bs-parent="#accordionBreakdown">
                             <div class="accordion-body">
-                              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                <div class="mt-4">
+                                    <h3 class="fs-6 mb-3 badge bg-black">Conservation of seals</h3>
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <div class="border bg-et-white">
+                                                <div class="d-block py-0 py-4 border-end border-white border-3 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:54%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5">
+                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+                                            <div>
+                                                <div class="d-flex flex-row mb-3 align-items-center">
+                                                    <div class="bg-et-black rounded me-2" style="width: 30px; height: 30px"></div>
+                                                    <h4 class="fs-5 mb-0">Black</h4>
+                                                </div>
+                                                
+                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
+                                                <div>
+                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
+                                                    <span class="fs-6">stops</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+                                            <div>
+                                                <div class="d-flex flex-row mb-3 align-items-center">
+                                                    <div class="bg-et-white rounded me-2" style="width: 30px; height: 30px"></div>
+                                                    <h4 class="fs-5 mb-0">White</h4>
+                                                </div>
+                                                
+                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">54%</span></p>
+                                                <div>
+                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">3,890</span>
+                                                    <span class="fs-6">stops</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                           </div>
                         </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header" id="byOutcome">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                Accordion Item #3
+                              <button class="accordion-button collapsed accordion-button fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                By outcome
                               </button>
                             </h3>
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="byOutcome" data-bs-parent="#accordionBreakdown">
                               <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                <div class="mt-4">
+                                    <h3 class="fs-6 mb-3 badge bg-black">Arrest</h3>
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <div class="border bg-et-white">
+                                                <div class="d-block py-0 py-4 border-end border-white border-3 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:54%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5">
+                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+                                            <div>
+                                                <div class="d-flex flex-row mb-3 align-items-center">
+                                                    <div class="bg-et-black rounded me-2" style="width: 30px; height: 30px"></div>
+                                                    <h4 class="fs-5 mb-0">Black</h4>
+                                                </div>
+                                                
+                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
+                                                <div>
+                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
+                                                    <span class="fs-6">stops</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-lg-3 d-flex flex-column flex-md-row">
+                                            <div>
+                                                <div class="d-flex flex-row mb-3 align-items-center">
+                                                    <div class="bg-et-white rounded me-2" style="width: 30px; height: 30px"></div>
+                                                    <h4 class="fs-5 mb-0">White</h4>
+                                                </div>
+                                                
+                                                <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">54%</span></p>
+                                                <div>
+                                                    <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">3,890</span>
+                                                    <span class="fs-6">stops</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                               </div>
                             </div>
                           </div>

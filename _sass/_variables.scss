@@ -22,11 +22,11 @@ $cyan:       #2ddede;
 $red:        #cf131c;
 
 // Only to be used to represent ethnicity. Avoid using it for anything messaging related, like error or warnings.
-// The brightness and saturation has determined by adjusting the hue 25 deg, and setting up a contract  ratio between >7 and 7.5>. The idea is that ethnicity colours have a similar highlight and we don't have one been highlighted more than the rest.
+// The brightness and saturation has determined by adjusting the hue 25 deg, and setting up a contract  ratio between >5 and 5.5>. The idea is that ethnicity colours have a similar highlight and we don't have one been highlighted more than the rest.
 //More ethnicity colours here: https://www.figma.com/file/q3VHsl8knr3VMvboda6BQ5/Stop-and-Search?type=design&node-id=0%3A1&mode=design&t=nltsgbsSrGH3iwZV-1
 
-$et-black: #1446DA;
-$et-white: #AA0867;
+$et-black: #1B78A2;
+$et-white: #6C59CA;
 
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
