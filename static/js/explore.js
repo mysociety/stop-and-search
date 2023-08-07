@@ -20,7 +20,7 @@ const app = createApp({
       browseDatasets: false,
       filters: [{
         name: "rr",
-        title: "Disproportionally",
+        title: "Disproportionality",
         desc: "The ratio of disproportate stops between black and white ethnicities",
         comparators: {
           "lt": "is less than",
