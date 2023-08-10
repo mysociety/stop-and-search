@@ -1,0 +1,12 @@
+Script started on Thu Aug 10 08:54:08 2023
+[1m[7m%[27m[1m[0m                                                                                                                                                                        [0m[27m[24m[Jlucascumsillemontesinos@Lucass-MacBook-Air stop-and-search % [K[?2004h[7mscript/server[27m[13D[27ms[27mc[27mr[27mi[27mp[27mt[27m/[27ms[27me[27mr[27mv[27me[27mr[?2004l
+Configuration file: /Users/lucascumsillemontesinos/Projects/stop-and-search/_config.yml
+Configuration file: /Users/lucascumsillemontesinos/Projects/stop-and-search/_config_dev.yml
+            Source: /Users/lucascumsillemontesinos/Projects/stop-and-search
+       Destination: /Users/lucascumsillemontesinos/Projects/stop-and-search/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+                    done in 0.491 seconds.
+ Auto-regeneration: enabled for '/Users/lucascumsillemontesinos/Projects/stop-and-search'
+    Server address: http://0.0.0.0:4000/
+  Server running... press ctrl-c to stop.
