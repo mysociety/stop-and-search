@@ -141,9 +141,14 @@ $form-label-font-weight: bold;
 
 // Navbar
 $nav-link-padding-y: 0.75rem;
-$nav-link-color: $white;
-$nav-link-hover-color: $teal;
 $navbar-nav-link-padding-x: 0.75rem;
+$nav-link-font-weight: 700;
+
+$navbar-dark-color: rgba($white, 1);
+$navbar-dark-hover-color: rgba($white, .65);
+$navbar-dark-active-color: $primary;
+$navbar-dark-disabled-color: rgba($white, .25);
+
 // $dropdown-link-color:               $black;
 // $dropdown-link-hover-color:         $white;
 // $dropdown-link-hover-bg:            $black;
