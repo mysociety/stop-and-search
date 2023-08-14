@@ -254,3 +254,20 @@ function updateBars(data) {
 const params = new URLSearchParams(document.location.search)
 const area = await getArea({ 'id = ?': params.get('id'), 'type = ?': params.get('type') })
 if (area) { $(areaPage) }
+
+function forEachElement(arg1, arg2, arg3) {
+  var context = (typeof arg3 == 'function') ? arg1 : document;
+  var selector = (typeof arg3 == 'function') ? arg2 : arg1;
+  var callback = (typeof arg3 == 'function') ? arg3 : arg2;
+
+  var elements = context.querySelectorAll(selector);
+  Array.prototype.forEach.call( elements, callback );
+};
+
+forEachElement('[data-ethnicity-comparisson]', function(trigger){
+  trigger.addEventListener('click', function(){
+      var ethnicityType = trigger.getAttribute('data-ethnicity-comparisson');
+      var container = document.querySelector('.js-dynamic-ethnicity-comparisson');
+      container.setAttribute('data-ethnicity-comparisson-active', ethnicityType);
+  });
+});

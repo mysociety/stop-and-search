@@ -1,16 +1,18 @@
-@import "bootstrap/scss/functions";
+
 @import "variables";
 
 @import "bootstrap/scss/mixins/banner";
 @include bsBanner("");
 
+@import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
+
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities";
 
-@import "utilities";
 
+@import "utilities";
 @import "bootstrap/scss/root";
 @import "bootstrap/scss/reboot";
 @import "bootstrap/scss/type";
@@ -52,3 +54,4 @@
 @import "explore";
 @import "modal";
 @import "map";
+@import "area";
