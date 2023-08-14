@@ -1,0 +1,67 @@
+$ethnicity-types: (
+    'black',
+    'mixed',
+    'asian',
+    'arab',
+);
+
+@each $ethnicity-type in $ethnicity-types {
+    // Hide all ethnicity-specific elements by default
+    .js-ethnicity-comparisson-#{$ethnicity-type} { 
+        display: none !important;
+    }
+
+    // When an active ethnicity type has been selected…
+    [data-ethnicity-comparisson-active="#{$ethnicity-type}"] {
+        // Hide any default (non-ethnicity-typed) elements
+        .js-ethnicity-comparisson-default {
+            display: none !important;
+        }
+
+        // Show the relevant ethnicity type elements
+        .js-ethnicity-comparisson-#{$ethnicity-type} {
+            display: block !important;
+            &.d-flex {
+                display: flex !important;
+            }
+        }
+
+        //Fake "active" styling for the activated trigger
+        // [data-ethnicity-comparisson="#{$ethnicity-type}"] {
+        //     &.ethnicity-filter-btn {
+        //         background-color: $primary;
+        //         color: $white;
+        //     }
+        // }
+
+        .ethnicity-filter-btn {
+            background-color: $white;
+            &:hover {
+                background-color: $primary;
+            }
+        }
+
+        //Fake "active" styling for the activated trigger
+        [data-ethnicity-comparisson="#{$ethnicity-type}"] {
+            &.btn-outline-et-black {
+                background-color: $et-black;
+                color: $white;
+            }
+
+            &.btn-outline-et-mixed {
+                background-color: $et-mixed;
+                color: $white;
+            }
+
+            &.btn-outline-et-asian {
+                background-color: $et-asian;
+                color: $white;
+            }
+
+            &.btn-outline-et-arab {
+                background-color: $et-arab;
+                color: $white;
+            }
+        }
+    }
+}
