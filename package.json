@@ -1,5 +1,7 @@
 {
   "devDependencies": {
-    "mapshaper": "^0.6.29"
+    "mapshaper": "^0.6.29",
+    "vite": "^4.4.9",
+    "vite-plugin-ruby": "^3.2.2"
   }
 }
