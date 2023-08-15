@@ -22,3 +22,6 @@ sass:
   sourcemap: never
   load_paths:
     - static/vendor/
+
+plugins:
+  - jekyll/vite
