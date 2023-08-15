@@ -1,7 +1,10 @@
 {
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
+    "bootstrap": "^5.2.3",
+    "leaflet": "^1.8.0",
     "mapshaper": "^0.6.29",
+    "sass": "^1.65.1",
     "vite": "^4.4.9",
     "vite-plugin-ruby": "^3.2.2",
     "vue": "^3.3.4"

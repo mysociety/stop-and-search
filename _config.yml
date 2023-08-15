@@ -21,14 +21,10 @@ exclude:
   - README.md
   - script/
   - ssl/
+  - static/css/
   - tmp/
   - vendor/
   - vite.config.js
-
-sass:
-  sourcemap: never
-  load_paths:
-    - static/vendor/
 
 plugins:
   - jekyll/vite
