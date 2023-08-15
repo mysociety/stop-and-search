@@ -1,7 +1,9 @@
 {
   "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
     "mapshaper": "^0.6.29",
     "vite": "^4.4.9",
-    "vite-plugin-ruby": "^3.2.2"
+    "vite-plugin-ruby": "^3.2.2",
+    "vue": "^3.3.4"
   }
 }
