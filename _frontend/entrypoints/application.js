@@ -8,3 +8,4 @@ console.log('Vite ⚡️ Ruby')
 // import '~/index.css'
 
 import '@css/all.scss'
+import '@js/all.js'

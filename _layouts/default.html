@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;800&family=Roboto:wght@400;500;700&display=swap">
     <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
     <script type="module">document.documentElement.classList.remove('no-js'); document.documentElement.classList.add('js');</script>
+    <script>window.staticPath = "{{ '/static' | relative_url }}"</script>
     {% vite_client_tag %}
     {% vite_javascript_tag application %}
 </head>

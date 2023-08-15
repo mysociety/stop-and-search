@@ -1,4 +1,4 @@
-import Plotly from '../vendor/plotly/js/plotly.esm.js'
+import Plotly from 'plotly.js-dist-min'
 
 function setup(id, _layout = {}) {
   const element = document.getElementById(id)

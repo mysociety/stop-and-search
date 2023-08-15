@@ -1,6 +1,7 @@
-import $ from '../vendor/jquery/js/jquery.esm.js'
-import { initSqlJs } from '../vendor/sql.js/js/sql-wasm.esm.js'
-import { openDB } from '../vendor/idb/js/index.js'
+import $ from 'jquery'
+import { openDB } from 'idb'
+import initSqlJs from 'sql.js'
+import sqlWasm from 'sql.js/dist/sql-wasm.wasm?url' // https://vitejs.dev/guide/assets.html#explicit-url-imports
 
 const databaseURL = `${staticPath}/database.sqlite`
 const versionURL = `${staticPath}/database.version`
@@ -34,7 +35,7 @@ async function downloadAndCacheDatabase() {
 
 const database = new Promise((resolve, reject) => {
   (async function () {
-    const sqlPromise = initSqlJs(file => `${staticPath}/vendor/sql.js/js/${file}`)
+    const sqlPromise = await initSqlJs({ locateFile: () => sqlWasm })
     const dataPromise = downloadAndCacheDatabase()
     const [SQL, buf] = await Promise.all([sqlPromise, dataPromise])
 

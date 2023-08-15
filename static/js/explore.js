@@ -1,6 +1,7 @@
-import { Modal } from '../vendor/bootstrap/js/bootstrap.esm.min.js'
-import { createApp } from '../vendor/vue/js/vue.esm-browser.prod.js'
-import L from '../vendor/leaflet/js/leaflet-1.8.0.esm.js'
+import { Modal } from 'bootstrap'
+import { createApp } from 'vue/dist/vue.esm-bundler'
+import L from 'leaflet'
+
 import { getData } from './data.js'
 import localAuthorities from './local_authorities.esm.js'
 import policeForces from './police-forces.esm.js'
