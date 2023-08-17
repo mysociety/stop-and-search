@@ -28,18 +28,16 @@ forces_csv_data = CSV.read(forces_csv_file_path, headers: true)
 # Prepare the database
 db = SQLite3::Database.new 'static/database.sqlite'
 
-# Drop the table if it exists
+# AREAS
 db.execute "DROP TABLE IF EXISTS areas"
-
-# Create a new table
 db.execute <<-SQL
   CREATE TABLE areas (
-    id VARCHAR NOT NULL PRIMARY KEY,
-    name VARCHAR,
-    type VARCHAR,
-    county VARCHAR,
-    region VARCHAR,
-    country VARCHAR
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    county TEXT,
+    region TEXT,
+    country TEXT
   );
 SQL
 
@@ -59,19 +57,17 @@ areas.each do |area|
   ]
 end
 
-# Drop the table if it exists
+# DATA
 db.execute "DROP TABLE IF EXISTS data"
-
-# Create a new table
 db.execute <<-SQL
   CREATE TABLE data (
-    area_id VARCHAR,
+    area_id TEXT,
     date INT,
-    metric VARCHAR,
-    metric_category VARCHAR,
-    ethnicity VARCHAR,
+    metric TEXT NOT NULL,
+    metric_category TEXT NOT NULL,
+    ethnicity TEXT NOT NULL,
     value NUM,
-    value_type VARCHAR,
+    value_type TEXT,
     FOREIGN KEY(area_id) REFERENCES areas(id)
   );
 SQL
