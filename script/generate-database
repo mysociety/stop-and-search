@@ -4,6 +4,7 @@ require 'csv'
 require 'json'
 require 'sqlite3'
 require 'sparql/client'
+require 'net/http'
 
 
 local_authorities_json = JSON.parse(File.read('static/js/local_authorities.json'))
@@ -55,6 +56,53 @@ areas.each do |area|
     area['id'], area['name'], area['type'],
     area['county'], area['region'], area['country']
   ]
+end
+
+# AREA INTERSECTIONS
+db.execute "DROP TABLE IF EXISTS area_intersections"
+db.execute <<-SQL
+  CREATE TABLE area_intersections (
+    area_id TEXT,
+    intersected_area_id TEXT,
+    FOREIGN KEY(area_id) REFERENCES areas(id),
+    FOREIGN KEY(intersected_area_id) REFERENCES areas(id),
+    UNIQUE(area_id, intersected_area_id)
+  );
+SQL
+
+def fetch_arcgis_rest_endpoint(url)
+  uri = URI(url)
+  response = Net::HTTP.get(uri)
+  parsed_data = JSON.parse(response)
+  parsed_data['features'].map { |feature| feature['attributes'] }
+end
+
+lad_pcon = fetch_arcgis_rest_endpoint('https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/WD22_PCON22_LAD22_UTLA22_UK_LU/FeatureServer/0/query?where=1%3D1&outFields=LAD22CD,PCON22CD&returnDistinctValues=true&f=json')
+pfa_lad = fetch_arcgis_rest_endpoint('https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LAD22_CSP22_PFA22_EW_LU/FeatureServer/0/query?where=1%3D1&outFields=PFA22CD,LAD22CD&returnDistinctValues=true&f=json')
+
+lad_pcon.each do |record|
+  db.execute 'INSERT INTO area_intersections VALUES ( ?, ? )', [
+    record['LAD22CD'], record['PCON22CD']
+  ] if record['LAD22CD'] =~ /^(E|W)/
+end
+
+pfa_lad.each do |record|
+  db.execute 'INSERT INTO area_intersections VALUES ( ?, ? )', [
+    record['PFA22CD'], record['LAD22CD']
+  ]
+
+  pcon_query = <<~SQL
+    SELECT DISTINCT intersected_area_id
+    FROM area_intersections
+    WHERE area_id = ?
+  SQL
+  pcons = db.execute(pcon_query, record['LAD22CD']).flatten.uniq
+
+  pcons.each do |pcon|
+    db.execute 'INSERT OR IGNORE INTO area_intersections VALUES ( ?, ? )', [
+      record['PFA22CD'], pcon
+    ]
+  end
 end
 
 # PEOPLE
