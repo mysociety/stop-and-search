@@ -10,7 +10,7 @@ const app = createApp({
   data() {
     return {
       currentType: 'filter',
-      boundaryType: 'council',
+      boundaryType: 'lad',
       boundaryData: null,
       selectedFilters: [],
       selectedShader: null,
@@ -184,8 +184,8 @@ const app = createApp({
     },
     boundaries() {
       switch(this.boundaryType) {
-        case 'council': return councils
-        case 'police-force': return policeForces
+        case 'lad': return localAuthorities
+        case 'pfa': return policeForces
       }
     },
     cacheBoundaryData() {

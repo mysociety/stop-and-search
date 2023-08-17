@@ -10,10 +10,10 @@ if [ $# -eq 0 ]; then
 fi
 
 # Convert Easting/Northings into Latitude and Longitude
-ogr2ogr -f GeoJSON -s_srs EPSG:27700 -t_srs EPSG:4326 tmp/latlon.json $1
+ogr2ogr -f GeoJSON -s_srs EPSG:27700 -t_srs EPSG:4326 tmp/lad-latlon.json $1
 
 # Use mapshaper to simplify the GeoJSON data
-mapshaper tmp/latlon.json -simplify dp 1% keep-shapes -o format=geojson precision=0.0001 tmp/compact.json 2>/dev/null
+mapshaper tmp/lad-latlon.json -simplify dp 1% keep-shapes -o format=geojson precision=0.0001 tmp/lad-compact.json 2>/dev/null
 
 # Filter features to England and Wales, and remap properties
 jq -c '{
@@ -27,8 +27,9 @@ jq -c '{
       properties: {
         id: .properties.LAD22CD,
         name: .properties.LAD22NM,
-        type: "council"
+        type: "lad"
       }
     }
   ]
-}' tmp/compact.json > static/js/local_authorities.json
+}' tmp/lad-compact.json > static/js/local_authorities.json
+rm -f tmp/lad-latlon.json tmp/lad-compact.json
