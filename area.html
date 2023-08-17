@@ -133,29 +133,35 @@ slug: area
                         </div>
                         {% endcomment %}
 
-                        <div class="row">
-                            <div class="col-2">
-                                <p class="fs-6 fw-bold">Ethnicity</p>
+                        <div class="row mb-3">
+                            <div class="col-2 d-flex align-items-end">
+                                <p class="fs-6 fw-bold mb-0">Ethnicity</p>
                             </div>
-                            <div class="col-3">
-                                <p class="fs-6 fw-bold">Proportion</p>
+                            <div class="col-3 d-flex align-items-end">
+                                <p class="fs-6 fw-bold mb-0">Proportion</p>
                             </div>
-                            <div class="col-2 text-end">
-                                <p class="fs-6 fw-bold">Stops</p>
+                            <div class="col-2 d-flex align-items-end text-end">
+                                <p class="fs-6 fw-bold mb-0">Stops</p>
                             </div>
-                            <div class="col-2 text-end">
-                                <p class="fs-6 fw-bold">Population</p>
+                            <div class="col-2 d-flex align-items-end text-end">
+                                <p class="fs-6 fw-bold mb-0">Population</p>
+                            </div>
+                            <div class="col-3 d-flex align-items-end flex-column text-end">
+                                <p class="fs-6 fw-bold mb-0">Likehood of being stop</p>
+                                <span class="fs-m6 lh-1">Compare with white people</span>
                             </div>
                         </div>
 
-                        <div class="row mb-4">
+                        <hr class="opacity-25 my-3">
+
+                        <div class="row">
                             <div class="col-2">
                                 <h4 class="fs-3 text-et-white mb-3">White</h4>
                             </div>
                             <div class="col-3">
                                 <p class="fs-4 lh-1 mb-2 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
                                 <div class="border border-et-white d-flex align-items-end text-white">
-                                    <div class="d-block py-0 py-2 bg-et-white js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
+                                    <div class="d-block py-0 py-3 bg-et-white js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
                                 </div>
                             </div>
                             <div class="col-2 text-end">
@@ -164,16 +170,21 @@ slug: area
                             <div class="col-2 text-end">
                                 <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="White">2,530</span>
                             </div>
+                            <div class="col-3 text-end">
+                                <span class="fs-4">NA</span>
+                            </div>
                         </div>
 
-                        <div class="row mb-4">
+                        <hr class="opacity-25 my-3">
+
+                        <div class="row">
                             <div class="col-2">
                                 <h4 class="fs-3 text-et-black mb-3">Black</h4>
                             </div>
                             <div class="col-3">
                                 <p class="fs-4 lh-1 mb-2 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">45%</span></p>
                                 <div class="border border-et-black d-flex align-items-end text-white">
-                                    <div class="d-block py-0 py-2 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
+                                    <div class="d-block py-0 py-3 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
                                 </div>
                             </div>
                             <div class="col-2 text-end">
@@ -182,16 +193,21 @@ slug: area
                             <div class="col-2 text-end">
                                 <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="Black">2,530</span>
                             </div>
+                            <div class="col-3 text-end">
+                                <span class="js-data fs-4" data-metric="rr" data-format="ratio-as-percentage">NA</span>
+                            </div>
                         </div>
 
-                        <div class="row mb-4">
+                        <hr class="opacity-25 my-3">
+
+                        <div class="row">
                             <div class="col-2">
                                 <h4 class="fs-3 text-et-asian mb-3">Asian</h4>
                             </div>
                             <div class="col-3">
                                 <p class="fs-4 lh-1 mb-2 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">45%</span></p>
                                 <div class="border border-et-asian d-flex align-items-end text-white">
-                                    <div class="d-block py-0 py-2 bg-et-asian js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
+                                    <div class="d-block py-0 py-3 bg-et-asian js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
                                 </div>
                             </div>
                             <div class="col-2 text-end">
@@ -200,16 +216,21 @@ slug: area
                             <div class="col-2 text-end">
                                 <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="Black">2,530</span>
                             </div>
+                            <div class="col-3 text-end">
+                                <span class="js-data fs-4" data-metric="rr" data-format="ratio-as-percentage">NA</span>
+                            </div>
                         </div>
 
-                        <div class="row mb-6">
+                        <hr class="opacity-25 my-3">
+
+                        <div class="row mb-7">
                             <div class="col-2">
                                 <h4 class="fs-3 text-et-arab mb-3">Arab</h4>
                             </div>
                             <div class="col-3">
                                 <p class="fs-4 lh-1 mb-2 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">45%</span></p>
                                 <div class="border border-et-arab d-flex align-items-end text-white">
-                                    <div class="d-block py-0 py-2 bg-et-arab js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
+                                    <div class="d-block py-0 py-3 bg-et-arab js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
                                 </div>
                             </div>
                             <div class="col-2 text-end">
@@ -217,6 +238,9 @@ slug: area
                             </div>
                             <div class="col-2 text-end">
                                 <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="Black">2,530</span>
+                            </div>
+                            <div class="col-3 text-end">
+                                <span class="js-data fs-4" data-metric="rr" data-format="ratio-as-percentage">NA</span>
                             </div>
                         </div>
 
