@@ -5,24 +5,24 @@ require 'json'
 require 'sqlite3'
 
 if ARGV.empty?
-  puts "No arguments provided. Please pass the analysed councils and forces CSV data file paths as arguments."
+  puts "No arguments provided. Please pass the analysed local authorities and forces CSV data file paths as arguments."
   exit
 end
 
-council_json = JSON.parse(File.read('static/js/councils.json'))
-councils = council_json['features'].map { _1['properties'] }
+local_authorities_json = JSON.parse(File.read('static/js/local_authorities.json'))
+local_authorities = local_authorities_json['features'].map { _1['properties'] }
 
 police_force_json = JSON.parse(File.read('static/js/police-forces.json'))
 police_forces = police_force_json['features'].map { _1['properties'] }
 
-areas = councils + police_forces
+areas = local_authorities + police_forces
 
 # Get the path of the CSV file from the command line arguments
 council_csv_file_path = ARGV[0]
 forces_csv_file_path = ARGV[1]
 
 # Read the CSV file
-council_csv_data = CSV.read(council_csv_file_path, headers: true)
+local_authorities_csv_data = CSV.read(council_csv_file_path, headers: true)
 forces_csv_data = CSV.read(forces_csv_file_path, headers: true)
 
 # Prepare the database
@@ -45,7 +45,7 @@ SQL
 
 # Insert each row into the database
 areas.each do |area|
-  row = council_csv_data.find { |row| row['la_code'] == area['id'] }
+  row = local_authorities_csv_data.find { |row| row['la_code'] == area['id'] }
 
   if row
     area['county'] = row['county'] unless row['county'] == 'NA'
@@ -77,7 +77,7 @@ db.execute <<-SQL
 SQL
 
 # Insert each row into the database
-council_csv_data.each do |row|
+local_authorities_csv_data.each do |row|
   next if row['metric'] == 'or'
 
   db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [

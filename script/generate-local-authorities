@@ -31,4 +31,4 @@ jq -c '{
       }
     }
   ]
-}' tmp/compact.json > static/js/councils.json
+}' tmp/compact.json > static/js/local_authorities.json
