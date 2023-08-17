@@ -11,7 +11,10 @@ local_authorities = local_authorities_json['features'].map { _1['properties'] }
 police_force_json = JSON.parse(File.read('static/js/police-forces.json'))
 police_forces = police_force_json['features'].map { _1['properties'] }
 
-areas = local_authorities + police_forces
+constituencies_json = JSON.parse(File.read('static/js/constituencies.json'))
+constituencies = constituencies_json['features'].map { _1['properties'] }
+
+areas = local_authorities + police_forces + constituencies
 
 # Get the path of the CSV file from the command line arguments
 local_authorities_csv_file_path = 'vendor/ExtractSS/data/2023-08-21 - LAD_stop_search_all_metrics_2019-2021.csv'
