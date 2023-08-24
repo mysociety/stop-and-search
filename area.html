@@ -48,9 +48,23 @@ slug: area
                         <h2 class="fs-4 mb-3 pb-3 text-primary">Add metrics</h2>
                         {% include metrics.html %}
                     </div>
-                    <div class="p-3 bg-white mt-4 border">
-                        <a href="" class="btn btn-outline-secondary btn-sm d-block mb-3">Download CSV data</a>
-                        <a href="" class="btn btn-outline-secondary btn-sm d-block">Cite this page</a>
+
+                    <a href="" class="btn btn-outline-secondary btn-sm d-block my-4">Download CSV data</a>
+
+                    <div class="card">
+                        <a id="copy-to-clipboard-btn" class="rounded-0 btn btn-primary fw-normal">
+                            Cite this page
+                            {% include icons/copy-to-clipboard.html width="2em" height="2em" classes="" %}
+                        </a>
+                        <div class="card-body">
+                            <span id="copy-to-clipboard-text" class="fs-m6">
+                                {% assign full_url = request.host | append: request.path %}
+                                Black thrive, mySociety (2023). Stop & Search:
+                                <span class="js-area-name">{{ page.title }}</span>
+                                <span class="js-area-url">{{ '/area' | absolute_url }}</span>
+                                <span id="js-page-date" class="d-block">Accessed 23 Aug 2023</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

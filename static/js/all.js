@@ -1,3 +1,4 @@
 import './data.js'
 import './explore.js'
 import './area.js'
+import './copy-to-clipboard.js'
