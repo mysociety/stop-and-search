@@ -3,6 +3,7 @@
 require 'csv'
 require 'json'
 require 'sqlite3'
+require 'sparql/client'
 
 
 local_authorities_json = JSON.parse(File.read('static/js/local_authorities.json'))
@@ -53,6 +54,150 @@ areas.each do |area|
   db.execute "INSERT INTO areas VALUES ( ?, ?, ?, ?, ?, ? )", [
     area['id'], area['name'], area['type'],
     area['county'], area['region'], area['country']
+  ]
+end
+
+# PEOPLE
+db.execute "DROP TABLE IF EXISTS people"
+db.execute <<-SQL
+  CREATE TABLE people (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    title TEXT NOT NULL,
+    UNIQUE(id)
+  );
+SQL
+
+# PERSON_IDENTIFIERS
+db.execute "DROP TABLE IF EXISTS person_identifiers"
+db.execute <<-SQL
+  CREATE TABLE person_identifiers (
+    person_id TEXT,
+    type TEXT NOT NULL,
+    value TEXT NOT NULL,
+    FOREIGN KEY(person_id) REFERENCES people(id)
+  );
+SQL
+
+# AREA_PEOPLE
+db.execute "DROP TABLE IF EXISTS area_people"
+db.execute <<-SQL
+  CREATE TABLE area_people (
+    area_id TEXT,
+    person_id TEXT,
+    FOREIGN KEY(area_id) REFERENCES areas(id),
+    FOREIGN KEY(person_id) REFERENCES people(id),
+    UNIQUE(area_id, person_id)
+  );
+SQL
+
+def sparql_client
+  SPARQL::Client.new(
+    'https://query.wikidata.org/sparql',
+    method: :get, headers: {'User-Agent' => 'Stop and Search Research bot'}
+  )
+end
+
+mp_query = <<~SPARQL
+SELECT DISTINCT ?person ?personLabel ?seatLabel ?gss_code ?twfy ?twitter ?facebook ?wikipedia WHERE {
+  ?person wdt:P31 wd:Q5;
+    p:P39 ?ps.
+  ?ps ps:P39 ?term.
+  ?term wdt:P279 wd:Q16707842.
+  ?ps pq:P580 ?start;
+    pq:P768 ?seat.
+  FILTER(NOT EXISTS { ?ps pq:P582 ?end. })
+  ?seat wdt:P836 ?gss_code.
+  OPTIONAL { ?person wdt:P2171 ?twfy. }
+  OPTIONAL { ?person wdt:P10428 ?parlid. }
+  OPTIONAL { ?person wdt:P2002 ?twitter. }
+  OPTIONAL { ?person wdt:P2013 ?facebook. }
+  OPTIONAL {
+    ?wikipedia schema:about ?person;
+      schema:inLanguage "en";
+      schema:isPartOf <https://en.wikipedia.org/>.
+  }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+SPARQL
+
+pcc_query = <<~SPARQL
+SELECT DISTINCT ?person ?personLabel ?positionLabel ?gss_code ?wdtk (COALESCE(?twitterPerson, ?twitterPosition) AS ?twitter) (COALESCE(?facebookPerson, ?facebookPosition) AS ?facebook) (COALESCE(?wikipediaPerson, ?wikipediaPosition) AS ?wikipedia) WHERE {
+  {
+    ?person p:P39 ?ps.
+    ?ps ps:P39 ?position.
+    ?position wdt:P31 wd:Q58333.
+    FILTER(NOT EXISTS { ?ps pq:P582 ?end_date. })
+  }
+  UNION
+  {
+    VALUES ?mayoralPositions {
+      wd:Q106090919
+      wd:Q115158000
+      wd:Q121543752
+    }
+    ?person p:P39 ?ps.
+    ?ps ps:P39 ?position.
+    BIND(?mayoralPositions AS ?position)
+    FILTER(NOT EXISTS { ?ps pq:P582 ?end_date. })
+  }
+  OPTIONAL {
+    ?position wdt:P2541 ?area.
+    ?area wdt:P836 ?gss_code.
+  }
+  OPTIONAL { ?position wdt:P8167 ?wdtk. }
+  OPTIONAL { ?person wdt:P2002 ?twitterPerson. }
+  OPTIONAL { ?position wdt:P2002 ?twitterPosition. }
+  OPTIONAL { ?person wdt:P2013 ?facebookPerson. }
+  OPTIONAL { ?position wdt:P2013 ?facebookPosition. }
+  OPTIONAL {
+    ?wikipediaPerson schema:about ?person;
+      schema:inLanguage "en";
+      schema:isPartOf <https://en.wikipedia.org/>.
+  }
+  OPTIONAL {
+    ?wikipediaPosition schema:about ?position;
+      schema:inLanguage "en";
+      schema:isPartOf <https://en.wikipedia.org/>.
+  }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+SPARQL
+
+sparql_client.query(mp_query).each do |record|
+  id = record['person'].to_s.scan(/Q\d+/)[0]
+  db.execute "INSERT OR IGNORE INTO people VALUES ( ?, ?, ?, ? )", [
+    id, record['personLabel'].to_s, 'mp', "MP for #{record['seatLabel']}"
+  ]
+  %w[wdtk twfy twitter facebook wikipedia].each do |type|
+    value = record[type].to_s
+    next unless value != ''
+
+    db.execute "INSERT OR IGNORE INTO person_identifiers VALUES ( ?, ?, ? )", [
+      id, type, value
+    ]
+  end
+  db.execute "INSERT OR IGNORE INTO area_people VALUES ( ?, ? )", [
+    record['gss_code'].to_s, id
+  ]
+end
+
+sparql_client.query(pcc_query).each do |record|
+  id = record['person'].to_s.scan(/Q\d+/)[0]
+  db.execute "INSERT OR IGNORE INTO people VALUES ( ?, ?, ?, ? )", [
+    id, record['personLabel'].to_s, 'pcc', record['positionLabel'].to_s
+  ]
+  %w[wdtk twfy twitter facebook wikipedia].each do |type|
+    value = record[type].to_s
+    next unless value != ''
+
+    db.execute "INSERT OR IGNORE INTO person_identifiers VALUES ( ?, ?, ? )", [
+      id, type, value
+    ]
+  end
+  db.execute "INSERT OR IGNORE INTO area_people VALUES ( ?, ? )", [
+    record['gss_code'].to_s, id
   ]
 end
 
