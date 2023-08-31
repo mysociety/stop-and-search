@@ -30,7 +30,7 @@ const areaPage = function() {
     fetchData()
   })
 
-  if (area.type === 'police-force') {
+  if (area.type === 'pfa') {
     $('.js-area-name').text(`${area.name.replace('Police', '')} PFA`)
   } else {
     $('.js-area-name').text(area.name.replace(', City of', '').replace(', County of', ''))

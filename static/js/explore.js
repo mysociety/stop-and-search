@@ -2,7 +2,7 @@ import { Modal } from '../vendor/bootstrap/js/bootstrap.esm.min.js'
 import { createApp } from '../vendor/vue/js/vue.esm-browser.prod.js'
 import L from '../vendor/leaflet/js/leaflet-1.8.0.esm.js'
 import { getData } from './data.js'
-import councils from './councils.esm.js'
+import localAuthorities from './local_authorities.esm.js'
 import policeForces from './police-forces.esm.js'
 
 const app = createApp({
@@ -10,7 +10,7 @@ const app = createApp({
   data() {
     return {
       currentType: 'filter',
-      boundaryType: 'council',
+      boundaryType: 'lad',
       boundaryData: null,
       selectedFilters: [],
       selectedShader: null,
@@ -184,8 +184,8 @@ const app = createApp({
     },
     boundaries() {
       switch(this.boundaryType) {
-        case 'council': return councils
-        case 'police-force': return policeForces
+        case 'lad': return localAuthorities
+        case 'pfa': return policeForces
       }
     },
     cacheBoundaryData() {
