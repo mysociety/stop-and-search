@@ -1,0 +1,3 @@
+[submodule "vendor/ExtractSS"]
+	path = vendor/ExtractSS
+	url = https://github.com/BlackThrive/ExtractSS.git
