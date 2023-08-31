@@ -7,18 +7,24 @@ exclude:
   - .browserlistrc
   - .sass-cache/
   - .jekyll-cache/
+  - bin/
+  - config/
   - gemfiles/
   - Gemfile
   - Gemfile.lock
   - Makefile
   - node_modules/
+  - package.json
+  - package-lock.json
+  - Procfile.dev
+  - Rakefile
   - README.md
   - script/
   - ssl/
+  - static/css/
   - tmp/
   - vendor/
+  - vite.config.js
 
-sass:
-  sourcemap: never
-  load_paths:
-    - static/vendor/
+plugins:
+  - jekyll/vite

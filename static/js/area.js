@@ -1,5 +1,6 @@
-import { Modal } from '../vendor/bootstrap/js/bootstrap.esm.min.js'
-import $ from '../vendor/jquery/js/jquery.esm.js'
+import { Modal } from 'bootstrap'
+import $ from 'jquery'
+
 import { getArea, getData } from './data.js'
 import { updateAll as refreshForestPlots } from './forest-plots.js'
 import { setupAll as refreshBarCharts } from './bar-charts.js'
