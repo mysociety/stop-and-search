@@ -4,10 +4,6 @@ require 'csv'
 require 'json'
 require 'sqlite3'
 
-if ARGV.empty?
-  puts "No arguments provided. Please pass the analysed local authorities and forces CSV data file paths as arguments."
-  exit
-end
 
 local_authorities_json = JSON.parse(File.read('static/js/local_authorities.json'))
 local_authorities = local_authorities_json['features'].map { _1['properties'] }
@@ -18,12 +14,12 @@ police_forces = police_force_json['features'].map { _1['properties'] }
 areas = local_authorities + police_forces
 
 # Get the path of the CSV file from the command line arguments
-council_csv_file_path = ARGV[0]
-forces_csv_file_path = ARGV[1]
+local_authorities_csv_file_path = 'vendor/ExtractSS/data/2023-08-21 - LAD_stop_search_all_metrics_2019-2021.csv'
+police_forces_csv_file_path = 'vendor/ExtractSS/data/2023-08-23 - PFA_stop_search_all_metrics_2019-2021.csv'
 
 # Read the CSV file
-local_authorities_csv_data = CSV.read(council_csv_file_path, headers: true)
-forces_csv_data = CSV.read(forces_csv_file_path, headers: true)
+local_authorities_csv_data = CSV.read(local_authorities_csv_file_path, headers: true)
+police_forces_csv_data = CSV.read(police_forces_csv_file_path, headers: true)
 
 # Prepare the database
 db = SQLite3::Database.new 'static/database.sqlite'
@@ -87,7 +83,7 @@ local_authorities_csv_data.each do |row|
   ]
 end
 
-forces_csv_data.each do |row|
+police_forces_csv_data.each do |row|
   next if row['metric'] == 'or'
 
   db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
