@@ -36,6 +36,8 @@ const areaPage = function() {
     $('.js-area-name').text(area.name.replace(', City of', '').replace(', County of', ''))
   }
 
+  $('.js-area-url').text(`${absolutePath}area?id=${area.id}&type=${area.type}`)
+
   if (!area.county) {
     $('.js-area-county').hide()
   } else {
