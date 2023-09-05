@@ -14,27 +14,63 @@ slug: area
 
 <div class="py-4 py-lg-5 js-default">
     <div class="container pb-6">
-        <div class="row gx-lg-5 mb-3 pb-3 border-bottom">
+        <div class="row gx-lg-5 mb-4 pb-3 border-bottom">
             <div class="col-12 col-lg-6">
                 <h1 class="fs-2 mb-2 js-area-name">{{ page.title }}</h1>
                 <dl class="d-flex flex-row mb-0">
                     {% comment %} I want to give each country/local government their
                     own colour so it's more visually distinctive {% endcomment %}
                     <dt class="visually-hidden">Country</dt>
-                    <dd class="badge bg-info me-2 fs-6 js-area-country">England</dd>
+                    <dd class="badge bg-info me-2 mb-0 fs-6 js-area-country">England</dd>
 
                     <dt class="visually-hidden">Region</dt>
-                    <dd class="badge bg-info me-2 fs-6 js-area-region">North England</dd>
+                    <dd class="badge bg-info me-2 mb-0 fs-6 js-area-region">North England</dd>
 
                     <dt class="visually-hidden">County</dt>
-                    <dd class="badge bg-info me-2 fs-6 js-area-county">Borsetshire</dd>
+                    <dd class="badge bg-info me-2 mb-0 fs-6 js-area-county">Borsetshire</dd>
 
                     {% comment %} <dt class="visually-hidden">Local Government</dt>
                     <dd class="badge bg-danger">Conservative</dd> {% endcomment %}
                 </dl>
             </div>
-            <div class="col-lg-4 offset-lg-2 mt-4 mt-lg-0">
-                <dl class="d-flex flex-row justify-content-between">
+            <div class="col-lg-4 offset-lg-2 mt-4 mt-lg-0 d-flex align-items-end justify-content-end">
+                <button type="button" class="btn btn-primary py-2" data-bs-toggle="modal" data-bs-target="#authoritiesModal">
+                    {% include icons/people.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+                    <span>See authorities for this area</span>
+                </button>
+
+                <div class="modal fade" id="authoritiesModal" tabindex="-1" aria-labelledby="authoritiesModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h2 class="modal-title" id="authoritiesModalLabel">
+                            <span class="js-area-county">Borsetshire</span>
+                            authorities
+                        </h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="padding:0">
+                            <div data-area-type="lad">
+                                {% include area-info-modal.html %}
+                            </div>
+
+                            <div class="card" data-area-type="pfa" hidden>
+                                <div class="card-header text-bg-primary">
+                                    <h3 class="fs-3">Local government</h3>
+                                </div>
+                                <div class="card-body">
+                                    {% include area-police-force-local-government.html %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                {% comment %} <dl class="d-flex flex-row justify-content-between">
                     <div>
                         <dt class="fs-6 fw-bold">Police commissioner</dt>
                         <dd>John Doe</dd>
@@ -44,7 +80,8 @@ slug: area
                         <dd>North East</dd>
                     </div>
                 </dl>
-                <a href="#local-government-section" class="d-table me-lg-0 ms-lg-auto">Check local government</a>
+
+                <a href="#local-government-section" class="d-table me-lg-0 ms-lg-auto">Check local government</a> {% endcomment %}
             </div>
         </div>
         <div class="row gx-lg-5 mt-3">
@@ -254,14 +291,28 @@ slug: area
                         </div>
                     </div>
                 </div>
-                <div data-area-type="lad">
+                {% comment %} <div class="text-bg-primary p-3" data-area-type="lad">
                     <h3 class="fs-3 mb-3">Local government</h3>
                     {% include area-info.html %}
                 </div>
-                <div data-area-type="pfa" hidden>
+                <div class="text-bg-primary p-3" data-area-type="pfa" hidden>
                     <h3 class="fs-3 mb-3">Local government</h3>
                     {% include area-police-force-local-government.html %}
+                </div> {% endcomment %}
+
+                <div data-area-type="lad">
+                    {% include area-info.html %}
                 </div>
+
+                <div class="card" data-area-type="pfa" hidden>
+                    <div class="card-header text-bg-primary">
+                        <h3 class="fs-3">Local government</h3>
+                    </div>
+                    <div class="card-body">
+                        {% include area-police-force-local-government.html %}
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

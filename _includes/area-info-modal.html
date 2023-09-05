@@ -1,0 +1,78 @@
+<div class="py-4 px-3">
+  <h3 class="fs-4 mb-3 d-flex align-items-center gap-2">
+    <span>Police force</span>
+    <span class="badge bg-info fs-6 js-area-region">North England</span>
+  </h3>
+  <dl class="d-flex flex-row flex-nowrap align-items-center mb-3">
+    {% comment %} <img class="rounded me-2" width="100" height="100" src="{{ '/static/img/mp.jpg' | relative_url }}" alt="John Doe profile pic"> {% endcomment %}
+    {% include icons/user.html width="100px" height="100px" classes=" text-secondary me-2 border border-opacity-25 rounded opacity-75" %}
+    <div>
+      <dt class="fs-6 fw-bold">Police commissioner</dt>
+      <dd class="mb-0 fs-5">John Doe</dd>
+    </div>
+  </dl>
+
+
+  <div class="d-flex flex-row flex-wrap gap-3">
+    <a href="" class="btn btn-outline-primary btn-sm d-flex align-items-center">
+      {% include icons/twitter.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+      <span>Twitter</span>
+    </a>
+
+    <a href="" class="btn btn-outline-primary btn-sm d-flex align-items-center">
+      {% include icons/twitter.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+      <span>Facebook</span>
+    </a>
+
+    <a href="" class="btn btn-outline-primary btn-sm d-flex align-items-center">
+      {% include icons/wikipedia.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+      <span>Wikipedia</span>
+    </a>
+  </div>
+</div>
+
+<div class="px-3 py-4 bg-green-100 border-bottom border-top border-primary border-opacity-25 mb-5">
+  <h3 class="fs-5 mb-1">Have questions?</h3>
+  <p class="fs-6">You can use the WhatDoTheyKnow platform to create a FOI</p> 
+  {% comment %} It would be cool if we can add the post code when checking an area. Not sure if that is possible {% endcomment %}
+  <a href="https://www.whatdotheyknow.com/" class="btn btn-dark btn-sm">Go to WhatDoTheyKnow</a>
+</div>
+
+
+<div class="px-3 pt-4 pb-3 mb-4">
+  <h3 class="fs-4 mb-4">Local government</h3>
+
+  <dl class="d-flex flex-row flex-nowrap align-items-center mb-3">
+    <img class="rounded me-2" width="100" height="100" src="{{ '/static/img/mp.jpg' | relative_url }}" alt="John Doe profile pic">
+    <div>
+      <dt class="fs-6 fw-bold">Local MP</dt>
+      <dd class="mb-0 fs-5">John Doe</dd>
+    </div>
+  </dl>
+
+  <div class="d-flex flex-row flex-wrap gap-3">
+    <a href="" class="btn btn-outline-primary btn-sm d-flex align-items-center">
+      {% include icons/twitter.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+      <span>Twitter</span>
+    </a>
+
+    <a href="" class="btn btn-outline-primary btn-sm d-flex align-items-center">
+      {% include icons/twitter.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+      <span>Facebook</span>
+    </a>
+
+    <a href="" class="btn btn-outline-primary btn-sm d-flex align-items-center">
+      {% include icons/wikipedia.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+      <span>Wikipedia</span>
+    </a>
+  </div>
+</div>
+
+<div class="px-3 py-4 text-bg-primary">
+  <h3 class="fs-5 mb-1">Is this your representative?</h3>
+  <p class="fs-6">You can write to them</p> 
+  {% comment %} It would be cool if we can add the post code when checking an area. Not sure if that is possible {% endcomment %}
+  <a href="https://www.writetothem.com/who?pc=B2+4QA" class="btn btn-light btn-sm">Go to WriteToThem</a>
+</div>
+
+
