@@ -11,8 +11,8 @@ slug: area
 
 <div class="py-4 py-lg-5 js-default  js-dynamic-ethnicity-comparisson" data-ethnicity-comparisson-active="black">
     <div class="container pb-6">
-        <div class="row gx-lg-5">
-            <div class="col-12 col-lg-6">
+        <div class="row gx-lg-5 mb-4 mb-lg-0">
+            <div class="col-lg-6">
                 <h1 class="fs-2 mb-2 js-area-name">{{ page.title }}</h1>
                 <dl class="d-flex flex-row mb-0">
                     {% comment %} I want to give each country/local government their
@@ -30,24 +30,29 @@ slug: area
                     <dd class="badge bg-danger">Conservative</dd> {% endcomment %}
                 </dl>
             </div>
-            <div class="col-lg-4 offset-lg-2 mt-4 mt-lg-0">
-                <dl class="d-flex flex-row justify-content-between">
-                    <div>
-                        <dt class="fs-6 fw-bold">Police commissioner</dt>
-                        <dd>John Doe</dd>
-                    </div>
-                    <div>
-                        <dt class="fs-6 fw-bold">Police Force</dt>
-                        <dd>North East</dd>
-                    </div>
-                </dl>
-                <a href="#local-government-section" class="d-table me-lg-0 ms-lg-auto">Check local government</a>
+        </div>
+        <div class="row gx-lg-5 position-sticky top-0" style="z-index: 1">
+            <div class="col-lg-9 offset-lg-3 d-flex flex-column justify-content-end">
+                <div class="d-flex align-items-end justify-content-end bg-white border-bottom border-primary border-2">
+                    <a href="#stats-section" type="button" class="btn btn-primary btn-sm py-2 px-3 rounded-0 d-flex flex-column flex-sm-row align-items-center" aria-pressed="true">
+                        {% include icons/stats.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+                        <span>Stats by ethnicities</span>
+                    </a>
+                    <a href="#local-government-section" type="button" class="btn btn-primary btn-sm py-2 px-3 rounded-0 d-flex flex-column flex-sm-row align-items-center">
+                        {% include icons/people.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+                        <span>Local MPs</span>
+                    </a>
+                    <a href="#police-force-section" type="button" class="btn btn-primary btn-sm py-2 px-3 rounded-0 d-flex flex-column flex-sm-row align-items-center">
+                        {% include icons/police.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+                        <span>Police Force</span>
+                    </a>
+                </div>
             </div>
         </div>
-        <hr class="my-4 my-md-5 text-secondary">
-        <div class="row gx-lg-5 mt-3">
+
+        <div class="row gx-lg-5">
             <div class="col-lg-3">
-                <div class="position-lg-sticky mb-6" style="top:10px">
+                <div class="position-lg-sticky mb-6 top-0">
 
                     <div class="ethnicity-filter bg-green-100 p-3 mb-5 border rounde">
                         <h4 class="fs-5 mb-3">Filter by ethnicity</h4>
@@ -87,8 +92,8 @@ slug: area
                 </div>
             </div>
 
-            <div class="col-lg-9">
-                <div class="mb-8">
+            <div id="stats-section" class="col-lg-9">
+                <div class="mb-8 mt-5">
                     <div class="row mb-6">
                         {% for ethnicity in ethnicities %}
                             {% assign key = ethnicity | downcase | replace: "_", "-" %}
@@ -340,14 +345,8 @@ slug: area
                         </div>
                     </div>
                 </div>
-                <div data-area-type="lad">
-                    <h3 class="fs-3 mb-3">Local government</h3>
-                    {% include area-info.html %}
-                </div>
-                <div data-area-type="pfa" hidden>
-                    <h3 class="fs-3 mb-3">Local government</h3>
-                    {% include area-police-force-local-government.html %}
-                </div>
+                {% include section-mp.html %}
+                {% include section-police-force.html %}
             </div>
         </div>
     </div>
