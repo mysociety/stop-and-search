@@ -29,7 +29,7 @@ police_forces_csv_data = CSV.read(police_forces_csv_file_path, headers: true)
 db = SQLite3::Database.new 'static/database.sqlite'
 
 # AREAS
-db.execute "DROP TABLE IF EXISTS areas"
+db.execute 'DROP TABLE IF EXISTS areas'
 db.execute <<-SQL
   CREATE TABLE areas (
     id TEXT PRIMARY KEY,
@@ -51,14 +51,14 @@ areas.each do |area|
     area['country'] = row['country'] unless row['country'] == 'NA'
   end
 
-  db.execute "INSERT INTO areas VALUES ( ?, ?, ?, ?, ?, ? )", [
+  db.execute 'INSERT INTO areas VALUES ( ?, ?, ?, ?, ?, ? )', [
     area['id'], area['name'], area['type'],
     area['county'], area['region'], area['country']
   ]
 end
 
 # PEOPLE
-db.execute "DROP TABLE IF EXISTS people"
+db.execute 'DROP TABLE IF EXISTS people'
 db.execute <<-SQL
   CREATE TABLE people (
     id TEXT PRIMARY KEY,
@@ -70,7 +70,7 @@ db.execute <<-SQL
 SQL
 
 # PERSON_IDENTIFIERS
-db.execute "DROP TABLE IF EXISTS person_identifiers"
+db.execute 'DROP TABLE IF EXISTS person_identifiers'
 db.execute <<-SQL
   CREATE TABLE person_identifiers (
     person_id TEXT,
@@ -81,7 +81,7 @@ db.execute <<-SQL
 SQL
 
 # AREA_PEOPLE
-db.execute "DROP TABLE IF EXISTS area_people"
+db.execute 'DROP TABLE IF EXISTS area_people'
 db.execute <<-SQL
   CREATE TABLE area_people (
     area_id TEXT,
@@ -167,42 +167,42 @@ SPARQL
 
 sparql_client.query(mp_query).each do |record|
   id = record['person'].to_s.scan(/Q\d+/)[0]
-  db.execute "INSERT OR IGNORE INTO people VALUES ( ?, ?, ?, ? )", [
+  db.execute 'INSERT OR IGNORE INTO people VALUES ( ?, ?, ?, ? )', [
     id, record['personLabel'].to_s, 'mp', "MP for #{record['seatLabel']}"
   ]
   %w[wdtk twfy twitter facebook wikipedia].each do |type|
     value = record[type].to_s
     next unless value != ''
 
-    db.execute "INSERT OR IGNORE INTO person_identifiers VALUES ( ?, ?, ? )", [
+    db.execute 'INSERT OR IGNORE INTO person_identifiers VALUES ( ?, ?, ? )', [
       id, type, value
     ]
   end
-  db.execute "INSERT OR IGNORE INTO area_people VALUES ( ?, ? )", [
+  db.execute 'INSERT OR IGNORE INTO area_people VALUES ( ?, ? )', [
     record['gss_code'].to_s, id
   ]
 end
 
 sparql_client.query(pcc_query).each do |record|
   id = record['person'].to_s.scan(/Q\d+/)[0]
-  db.execute "INSERT OR IGNORE INTO people VALUES ( ?, ?, ?, ? )", [
+  db.execute 'INSERT OR IGNORE INTO people VALUES ( ?, ?, ?, ? )', [
     id, record['personLabel'].to_s, 'pcc', record['positionLabel'].to_s
   ]
   %w[wdtk twfy twitter facebook wikipedia].each do |type|
     value = record[type].to_s
     next unless value != ''
 
-    db.execute "INSERT OR IGNORE INTO person_identifiers VALUES ( ?, ?, ? )", [
+    db.execute 'INSERT OR IGNORE INTO person_identifiers VALUES ( ?, ?, ? )', [
       id, type, value
     ]
   end
-  db.execute "INSERT OR IGNORE INTO area_people VALUES ( ?, ? )", [
+  db.execute 'INSERT OR IGNORE INTO area_people VALUES ( ?, ? )', [
     record['gss_code'].to_s, id
   ]
 end
 
 # DATA
-db.execute "DROP TABLE IF EXISTS data"
+db.execute 'DROP TABLE IF EXISTS data'
 db.execute <<-SQL
   CREATE TABLE data (
     area_id TEXT,
@@ -220,7 +220,7 @@ SQL
 local_authorities_csv_data.each do |row|
   next if row['metric'] == 'or'
 
-  db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
+  db.execute 'INSERT INTO data VALUES ( ?, ?, ?, ?, ?, ?, ? )', [
     row['la_code'],
     (row['date'] == 'NA' ? 0 : row['date']),
     row['metric'],
@@ -234,7 +234,7 @@ end
 police_forces_csv_data.each do |row|
   next if row['metric'] == 'or'
 
-  db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
+  db.execute 'INSERT INTO data VALUES ( ?, ?, ?, ?, ?, ?, ? )', [
     row['force_code'],
     (row['date'] == 'NA' ? 0 : row['date']),
     row['metric'],
@@ -262,7 +262,7 @@ all_time = db.execute('SELECT area_id, "0" AS date, metric, metric_category, ' \
 end
 
 all_time.each do |row|
-  db.execute "INSERT INTO data VALUES ( #{(['?'] * 7).join(', ')} )", [
+  db.execute 'INSERT INTO data VALUES ( ?, ?, ?, ?, ?, ?, ? )', [
     row['area_id'],
     row['date'],
     row['metric'],
