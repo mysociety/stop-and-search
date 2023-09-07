@@ -30,11 +30,13 @@ $danger: #9f0b00;
 $light: $white;
 $dark: $black;
 
-$et-mixed: #4738c2;
-$et-asian: #1b6092;
-$et-arab:  #782a9a;
-$et-black: $primary;
 $et-white: #0f8575;
+$et-black: $primary;
+$et-mixed-black: darken($et-black, 10%);
+$et-asian: #1b6092;
+$et-mixed-asian: darken($et-asian, 10%);
+$et-other: #782a9a;
+$et-mixed-other: darken($et-other, 10%);
 
 $theme-colors: (
     "primary":    $primary,
@@ -47,11 +49,13 @@ $theme-colors: (
     "dark":       $dark,
     "black":      $black,
     "white":      $white,
-    "et-mixed": $et-mixed,
-    "et-asian": $et-asian,
-    "et-black": $et-black,
-    "et-arab": $et-arab,
     "et-white": $et-white,
+    "et-black": $et-black,
+    "et-mixed-black": $et-mixed-black,
+    "et-asian": $et-asian,
+    "et-mixed-asian": $et-mixed-asian,
+    "et-other": $et-other,
+    "et-mixed-other": $et-mixed-other,
 );
 
 // Options

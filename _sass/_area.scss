@@ -1,8 +1,10 @@
 $ethnicity-types: (
     'black',
-    'mixed',
+    'mixed-black',
     'asian',
-    'arab',
+    'mixed-asian',
+    'other',
+    'mixed-other',
 );
 
 @each $ethnicity-type in $ethnicity-types {
@@ -48,8 +50,8 @@ $ethnicity-types: (
                 color: $white;
             }
 
-            &.btn-outline-et-mixed {
-                background-color: $et-mixed;
+            &.btn-outline-et-mixed-black {
+                background-color: $et-mixed-black;
                 color: $white;
             }
 
@@ -58,8 +60,18 @@ $ethnicity-types: (
                 color: $white;
             }
 
-            &.btn-outline-et-arab {
-                background-color: $et-arab;
+            &.btn-outline-et-mixed-asian {
+                background-color: $et-mixed-asian;
+                color: $white;
+            }
+
+            &.btn-outline-et-other {
+                background-color: $et-other;
+                color: $white;
+            }
+
+            &.btn-outline-et-mixed-other {
+                background-color: $et-mixed-other;
                 color: $white;
             }
         }
