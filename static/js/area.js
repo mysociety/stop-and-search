@@ -139,9 +139,7 @@ function updateData(data) {
     const metricTypeData = (valueTypes.length > 1) ?
       metricData.filter(obj => obj.value_type === type) :
       metricData
-    const metricTypeValue = (type === 'frequency') ?
-      metricTypeData.reduce((acc, obj) => acc + obj.value, 0) :
-      metricTypeData.reduce((acc, obj) => acc + obj.value, 0) / metricTypeData.length
+    const metricTypeValue = metricTypeData.reduce((acc, obj) => acc + obj.value, 0)
     if (debug) {
       console.debug('metricTypeData', metricTypeData)
       console.debug('metricType', type, metricTypeValue)
@@ -165,7 +163,7 @@ function updateData(data) {
     if (debug) { console.debug('format', format) }
     switch (format) {
       case 'comparison-percentage':
-        value = ((ethnicityValue / metricTypeValue) * 50).toFixed()
+        value = ((ethnicityValue / metricTypeValue) * 100).toFixed()
         value = `${value}%`
         break
       case 'percentage':
