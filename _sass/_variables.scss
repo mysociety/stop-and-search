@@ -1,6 +1,7 @@
 // Color system
 
 $yiq-contrasted-threshold: 128; // Value from 0 to 255
+$min-contrast-ratio: 3;
 
 // Primary
 $white: #FFFFFF;
@@ -21,9 +22,43 @@ $yellow:     #FFD483;
 
 // Fonts: Primary font is Avalon, secondary is Archivo, and tertiary is Roboto.
 $primary: $teal-900;
+$secondary: #4a4a4a;
+$success: #057b32;
 $info: darken($blue, 10%);
-// Options
+$warning: $yellow;
+$danger: #9f0b00;
+$light: $white;
+$dark: $black;
 
+$et-white: #0f8575;
+$et-black: $primary;
+$et-mixed-black: darken($et-black, 10%);
+$et-asian: #1b6092;
+$et-mixed-asian: darken($et-asian, 10%);
+$et-other: #782a9a;
+$et-mixed-other: darken($et-other, 10%);
+
+$theme-colors: (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      $light,
+    "dark":       $dark,
+    "black":      $black,
+    "white":      $white,
+    "et-white": $et-white,
+    "et-black": $et-black,
+    "et-mixed-black": $et-mixed-black,
+    "et-asian": $et-asian,
+    "et-mixed-asian": $et-mixed-asian,
+    "et-other": $et-other,
+    "et-mixed-other": $et-mixed-other,
+);
+
+// Options
 $enable-shadows: true;
 $enable-negative-margins: true;
 
