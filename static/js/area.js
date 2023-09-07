@@ -156,6 +156,8 @@ function updateData(data) {
         console.debug('ethnicityData', ethnicityData)
         console.debug('ethnicity', ethnicity, ethnicityValue)
       }
+    } else {
+      ethnicityValue = metricTypeValue
     }
 
     let value
@@ -171,17 +173,17 @@ function updateData(data) {
         value = `${value}%`
         break
       case 'ratio-as-percentage':
-        value = Math.abs((metricTypeValue - 1) * 100)
+        value = Math.abs((ethnicityValue - 1) * 100)
         value = `${value.toFixed()}%`
         break
       case 'ratio-as-more-or-less':
-        value = ((metricTypeValue - 1) * 100)
+        value = ((ethnicityValue - 1) * 100)
         if (value == 0) { value = 'as'}
         else if (value < 0) { value = 'less' }
         else { value = 'more' }
         break
       case 'ratio':
-        value = metricTypeValue.toFixed(2)
+        value = ethnicityValue.toFixed(2)
         break
       case 'frequency':
         value = ethnicityValue.toLocaleString()
