@@ -5,6 +5,8 @@ slug: area
 ---
 {% include area-methodology.html %}
 
+{% assign ethnicities = "White, Black, Mixed, Asian, Arab" | split: ", " %}
+
 <div class="py-4 py-lg-5 js-default  js-dynamic-ethnicity-comparisson" data-ethnicity-comparisson-active="black">
     <div class="container pb-6">
         <div class="row gx-lg-5">
@@ -48,13 +50,13 @@ slug: area
                     <div class="ethnicity-filter bg-green-100 p-3 mb-5 border rounde">
                         <h4 class="fs-5 mb-3">Filter by ethnicity</h4>
                         <div class="d-flex flex-row flex-wrap" style="gap: 0.5rem">
-                            <button type="button" class="ethnicity-filter-btn btn btn-outline-et-black btn-sm" data-ethnicity-comparisson="black">Black</button>
-
-                            <button type="button" class="ethnicity-filter-btn btn btn-outline-et-mixed btn-sm" data-ethnicity-comparisson="mixed">Mixed</button>
-    
-                            <button type="button" class="ethnicity-filter-btn btn btn-outline-et-asian btn-sm" data-ethnicity-comparisson="asian">asian</button>
-    
-                            <button type="button" class="ethnicity-filter-btn btn btn-outline-et-arab btn-sm" data-ethnicity-comparisson="arab">Arab</button>
+                            {% for ethnicity in ethnicities %}
+                                {% assign key = ethnicity | downcase | replace: "_", "-" %}
+                                {% assign title = ethnicity | replace: "_", " " %}
+                                {% if key != 'white' %}
+                            <button type="button" class="ethnicity-filter-btn btn btn-outline-et-{{ key }} btn-sm" data-ethnicity-comparisson="{{ key }}">{{ title }}</button>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
 
@@ -86,29 +88,17 @@ slug: area
             <div class="col-lg-9">
                 <div class="mb-8">
                     <div class="row mb-6">
-                        <div class="col-12 js-ethnicity-comparisson-black">
+                        {% for ethnicity in ethnicities %}
+                            {% assign key = ethnicity | downcase | replace: "_", "-" %}
+                            {% assign title = ethnicity | replace: "_", " " %}
+                            {% if key != 'white' %}
+                        <div class="col-12 js-ethnicity-comparisson-{{ key }}">
                             <p class="fs-6 badge bg-info metric-year mb-2">All time</p>
-                            <h3 class="fs-3 lh-base fw-normal">In <span class="js-area-name">Borsetshire East</span>, the <span class="fs-2 text-primary fw-bold">Black population</span> are <span class="js-data fs-2 text-primary fw-bold" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched</h3>
+                            <h3 class="fs-3 lh-base fw-normal">In <span class="js-area-name">Borsetshire East</span>, the <span class="fs-2 text-primary fw-bold text-et-{{ key }}">{{ title }} population</span> are <span class="js-data fs-2 text-primary fw-bold text-et-{{ key }}" data-ethnicity="{{ ethnicity }}" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-ethnicity="{{ ethnicity }}" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched</h3>
                             <a href="#risk-ratio-section">Explain this data</a>
                         </div>
-
-                        <div class="col-10 js-ethnicity-comparisson-mixed">
-                            <p class="fs-6 badge bg-info metric-year mb-2">All time</p>
-                            <h3 class="fs-3 lh-base fw-normal">In <span class="js-area-name">Borsetshire East</span>, the <span class="fs-2 text-et-mixed fw-bold">Mixed population</span> are <span class="js-data fs-2 text-et-mixed fw-bold" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched</h3>
-                            <a href="#risk-ratio-section">Explain this data</a>
-                        </div>
-
-                        <div class="col-10 js-ethnicity-comparisson-asian">
-                            <p class="fs-6 badge bg-info metric-year mb-2">All time</p>
-                            <h3 class="fs-3 lh-base fw-normal">In <span class="js-area-name">Borsetshire East</span>, the <span class="fs-2 text-et-asian fw-bold">Asian population</span> are <span class="js-data fs-2 text-et-asian fw-bold" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched</h3>
-                            <a href="#risk-ratio-section">Explain this data</a>
-                        </div>
-
-                        <div class="col-10 js-ethnicity-comparisson-arab">
-                            <p class="fs-6 badge bg-info metric-year mb-2">All time</p>
-                            <h3 class="fs-3 lh-base fw-normal">In <span class="js-area-name">Borsetshire East</span>, the <span class="fs-2 text-et-arab fw-bold">Black population</span> are <span class="js-data fs-2 text-et-arab fw-bold" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched</h3>
-                            <a href="#risk-ratio-section">Explain this data</a>
-                        </div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                     <div class="row mt-3">
                         <div class="col-lg-6 d-flex flex-row mb-3">
@@ -136,361 +126,80 @@ slug: area
                                     <span class="fs-m6 lh-1">Compare with white population</span>
                                 </div>
                             </div>
-    
+
+                            {% for ethnicity in ethnicities %}
+                                {% assign key = ethnicity | downcase | replace: "_", "-" %}
+                                {% assign title = ethnicity | replace: "_", " " %}
                             <hr class="opacity-25 my-3">
-    
+
                             <div class="row">
                                 <div class="col-2">
-                                    <h4 class="fs-3 text-et-white mb-3">White</h4>
+                                  <h4 class="fs-3 text-et-{{ key }} mb-3">{{ title }}</h4>
                                 </div>
                                 <div class="col-3">
-                                    <p class="fs-4 lh-1 mb-2 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
-                                    <div class="border border-et-white d-flex align-items-end text-white">
-                                        <div class="d-block py-0 py-3 bg-et-white js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
+                                    <p class="fs-4 lh-1 mb-2 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="{{ ethnicity }}"></span></p>
+                                    <div class="border border-et-{{ key }} d-flex align-items-end text-white">
+                                        <div class="d-block py-0 py-3 bg-et-{{ key }} js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="{{ ethnicity }}" data-format="comparison-percentage" data-target="width"></div>
                                     </div>
                                 </div>
                                 <div class="col-2 text-end">
-                                    <span class="fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
+                                    <span class="fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="{{ ethnicity }}"></span>
                                 </div>
                                 <div class="col-2 text-end">
-                                    <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="White">2,530</span>
+                                    <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="{{ ethnicity }}"></span>
                                 </div>
                                 <div class="col-3 text-end">
+                                    {% if key == 'white' %}
                                     <span class="fs-4">NA</span>
+                                    {% else %}
+                                    <span class="js-data fs-4" data-metric="rr" data-format="ratio-as-percentage" data-ethnicity="{{ ethnicity }}"></span>
+                                    {% endif %}
                                 </div>
                             </div>
-    
-                            <hr class="opacity-25 my-3">
-    
-                            <div class="row">
-                                <div class="col-2">
-                                    <h4 class="fs-3 text-et-black mb-3">Black</h4>
-                                </div>
-                                <div class="col-3">
-                                    <p class="fs-4 lh-1 mb-2 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">45%</span></p>
-                                    <div class="border border-et-black d-flex align-items-end text-white">
-                                        <div class="d-block py-0 py-3 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
-                                    </div>
-                                </div>
-                                <div class="col-2 text-end">
-                                    <span class="fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">2,530</span>
-                                </div>
-                                <div class="col-2 text-end">
-                                    <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="Black">2,530</span>
-                                </div>
-                                <div class="col-3 text-end">
-                                    <span class="js-data fs-4" data-metric="rr" data-format="ratio-as-percentage">NA</span>
-                                </div>
-                            </div>
-    
-                            <hr class="opacity-25 my-3">
-    
-                            <div class="row">
-                                <div class="col-2">
-                                    <h4 class="fs-3 text-et-asian mb-3">Asian</h4>
-                                </div>
-                                <div class="col-3">
-                                    <p class="fs-4 lh-1 mb-2 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">45%</span></p>
-                                    <div class="border border-et-asian d-flex align-items-end text-white">
-                                        <div class="d-block py-0 py-3 bg-et-asian js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
-                                    </div>
-                                </div>
-                                <div class="col-2 text-end">
-                                    <span class="fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">2,530</span>
-                                </div>
-                                <div class="col-2 text-end">
-                                    <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="Black">2,530</span>
-                                </div>
-                                <div class="col-3 text-end">
-                                    <span class="js-data fs-4" data-metric="rr" data-format="ratio-as-percentage">NA</span>
-                                </div>
-                            </div>
-    
-                            <hr class="opacity-25 my-3">
-    
-                            <div class="row mb-7">
-                                <div class="col-2">
-                                    <h4 class="fs-3 text-et-arab mb-3">Arab</h4>
-                                </div>
-                                <div class="col-3">
-                                    <p class="fs-4 lh-1 mb-2 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">45%</span></p>
-                                    <div class="border border-et-arab d-flex align-items-end text-white">
-                                        <div class="d-block py-0 py-3 bg-et-arab js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
-                                    </div>
-                                </div>
-                                <div class="col-2 text-end">
-                                    <span class="fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">2,530</span>
-                                </div>
-                                <div class="col-2 text-end">
-                                    <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="Black">2,530</span>
-                                </div>
-                                <div class="col-3 text-end">
-                                    <span class="js-data fs-4" data-metric="rr" data-format="ratio-as-percentage">NA</span>
-                                </div>
-                            </div>
-    
-                            {% comment %} <div class="row mb-6">
-                                <div class="col-12 col-lg-5 d-flex flex-column flex-md-row">
-                                    <div class="border border-et-white d-flex align-items-end text-white me-3">
-                                        <div class="d-block py-0 px-2 bg-et-white js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="height" style="height:45%"></div>
-                                    </div>
-                                    <div>
-                                        <h4 class="fs-3 text-et-white mb-3">White</h4>
-                                        <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
-                                        <div>
-                                            <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
-                                            <span class="fs-6">stops</span>
-                                        </div>
-                                        <div>
-                                            <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="White">2,530</span>
-                                            <span class="fs-6">population</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-5 d-flex flex-column flex-md-row js-ethnicity-comparisson-black">
-                                    <div class="border border-et-black d-flex align-items-end text-white me-3">
-                                        <div class="d-block py-0 px-2 bg-et-black js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="height" style="height:54%"></div>
-                                    </div>
-                                    <div>
-                                        <h4 class="fs-3 text-et-black mb-3">Black</h4>
-                                        <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Black">54%</span></p>
-                                        <div>
-                                            <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Black">3,890</span>
-                                            <span class="fs-6">stops</span>
-                                        </div>
-                                        <div>
-                                            <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="Black">2,530</span>
-                                            <span class="fs-6">population</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-5 d-flex flex-column flex-md-row text-end js-ethnicity-comparisson-mixed">
-                                    <div>
-                                        <h4 class="fs-3 text-et-mixed mb-3">Mixed</h4>
-                                        <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Mixed">45%</span></p>
-                                        <div>
-                                            <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Mixed">3,195</span>
-                                            <span class="fs-6">stops</span>
-                                        </div>
-                                        <div>
-                                            <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="Mixed">1,081</span>
-                                            <span class="fs-6">population</span>
-                                        </div>
-                                    </div>
-                                    <div class="border border-et-mixed d-flex align-items-end text-white ms-3">
-                                        <div class="d-block py-0 px-2 bg-et-mixed js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Mixed" data-format="comparison-percentage" data-target="height" style="height:54%"></div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-5 d-flex flex-column flex-md-row text-end js-ethnicity-comparisson-asian">
-                                    <div>
-                                        <h4 class="fs-3 text-et-asian mb-3">Asian</h4>
-                                        <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Asian">45%</span></p>
-                                        <div>
-                                            <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Asian">3,195</span>
-                                            <span class="fs-6">stops</span>
-                                        </div>
-                                        <div>
-                                            <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="Asian">1,081</span>
-                                            <span class="fs-6">population</span>
-                                        </div>
-                                    </div>
-                                    <div class="border border-et-asian d-flex align-items-end text-white ms-3">
-                                        <div class="d-block py-0 px-2 bg-et-asian js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="height" style="height:54%"></div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-5 d-flex flex-column flex-md-row text-end js-ethnicity-comparisson-arab">
-                                    <div>
-                                        <h4 class="fs-3 text-et-arab mb-3">Arab</h4>
-                                        <p class="fs-2 lh-1 mb-1 js-dynamic-percentage"><span class="js-data" data-metric="stop_rate" data-ethnicity="Arab">45%</span></p>
-                                        <div>
-                                            <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="Arab">3,195</span>
-                                            <span class="fs-6">stops</span>
-                                        </div>
-                                        <div>
-                                            <span class="fw-bold fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="Arab">1,081</span>
-                                            <span class="fs-6">population</span>
-                                        </div>
-                                    </div>
-                                    <div class="border border-et-arab d-flex align-items-end text-white ms-3">
-                                        <div class="d-block py-0 px-2 bg-et-arab js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="Black" data-format="comparison-percentage" data-target="height" style="height:54%"></div>
-                                    </div>
-                                </div>
-                            </div> {% endcomment %}
+                            {% endfor %}
                         </div>
 
                         {% comment %} Visible only below large screens {% endcomment %}
                         <div class="d-lg-none">
+                            {% for ethnicity in ethnicities %}
+                                {% assign key = ethnicity | downcase | replace: "_", "-" %}
+                                {% assign title = ethnicity | replace: "_", " " %}
                             <div class="card col-md-6 mb-3">
-                                <div class="card-header text-bg-et-white fw-bold">
-                                    White population
+                                <div class="card-header text-bg-et-{{ key }} fw-bold">
+                                    {{ title }} population
                                 </div>
                                 <div class="card-body d-flex flex-column gap-4">
                                     <div>
                                         <p class="badge bg-secondary mb-1">Stop proportion</p>
                                         <div class="d-flex flex-row align-items-center gap-3">
-                                            <p class="fs-4 lh-1 js-dynamic-percentage mb-0"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
-                                            <div class="flex-grow-1 border border-et-white d-flex align-items-end text-white">
-                                                <div class="d-block py-0 py-3 bg-et-white js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
+                                            <p class="fs-4 lh-1 js-dynamic-percentage mb-0"><span class="js-data" data-metric="stop_rate" data-ethnicity="{{ ethnicity }}"></span></p>
+                                            <div class="flex-grow-1 border border-et-{{ key }} d-flex align-items-end text-white">
+                                                <div class="d-block py-0 py-3 bg-et-{{ key }} js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="{{ ethnicity }}" data-format="comparison-percentage" data-target="width"></div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-column gap-1 align-items-start">
                                         <p class="badge bg-secondary mb-0">Stops</p>
-                                        <span class="fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
+                                        <span class="fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="{{ ethnicity }}"></span>
                                     </div>
 
                                     <div class="d-flex flex-column gap-1 align-items-start">
                                         <p class="badge bg-secondary mb-0">Total population</p>
-                                        <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="White">2,530</span>                                        
+                                        <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="{{ ethnicity }}"></span>
                                     </div>
 
+                                    {% if key != 'white' %}
                                     <div class="d-flex flex-column gap-1 align-items-start">
                                         <p class="badge bg-secondary mb-0">Likehood of being stop*</p>
-                                        <span class="fs-4">NA</span>
-
+                                        <span class="js-data fs-4" data-metric="rr" data-format="ratio-as-percentage" data-ethnicity="{{ ethnicity }}"></span>
                                         <span class="fs-m6 lh-1">* Compare with white population</span>
                                     </div>
+                                    {% endif %}
                                 </div>
                             </div>
-
-                            <div class="card col-md-6 mb-3">
-                                <div class="card-header text-bg-et-white fw-bold">
-                                    White population
-                                </div>
-                                <div class="card-body d-flex flex-column gap-4">
-                                    <div>
-                                        <p class="badge bg-secondary mb-1">Stop proportion</p>
-                                        <div class="d-flex flex-row align-items-center gap-3">
-                                            <p class="fs-4 lh-1 js-dynamic-percentage mb-0"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
-                                            <div class="flex-grow-1 border border-et-white d-flex align-items-end text-white">
-                                                <div class="d-block py-0 py-3 bg-et-white js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 align-items-start">
-                                        <p class="badge bg-secondary mb-0">Stops</p>
-                                        <span class="fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 align-items-start">
-                                        <p class="badge bg-secondary mb-0">Total population</p>
-                                        <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="White">2,530</span>                                        
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 align-items-start">
-                                        <p class="badge bg-secondary mb-0">Likehood of being stop*</p>
-                                        <span class="fs-4">NA</span>
-
-                                        <span class="fs-m6 lh-1">* Compare with white population</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card col-md-6 mb-3">
-                                <div class="card-header text-bg-et-white fw-bold">
-                                    White population
-                                </div>
-                                <div class="card-body d-flex flex-column gap-4">
-                                    <div>
-                                        <p class="badge bg-secondary mb-1">Stop proportion</p>
-                                        <div class="d-flex flex-row align-items-center gap-3">
-                                            <p class="fs-4 lh-1 js-dynamic-percentage mb-0"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
-                                            <div class="flex-grow-1 border border-et-white d-flex align-items-end text-white">
-                                                <div class="d-block py-0 py-3 bg-et-white js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 align-items-start">
-                                        <p class="badge bg-secondary mb-0">Stops</p>
-                                        <span class="fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 align-items-start">
-                                        <p class="badge bg-secondary mb-0">Total population</p>
-                                        <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="White">2,530</span>                                        
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 align-items-start">
-                                        <p class="badge bg-secondary mb-0">Likehood of being stop*</p>
-                                        <span class="fs-4">NA</span>
-
-                                        <span class="fs-m6 lh-1">* Compare with white population</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card col-md-6 mb-3">
-                                <div class="card-header text-bg-et-white fw-bold">
-                                    White population
-                                </div>
-                                <div class="card-body d-flex flex-column gap-4">
-                                    <div>
-                                        <p class="badge bg-secondary mb-1">Stop proportion</p>
-                                        <div class="d-flex flex-row align-items-center gap-3">
-                                            <p class="fs-4 lh-1 js-dynamic-percentage mb-0"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
-                                            <div class="flex-grow-1 border border-et-white d-flex align-items-end text-white">
-                                                <div class="d-block py-0 py-3 bg-et-white js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 align-items-start">
-                                        <p class="badge bg-secondary mb-0">Stops</p>
-                                        <span class="fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 align-items-start">
-                                        <p class="badge bg-secondary mb-0">Total population</p>
-                                        <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="White">2,530</span>                                        
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 align-items-start">
-                                        <p class="badge bg-secondary mb-0">Likehood of being stop*</p>
-                                        <span class="fs-4">NA</span>
-
-                                        <span class="fs-m6 lh-1">* Compare with white population</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card col-md-6 mb-3">
-                                <div class="card-header text-bg-et-white fw-bold">
-                                    White population
-                                </div>
-                                <div class="card-body d-flex flex-column gap-4">
-                                    <div>
-                                        <p class="badge bg-secondary mb-1">Stop proportion</p>
-                                        <div class="d-flex flex-row align-items-center gap-3">
-                                            <p class="fs-4 lh-1 js-dynamic-percentage mb-0"><span class="js-data" data-metric="stop_rate" data-ethnicity="White">45%</span></p>
-                                            <div class="flex-grow-1 border border-et-white d-flex align-items-end text-white">
-                                                <div class="d-block py-0 py-3 bg-et-white js-dynamic-bar js-data" data-metric="stop_rate" data-ethnicity="White" data-format="comparison-percentage" data-target="width" style="width:45%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 align-items-start">
-                                        <p class="badge bg-secondary mb-0">Stops</p>
-                                        <span class="fs-4 js-dynamic-number js-data" data-metric="number_stopped" data-ethnicity="White">2,530</span>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 align-items-start">
-                                        <p class="badge bg-secondary mb-0">Total population</p>
-                                        <span class="fs-4 js-dynamic-number js-data" data-metric="population" data-year="0" data-ethnicity="White">2,530</span>                                        
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 align-items-start">
-                                        <p class="badge bg-secondary mb-0">Likehood of being stop*</p>
-                                        <span class="fs-4">NA</span>
-
-                                        <span class="fs-m6 lh-1">* Compare with white population</span>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
-
                     </div>
 
                     <div class="accordion" id="accordionBreakdown">
@@ -533,33 +242,18 @@ slug: area
                             </div>
                         </div>
 
-                        <div class="row mt-6 mb-2 js-ethnicity-comparisson-black">
+                        {% for ethnicity in ethnicities %}
+                            {% assign key = ethnicity | downcase | replace: "_", "-" %}
+                            {% assign title = ethnicity | replace: "_", " " %}
+                            {% if key != 'white' %}
+                        <div class="row mt-6 mb-2 js-ethnicity-comparisson-{{ key }}">
                             <div id="risk-ratio-section" class="col-12">
-                                <h3 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr">3.10</span> for <span class="text-et-black">black population</span></h3>
-                                <p class="fs-5">In percentage terms, this means that <span class="fw-bold text-et-black">Black population</span>  are <span class="js-data text-et-black fw-bold" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched.</p>
+                                <h3 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr" data-ethnicity="{{ ethnicity }}">3.10</span> for the <span class="text-et-{{ key }}">{{ title }} population</span></h3>
+                                <p class="fs-5">In percentage terms, this means that the <span class="fw-bold text-et-{{ key }}">{{ title }} population</span> are <span class="js-data text-et-{{ key }} fw-bold" data-metric="rr" data-format="ratio-as-percentage" data-ethnicity="{{ ethnicity }}"></span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less" data-ethnicity="{{ ethnicity }}">more</span> likely to be stopped and searched.</p>
                             </div>
                         </div>
-
-                        <div class="row mt-6 mb-2 js-ethnicity-comparisson-mixed">
-                            <div id="risk-ratio-section" class="col-12">
-                                <h3 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr">3.10</span> for <span class="text-et-mixed">mixed population</span></h3>
-                                <p class="fs-5">In percentage terms, this means that <span class="fw-bold text-et-mixed">mixed population</span>  are <span class="js-data text-et-mixed fw-bold" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched.</p>
-                            </div>
-                        </div>
-
-                        <div class="row mt-6 mb-2 js-ethnicity-comparisson-asian">
-                            <div id="risk-ratio-section" class="col-12">
-                                <h3 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr">3.10</span> for <span class="text-et-asian">asian population</span></h3>
-                                <p class="fs-5">In percentage terms, this means that <span class="fw-bold text-et-asian">asian population</span>  are <span class="js-data text-et-asian fw-bold" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched.</p>
-                            </div>
-                        </div>
-
-                        <div class="row mt-6 mb-2 js-ethnicity-comparisson-arab">
-                            <div id="risk-ratio-section" class="col-12">
-                                <h3 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr">3.10</span> for <span class="text-et-arab">arab population</span></h3>
-                                <p class="fs-5">In percentage terms, this means that <span class="fw-bold text-et-arab">arab population</span>  are <span class="js-data text-et-arab fw-bold" data-metric="rr" data-format="ratio-as-percentage">310%</span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less">more</span> likely to be stopped and searched.</p>
-                            </div>
-                        </div>
+                            {% endif %}
+                        {% endfor %}
 
                         <div class="row text-end mt-5">
                             <div class="col-2 py-3">
