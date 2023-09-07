@@ -241,19 +241,17 @@ slug: area
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        {% for ethnicity in ethnicities %}
-                            {% assign key = ethnicity | downcase | replace: "_", "-" %}
-                            {% assign title = ethnicity | replace: "_", " " %}
-                            {% if key != 'white' %}
-                        <div class="row mt-6 mb-2 js-ethnicity-comparisson-{{ key }}">
-                            <div id="risk-ratio-section" class="col-12">
-                                <h3 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr" data-ethnicity="{{ ethnicity }}">3.10</span> for the <span class="text-et-{{ key }}">{{ title }} population</span></h3>
-                                <p class="fs-5">In percentage terms, this means that the <span class="fw-bold text-et-{{ key }}">{{ title }} population</span> are <span class="js-data text-et-{{ key }} fw-bold" data-metric="rr" data-format="ratio-as-percentage" data-ethnicity="{{ ethnicity }}"></span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less" data-ethnicity="{{ ethnicity }}">more</span> likely to be stopped and searched.</p>
-                            </div>
+                    {% for ethnicity in ethnicities %}
+                        {% assign key = ethnicity | downcase | replace: "_", "-" %}
+                        {% assign title = ethnicity | replace: "_", " " %}
+                        {% if key != 'white' %}
+                    <div class="row mt-6 mb-2 js-ethnicity-comparisson-{{ key }}">
+                        <div id="risk-ratio-section" class="col-12">
+                            <h3 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr" data-ethnicity="{{ ethnicity }}">3.10</span> for the <span class="text-et-{{ key }}">{{ title }} population</span></h3>
+                            <p class="fs-5">In percentage terms, this means that the <span class="fw-bold text-et-{{ key }}">{{ title }} population</span> are <span class="js-data text-et-{{ key }} fw-bold" data-metric="rr" data-format="ratio-as-percentage" data-ethnicity="{{ ethnicity }}"></span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less" data-ethnicity="{{ ethnicity }}">more</span> likely to be stopped and searched.</p>
                         </div>
-                            {% endif %}
-                        {% endfor %}
 
                         <div class="row text-end mt-5">
                             <div class="col-2 py-3">
@@ -301,40 +299,42 @@ slug: area
                         </div>
 
                         <div class="row mt-5">
-                            <p>The confidence intervals are <span class="js-data text-primary fw-bold" data-metric="rr" data-metric-category="rr_ci_low">2.90</span> to <span class="js-data text-primary fw-bold" data-metric="rr" data-metric-category="rr_ci_upp">3.10</span>.</p>
-                            <p>Data often reveals Black population are significantly more likely to be stopped and searched than White population, a racial disparity evident in risk ratios and confidence intervals that exceed 1, or 0% in percentage terms.</p>
+                            <p>The confidence intervals are <span class="js-data text-primary fw-bold text-et-{{ key }}" data-metric="rr" data-metric-category="rr_ci_low" data-ethnicity="{{ ethnicity }}">2.90</span> to <span class="js-data text-primary fw-bold text-et-{{ key }}" data-metric="rr" data-metric-category="rr_ci_upp" data-ethnicity="{{ ethnicity }}">3.10</span>.</p>
+                            <p>Data often reveals {{ title }} population are significantly more likely to be stopped and searched than White population, a racial disparity evident in risk ratios and confidence intervals that exceed 1, or 0% in percentage terms.</p>
+                        </div>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
 
-                            <div class="accordion mt-4" id="riskAccordion">
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header" id="riskAccordionHeadingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#riskAccordionCollapseOne" aria-expanded="false" aria-controls="riskAccordionCollapseOne">
+                    <div class="accordion mt-4" id="riskAccordion">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="riskAccordionHeadingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#riskAccordionCollapseOne" aria-expanded="false" aria-controls="riskAccordionCollapseOne">
 
-                                        What are&nbsp;<span class="fw-bold">risk ratios</span>?
-                                    </button>
-                                  </h2>
-                                  <div id="riskAccordionCollapseOne" class="accordion-collapse collapse" aria-labelledby="riskAccordionHeadingOne" data-bs-parent="#riskAccordion">
-                                    <div class="accordion-body">
-                                        <p>The risk ratio describes the likelihood of a Black person being stopped and searched relative to the likelihood of a White person being stopped and searched.</p>
-                                        <p>If the risk ratio is 1, it means that the likelihood of being stopped is the same for the Black and White population.</p>
-                                        <p>If the risk ratio is greater than 1, it means that the likelihood of being stopped is greater for the Black population compared to White population. For example, a risk ratio of 2 would mean that the Black population are 2 times more likely to be stopped and searched than the White population.</p>
-                                        <p>If the risk ratio is less than 1, it means that the likelihood of being stopped is lower for the Black population compared to the White population. For example, a risk ratio of 0.50 would mean that the Black population are 50% less likely to be stopped and searched compared to the White population.</p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header" id="riskAccordionheadingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#riskAccordionCollapseTwo" aria-expanded="false" aria-controls="riskAccordionCollapseTwo">
-                                        What are&nbsp;
-                                        <span class="fw-bold"> confidence intervals</span>?
-                                    </button>
-                                  </h2>
-                                  <div id="riskAccordionCollapseTwo" class="accordion-collapse collapse" aria-labelledby="riskAccordionheadingTwo" data-bs-parent="#riskAccordion">
-                                    <div class="accordion-body">
-                                        <p>Because the risk ratio is an estimate, we cannot be 100% certain that the value is correct. However, we can estimate the range of values that the risk ratio is likely to be. This is what the bars on the graph represent (known as the 95% confidence interval). In essence, wider bars means less certainty in the risk ratio (because there is a wider range of possible values it could be), whilst narrower bars means more certainty in the risk ratio (because there is a narrower range of possible values it could be).</p>
-                                    </div>
-                                  </div>
-                                </div>
+                                What are&nbsp;<span class="fw-bold">risk ratios</span>?
+                            </button>
+                          </h2>
+                          <div id="riskAccordionCollapseOne" class="accordion-collapse collapse" aria-labelledby="riskAccordionHeadingOne" data-bs-parent="#riskAccordion">
+                            <div class="accordion-body">
+                                <p>The risk ratio describes the likelihood of a {{ title }} person being stopped and searched relative to the likelihood of a White person being stopped and searched.</p>
+                                <p>If the risk ratio is 1, it means that the likelihood of being stopped is the same for the Black and White population.</p>
+                                <p>If the risk ratio is greater than 1, it means that the likelihood of being stopped is greater for the Black population compared to White population. For example, a risk ratio of 2 would mean that the Black population are 2 times more likely to be stopped and searched than the White population.</p>
+                                <p>If the risk ratio is less than 1, it means that the likelihood of being stopped is lower for the Black population compared to the White population. For example, a risk ratio of 0.50 would mean that the Black population are 50% less likely to be stopped and searched compared to the White population.</p>
                             </div>
+                          </div>
+                        </div>
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="riskAccordionheadingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#riskAccordionCollapseTwo" aria-expanded="false" aria-controls="riskAccordionCollapseTwo">
+                                What are&nbsp;
+                                <span class="fw-bold"> confidence intervals</span>?
+                            </button>
+                          </h2>
+                          <div id="riskAccordionCollapseTwo" class="accordion-collapse collapse" aria-labelledby="riskAccordionheadingTwo" data-bs-parent="#riskAccordion">
+                            <div class="accordion-body">
+                                <p>Because the risk ratio is an estimate, we cannot be 100% certain that the value is correct. However, we can estimate the range of values that the risk ratio is likely to be. This is what the bars on the graph represent (known as the 95% confidence interval). In essence, wider bars means less certainty in the risk ratio (because there is a wider range of possible values it could be), whilst narrower bars means more certainty in the risk ratio (because there is a narrower range of possible values it could be).</p>
+                            </div>
+                          </div>
                         </div>
                     </div>
                 </div>
