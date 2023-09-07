@@ -202,8 +202,11 @@ function updatePlots(data) {
     const element = $(this).get(0)
     const yearData = data.filter(obj => obj.date === parseInt($('#year').val()))
 
+    const ethnicity = $(this).data('ethnicity')
+    const ethnicityData = yearData.filter(obj => obj.ethnicity === ethnicity)
+
     function setPlotValue(category) {
-      const categoryData = yearData.filter(obj => obj.metric_category === category)[0]
+      const categoryData = ethnicityData.filter(obj => obj.metric_category === category)[0]
       const categoryValue = categoryData ? categoryData.value : 0
       element.setAttribute(`data-${category}`, categoryValue)
     }

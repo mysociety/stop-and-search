@@ -258,7 +258,7 @@ slug: area
                                     <p class="mb-0 fw-bold metric-year">All time</p>
                                 </div>
                                 <div class="col-10 border-top border-bottom border-grey-100 position-relative">
-                                    <div id="plot-year" class="js-plot"></div>
+                                    <div class="js-plot" data-plot="year" data-ethnicity="{{ ethnicity }}"></div>
                                 </div>
                             </div>
                             {% comment %}
@@ -268,7 +268,7 @@ slug: area
                                     <p class="mb-0 fw-bold js-value">All</p>
                                 </div>
                                 <div class="col-10 border-top border-bottom border-grey-100 position-relative">
-                                    <div id="plot-object-of-search"></div>
+                                    <div class="js-plot" data-plot="object-of-search" data-ethnicity="{{ ethnicity }}"></div>
                                 </div>
                             </div>
                             <div class="row text-end js-dynamic-metric-content metric-legislation">
@@ -277,7 +277,7 @@ slug: area
                                     <p class="mb-0 fw-bold js-value">All</p>
                                 </div>
                                 <div class="col-10 border-top border-bottom border-grey-100 position-relative">
-                                    <div id="plot-legislation"></div>
+                                    <div class="js-plot" data-plot="legislation" data-ethnicity="{{ ethnicity }}"></div>
                                 </div>
                             </div>
                             <div class="row text-end js-dynamic-metric-content metric-outcome">
@@ -286,14 +286,14 @@ slug: area
                                     <p class="mb-0 fw-bold js-value">All</p>
                                 </div>
                                 <div class="col-10 border-top border-bottom border-grey-100 position-relative">
-                                    <div id="plot-outcome"></div>
+                                    <div class="js-plot" data-plot="outcome" data-ethnicity="{{ ethnicity }}"></div>
                                 </div>
                             </div>
                             {% endcomment %}
                             <div class="row">
                                 <div class="col-2"></div>
                                 <div class="col-10">
-                                    <div id="plot-footer"></div>
+                                    <div class="js-plot" data-plot="footer"></div>
                                 </div>
                             </div>
 

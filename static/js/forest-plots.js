@@ -1,7 +1,6 @@
 import Plotly from '../vendor/plotly/js/plotly.esm.js'
 
-function setup(id, _layout = {}) {
-  const element = document.getElementById(id)
+function setup(element, _layout = {}) {
   if (!element) { return }
 
   const data = [
@@ -26,14 +25,18 @@ function setup(id, _layout = {}) {
 
   const config = { responsive: true, showSendToCloud: false, displayModeBar: false }
 
-  Plotly.newPlot(id, data, layout, config)
+  Plotly.newPlot(element, data, layout, config)
 }
 
-setup("plot-year")
-setup("plot-object-of-search")
-setup("plot-legislation")
-setup("plot-outcome")
-setup("plot-footer", { height: 30, margin: { b: 30, l: 0, r: 0, t: 0 } })
+var plots = document.getElementsByClassName('js-plot')
+for (var i = 0; i < plots.length; i++) {
+  const element = plots.item(i)
+  var layout = {};
+  if (element.getAttribute('data-plot') == 'footer') {
+    layout = { height: 30, margin: { b: 30, l: 0, r: 0, t: 0 } }
+  }
+  setup(plots.item(i), layout)
+}
 
 function getAllDataFloats(dataKey) {
   var elements = document.querySelectorAll(`[${dataKey}]`)
@@ -43,8 +46,7 @@ function getAllDataFloats(dataKey) {
   })
 }
 
-function update(id, rr_min, rr_max) {
-  const element = document.getElementById(id)
+function update(element, rr_min, rr_max) {
   if (!element) { return }
 
   const rr = parseFloat(element.getAttribute('data-rr'))
@@ -70,15 +72,14 @@ function update(id, rr_min, rr_max) {
 
   const newLayout = { 'xaxis.range': [min, max] }
 
-  Plotly.update(id, newData, newLayout)
+  Plotly.update(element, newData, newLayout)
 }
 
 function updateAll(min, max) {
-  update("plot-year", min, max)
-  update("plot-object-of-search", min, max)
-  update("plot-legislation", min, max)
-  update("plot-outcome", min, max)
-  update("plot-footer", min, max)
+  var plots = document.getElementsByClassName('js-plot')
+  for (var i = 0; i < plots.length; i++) {
+    update(plots.item(i), min, max)
+  }
 }
 
 export { updateAll }
