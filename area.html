@@ -243,68 +243,68 @@ slug: area
                         </div>
                     </div>
 
-                    {% for ethnicity in ethnicities %}
-                        {% assign key = ethnicity | downcase | replace: "_", "-" %}
-                        {% assign title = ethnicity | replace: "_", " " %}
-                        {% if key != 'white' %}
-                    <div class="row mt-6 mb-2 js-ethnicity-comparisson-{{ key }}">
-                        <div id="risk-ratio-section" class="col-12">
-                            <h3 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr" data-ethnicity="{{ ethnicity }}">3.10</span> for the <span class="text-et-{{ key }}">{{ title }} population</span></h3>
-                            <p class="fs-5">In percentage terms, this means that the <span class="fw-bold text-et-{{ key }}">{{ title }} population</span> are <span class="js-data text-et-{{ key }} fw-bold" data-metric="rr" data-format="ratio-as-percentage" data-ethnicity="{{ ethnicity }}"></span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less" data-ethnicity="{{ ethnicity }}">more</span> likely to be stopped and searched.</p>
-                        </div>
+                    <div id="risk-ratio-section" class="col-12">
+                        {% for ethnicity in ethnicities %}
+                            {% assign key = ethnicity | downcase | replace: "_", "-" %}
+                            {% assign title = ethnicity | replace: "_", " " %}
+                            {% if key != 'white' %}
+                        <div class="row mt-6 mb-2 js-ethnicity-comparisson-{{ key }}">
+                                <h3 class="fs-3 lh-base">In <span class="js-area-name">Borsetshire East</span> the risk ratio is <span class="js-data" data-metric="rr" data-ethnicity="{{ ethnicity }}">3.10</span> for the <span class="text-et-{{ key }}">{{ title }} population</span></h3>
+                                <p class="fs-5">In percentage terms, this means that the <span class="fw-bold text-et-{{ key }}">{{ title }} population</span> are <span class="js-data text-et-{{ key }} fw-bold" data-metric="rr" data-format="ratio-as-percentage" data-ethnicity="{{ ethnicity }}"></span> <span class="js-data" data-metric="rr" data-format="ratio-as-more-or-less" data-ethnicity="{{ ethnicity }}">more</span> likely to be stopped and searched.</p>
 
-                        <div class="row text-end mt-5">
-                            <div class="col-2 py-3">
-                                <p class="mb-0 lh-1 text-muted">Year</p>
-                                <p class="mb-0 fw-bold metric-year">All time</p>
+                            <div class="row text-end mt-5">
+                                <div class="col-2 py-3">
+                                    <p class="mb-0 lh-1 text-muted">Year</p>
+                                    <p class="mb-0 fw-bold metric-year">All time</p>
+                                </div>
+                                <div class="col-10 border-top border-bottom border-grey-100 position-relative">
+                                    <div id="plot-year" class="js-plot"></div>
+                                </div>
                             </div>
-                            <div class="col-10 border-top border-bottom border-grey-100 position-relative">
-                                <div id="plot-year" class="js-plot"></div>
+                            {% comment %}
+                            <div class="row text-end js-dynamic-metric-content metric-object">
+                                <div class="col-2 py-3">
+                                    <p class="mb-0 lh-1 text-muted">Reason for search</p>
+                                    <p class="mb-0 fw-bold js-value">All</p>
+                                </div>
+                                <div class="col-10 border-top border-bottom border-grey-100 position-relative">
+                                    <div id="plot-object-of-search"></div>
+                                </div>
                             </div>
-                        </div>
-                        {% comment %}
-                        <div class="row text-end js-dynamic-metric-content metric-object">
-                            <div class="col-2 py-3">
-                                <p class="mb-0 lh-1 text-muted">Reason for search</p>
-                                <p class="mb-0 fw-bold js-value">All</p>
+                            <div class="row text-end js-dynamic-metric-content metric-legislation">
+                                <div class="col-2 py-3">
+                                    <p class="mb-0 lh-1 text-muted">Legislation</p>
+                                    <p class="mb-0 fw-bold js-value">All</p>
+                                </div>
+                                <div class="col-10 border-top border-bottom border-grey-100 position-relative">
+                                    <div id="plot-legislation"></div>
+                                </div>
                             </div>
-                            <div class="col-10 border-top border-bottom border-grey-100 position-relative">
-                                <div id="plot-object-of-search"></div>
+                            <div class="row text-end js-dynamic-metric-content metric-outcome">
+                                <div class="col-2 py-3">
+                                    <p class="mb-0 lh-1 text-muted">Outcome</p>
+                                    <p class="mb-0 fw-bold js-value">All</p>
+                                </div>
+                                <div class="col-10 border-top border-bottom border-grey-100 position-relative">
+                                    <div id="plot-outcome"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row text-end js-dynamic-metric-content metric-legislation">
-                            <div class="col-2 py-3">
-                                <p class="mb-0 lh-1 text-muted">Legislation</p>
-                                <p class="mb-0 fw-bold js-value">All</p>
+                            {% endcomment %}
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-10">
+                                    <div id="plot-footer"></div>
+                                </div>
                             </div>
-                            <div class="col-10 border-top border-bottom border-grey-100 position-relative">
-                                <div id="plot-legislation"></div>
-                            </div>
-                        </div>
-                        <div class="row text-end js-dynamic-metric-content metric-outcome">
-                            <div class="col-2 py-3">
-                                <p class="mb-0 lh-1 text-muted">Outcome</p>
-                                <p class="mb-0 fw-bold js-value">All</p>
-                            </div>
-                            <div class="col-10 border-top border-bottom border-grey-100 position-relative">
-                                <div id="plot-outcome"></div>
-                            </div>
-                        </div>
-                        {% endcomment %}
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-10">
-                                <div id="plot-footer"></div>
-                            </div>
-                        </div>
 
-                        <div class="row mt-5">
-                            <p>The confidence intervals are <span class="js-data text-primary fw-bold text-et-{{ key }}" data-metric="rr" data-metric-category="rr_ci_low" data-ethnicity="{{ ethnicity }}">2.90</span> to <span class="js-data text-primary fw-bold text-et-{{ key }}" data-metric="rr" data-metric-category="rr_ci_upp" data-ethnicity="{{ ethnicity }}">3.10</span>.</p>
-                            <p>Data often reveals {{ title }} population are significantly more likely to be stopped and searched than White population, a racial disparity evident in risk ratios and confidence intervals that exceed 1, or 0% in percentage terms.</p>
+                            <div class="row mt-5">
+                                <p>The confidence intervals are <span class="js-data text-primary fw-bold text-et-{{ key }}" data-metric="rr" data-metric-category="rr_ci_low" data-ethnicity="{{ ethnicity }}">2.90</span> to <span class="js-data text-primary fw-bold text-et-{{ key }}" data-metric="rr" data-metric-category="rr_ci_upp" data-ethnicity="{{ ethnicity }}">3.10</span>.</p>
+                                <p>Data often reveals {{ title }} population are significantly more likely to be stopped and searched than White population, a racial disparity evident in risk ratios and confidence intervals that exceed 1, or 0% in percentage terms.</p>
+                            </div>
                         </div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
-                        {% endif %}
-                    {% endfor %}
 
                     <div class="accordion mt-4" id="riskAccordion">
                         <div class="accordion-item">
