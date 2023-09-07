@@ -114,22 +114,24 @@ function fetchData() {
 
 function updateData(data) {
   $('.js-data').each(function () {
-    console.debug('---------')
+    const debug = $(this).data('debug')
+    if (debug) { console.debug('---------') }
+    if (debug) { console.debug('data', data) }
 
     const year = parseInt($(this).data('year') || $('#year').val())
-    console.debug('year', year)
+    if (debug) { console.debug('year', year) }
 
     const yearData = data.filter(obj => obj.date === year)
-    console.debug('yearData', yearData)
+    if (debug) { console.debug('yearData', yearData) }
 
     const metric = $(this).data('metric')
-    console.debug('metric', metric)
+    if (debug) { console.debug('metric', metric) }
 
     const metricCategory = $(this).data('metric-category') || metric
-    console.debug('metricCategory', metricCategory)
+    if (debug) { console.debug('metricCategory', metricCategory) }
 
     const metricData = yearData.filter(obj => obj.metric === metric && (obj.metric_category === 'NA' || obj.metric_category === metricCategory))
-    console.debug('metricData', metricData)
+    if (debug) { console.debug('metricData', metricData) }
 
     const valueTypes = [...new Set(metricData.map(obj => obj.value_type))]
     const type = (valueTypes.length > 1) ? $(this).data('type') : valueTypes[0]
@@ -140,15 +142,25 @@ function updateData(data) {
     const metricTypeValue = (type === 'frequency') ?
       metricTypeData.reduce((acc, obj) => acc + obj.value, 0) :
       metricTypeData.reduce((acc, obj) => acc + obj.value, 0) / metricTypeData.length
-    console.debug('metricTypeData', type, metricTypeValue)
+    if (debug) {
+      console.debug('metricTypeData', metricTypeData)
+      console.debug('metricType', type, metricTypeValue)
+    }
 
     const ethnicity = $(this).data('ethnicity')
-    const ethnicityData = metricTypeData.filter(obj => obj.ethnicity === ethnicity && typeof obj.value === 'number')[0]
-    const ethnicityValue = (ethnicityData) ? ethnicityData.value : 0
-    if (ethnicity) { console.debug('ethnicity', ethnicity, ethnicityValue) }
+    let ethnicityValue
+    if (ethnicity) {
+      const ethnicityData = metricTypeData.filter(obj => obj.ethnicity === ethnicity && typeof obj.value === 'number')[0]
+      ethnicityValue = (ethnicityData) ? ethnicityData.value : 0
+      if (debug) {
+        console.debug('ethnicityData', ethnicityData)
+        console.debug('ethnicity', ethnicity, ethnicityValue)
+      }
+    }
 
     let value
     const format = $(this).data('format') || type
+    if (debug) { console.debug('format', format) }
     switch (format) {
       case 'comparison-percentage':
         value = ((ethnicityValue / metricTypeValue) * 50).toFixed()
@@ -176,7 +188,7 @@ function updateData(data) {
         break
     }
 
-    console.debug('value', value)
+    if (debug) { console.debug('value', value) }
 
     const target = $(this).data('target')
     if (target == 'height') { $(this).css('height', value) }
@@ -214,7 +226,6 @@ function updatePlots(data) {
       return 1
     })
   const max = Math.max(...maxValues)
-  console.debug(min, max)
 
   refreshForestPlots(min, max)
 }
