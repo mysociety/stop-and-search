@@ -5,16 +5,20 @@ function setup(id) {
   if (!element) { return }
 
   const title = element.getAttribute('data-title')
+  // const sourceData = {
+  //   y: ['foo', 'bar'], // ethnicities
+  //   x: { a: [1, 4], b: [6, 9] }, // a/b = categories
+  // }
+  const sourceData = JSON.parse(element.getAttribute('data-source'))
 
-  const blackData = JSON.parse(element.getAttribute('data-Black'))
-  const whiteData = JSON.parse(element.getAttribute('data-White'))
+  console.log(sourceData)
 
-  const data = Object.keys(blackData).map((key) => {
+  const data = Object.keys(sourceData.x).map((category) => {
     return {
-      name: key,
-      text: [`${blackData[key]}%`, `${whiteData[key]}%`],
-      x: [blackData[key], whiteData[key]],
-      y: ['Black ', 'White '],
+      name: category,
+      text: sourceData.x[category].map((d) => `${d}%`),
+      x: sourceData.x[category],
+      y: sourceData.y.map((y) => `${y.replace('_', ' ')} `),
       hoverinfo: 'none',
       type: 'bar',
       orientation: 'h'
@@ -24,8 +28,8 @@ function setup(id) {
   const layout = {
     xaxis: { visible: false },
     legend: { orientation: 'h', traceorder: 'normal' },
-    height: 250,
-    margin: { b: 0, l: 50, r: 0, t: 0 },
+    height: 500,
+    margin: { b: 0, l: 100, r: 0, t: 0 },
     barmode: 'stack'
   }
 

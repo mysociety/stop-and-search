@@ -7,6 +7,8 @@ slug: area
 
 {% assign ethnicities = "White, Black, Mixed_Black, Asian, Mixed_Asian, Other, Mixed_Other" | split: ", " %}
 
+<script>window.barChartEthnicities = "{{ ethnicities | reverse | join: "," }},All".split(',')</script>
+
 <div class="py-4 py-lg-5 js-default  js-dynamic-ethnicity-comparisson" data-ethnicity-comparisson-active="black">
     <div class="container pb-6">
         <div class="row gx-lg-5">

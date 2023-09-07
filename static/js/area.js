@@ -243,25 +243,26 @@ function updateBars(data) {
     const metricData = yearData.filter(obj => obj.metric === metric)
 
     const metricTypeData = metricData.filter(obj => obj.value_type === 'percentage')
+    const parsedData = { y: barChartEthnicities, x: {} }
 
-    function setBarValues(ethnicity) {
-      const ethnicityData = metricTypeData.filter(obj => obj.ethnicity === ethnicity && typeof obj.value === 'number')
+    const categories = [...new Set(metricTypeData.map((obj) => obj.metric_category))]
+    for (const i in categories) {
+      const category = categories[i]
+      const categoryData = metricTypeData.filter(obj => obj.metric_category === category)
 
-      const barData = ethnicityData.reduce(function (acc, obj) {
-        const value = parseFloat(obj.value.toFixed(2))
-        acc[obj.metric_category] = value
-        return acc
-      }, {})
+      const values = []
+      for (const j in barChartEthnicities) {
+        const ethnicity = barChartEthnicities[j]
+        const ethnicityData = categoryData.filter(obj => obj.ethnicity === ethnicity)[0]
+        const ethnicityValue = ethnicityData ? ethnicityData.value : 0
 
-      const sortedArray = Object.entries(barData).sort((a, b) => b[1] - a[1]);
-      const sortedObj = Object.fromEntries(sortedArray);
-      const sortedJSON = JSON.stringify(sortedObj);
-
-      element.setAttribute(`data-${ethnicity}`, sortedJSON)
+        values.push(parseFloat(ethnicityValue.toFixed(2)))
+      }
+      parsedData.x[category] = values
     }
 
-    setBarValues('Black')
-    setBarValues('White')
+    const parsedDataJSON = JSON.stringify(parsedData);
+    element.setAttribute('data-source', parsedDataJSON)
   })
 
   refreshBarCharts()
