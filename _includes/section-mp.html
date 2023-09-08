@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <div class="col">
+    <div class="col" v-for="mp in mps">
       <div class="card overflow-hidden">
         <div class="row g-0">
           <div class="col-lg-4">
@@ -26,22 +26,26 @@
           <div class="col-lg-8">
             <div class="card-body">
               <dl class="mb-3">
-                <dt class="fs-6 fw-bold">Local MP</dt>
-                <dd class="mb-0 fs-5">John Doe</dd>
+                <dt class="fs-6 fw-bold">${ mp.title }</dt>
+                <dd class="mb-0 fs-5">${ mp.name }</dd>
               </dl>
 
               <div class="d-flex flex-row flex-wrap gap-3" style="opacity:85%">
-                <a href="" class="btn btn-outline-primary btn-sm d-flex align-items-center">
+                <a :href="`https://www.theyworkforyou.com/mp/${ getIndentifer(mp, 'twfy') }`" class="btn btn-outline-primary btn-sm d-flex align-items-center" v-if="getIndentifer(mp, 'twfy')">
+                  <span>TheyWorkForYou</span>
+                </a>
+
+                <a :href="`https://twitter.com/${ getIndentifer(mp, 'twitter') }`" class="btn btn-outline-primary btn-sm d-flex align-items-center" v-if="getIndentifer(mp, 'twitter')">
                   {% include icons/twitter.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
                   <span>Twitter</span>
                 </a>
 
-                <a href="" class="btn btn-outline-primary btn-sm d-flex align-items-center">
+                <a :href="`https://www.facebook.com/${ getIndentifer(mp, 'facebook') }`" class="btn btn-outline-primary btn-sm d-flex align-items-center" v-if="getIndentifer(mp, 'facebook')">
                   {% include icons/facebook.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
                   <span>Facebook</span>
                 </a>
 
-                <a href="" class="btn btn-outline-primary btn-sm d-flex align-items-center">
+                <a :href="getIndentifer(mp, 'wikipedia')" class="btn btn-outline-primary btn-sm d-flex align-items-center" v-if="getIndentifer(mp, 'wikipedia')">
                   {% include icons/wikipedia.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
                   <span>Wikipedia</span>
                 </a>
