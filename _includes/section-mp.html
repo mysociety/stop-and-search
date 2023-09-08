@@ -1,0 +1,58 @@
+<section id="local-government-section" class="py-6">
+  <h3  class="fs-4 mb-4">
+    <span class="align-bottom me-1">Local government</span>
+    <span class="badge bg-info js-area-name">{{ page.title }}</span>
+  </h3>
+
+  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-2 g-4 mb-4">
+    <div class="col">
+      <div class="card overflow-hidden h-100">
+        <div class="card-body text-bg-primary d-flex flex-column align-items-baseline justify-content-center">
+          <h3 class="fs-2 d-md-none">Is this your representative?</h3>
+          <h3 class="fs-3 d-none d-md-block d-lg-none">Is this your representative?</h3>
+          <h3 class="fs-5 d-none d-lg-block">Is this your representative?</h3>
+          <p class="fs-6">You can write to them</p>
+          <a href="https://www.writetothem.com/" class="btn btn-light btn-sm">Go to WriteToThem</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col" v-for="mp in mps">
+      <div class="card overflow-hidden">
+        <div class="row g-0">
+          <div class="col-lg-4">
+            {% include icons/user.html width="100%" height="100%" classes="object-fit-cover opacity-50 text-info" %}
+          </div>
+          <div class="col-lg-8">
+            <div class="card-body">
+              <dl class="mb-3">
+                <dt class="fs-6 fw-bold">${ mp.title }</dt>
+                <dd class="mb-0 fs-5">${ mp.name }</dd>
+              </dl>
+
+              <div class="d-flex flex-row flex-wrap gap-3" style="opacity:85%">
+                <a :href="`https://www.theyworkforyou.com/mp/${ getIndentifer(mp, 'twfy') }`" class="btn btn-outline-primary btn-sm d-flex align-items-center" v-if="getIndentifer(mp, 'twfy')">
+                  <span>TheyWorkForYou</span>
+                </a>
+
+                <a :href="`https://twitter.com/${ getIndentifer(mp, 'twitter') }`" class="btn btn-outline-primary btn-sm d-flex align-items-center" v-if="getIndentifer(mp, 'twitter')">
+                  {% include icons/twitter.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+                  <span>Twitter</span>
+                </a>
+
+                <a :href="`https://www.facebook.com/${ getIndentifer(mp, 'facebook') }`" class="btn btn-outline-primary btn-sm d-flex align-items-center" v-if="getIndentifer(mp, 'facebook')">
+                  {% include icons/facebook.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+                  <span>Facebook</span>
+                </a>
+
+                <a :href="getIndentifer(mp, 'wikipedia')" class="btn btn-outline-primary btn-sm d-flex align-items-center" v-if="getIndentifer(mp, 'wikipedia')">
+                  {% include icons/wikipedia.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+                  <span>Wikipedia</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

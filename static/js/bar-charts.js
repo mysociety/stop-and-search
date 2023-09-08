@@ -11,8 +11,6 @@ function setup(id) {
   // }
   const sourceData = JSON.parse(element.getAttribute('data-source'))
 
-  console.log(sourceData)
-
   const data = Object.keys(sourceData.x).map((category) => {
     return {
       name: category,

@@ -1,0 +1,54 @@
+<section id="police-force-section" class="py-5">
+  <h3  class="fs-4 mb-4">
+    <span class="align-bottom me-1">Police commissioner</span>
+    <span class="badge bg-info js-area-name">{{ page.title }}</span>
+  </h3>
+
+  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-2 g-4 mb-4">
+    <div class="col" v-if="getIndentifer(pcc, 'wdtk')">
+      <div class="card overflow-hidden h-100">
+        <div class="card-body text-bg-info d-flex flex-column align-items-baseline justify-content-center">
+          <h3 class="fs-2 d-md-none">Have any questions?</h3>
+          <h3 class="fs-3 d-none d-md-block d-lg-none">Have any questions?</h3>
+          <h3 class="fs-5 d-none d-lg-block">Have any questions?</h3>
+          <p class="fs-6">Use the WhatDoTheyKnow platform to create a Freedom of Information request.</p>
+          <a :href="`https://www.whatdotheyknow.com/body/${ getIndentifer(pcc, 'wdtk') }`" class="btn btn-light btn-sm">Go to WhatDoTheyKnow</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card overflow-hidden">
+        <div class="row g-0">
+          <div class="col-lg-4">
+            {% include icons/user.html width="100%" height="100%" classes="object-fit-cover opacity-50 text-info" %}
+          </div>
+          <div class="col-lg-8">
+            <div class="card-body">
+              <dl class="mb-3">
+                <dt class="fs-6 fw-bold">${ pcc.title }</dt>
+                <dd class="mb-0 fs-5">${ pcc.name }</dd>
+              </dl>
+
+              <div class="d-flex flex-row flex-wrap gap-3" style="opacity:85%">
+                <a :href="`https://twitter.com/${ getIndentifer(pcc, 'twitter') }`" class="btn btn-outline-primary btn-sm d-flex align-items-center" v-if="getIndentifer(pcc, 'twitter')">
+                  {% include icons/twitter.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+                  <span>Twitter</span>
+                </a>
+
+                <a :href="`https://www.facebook.com/${ getIndentifer(pcc, 'facebook') }`" class="btn btn-outline-primary btn-sm d-flex align-items-center" v-if="getIndentifer(pcc, 'facebook')">
+                  {% include icons/facebook.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+                  <span>Facebook</span>
+                </a>
+
+                <a :href="getIndentifer(pcc, 'wikipedia')" class="btn btn-outline-primary btn-sm d-flex align-items-center" v-if="getIndentifer(pcc, 'wikipedia')">
+                  {% include icons/wikipedia.html width="1.5em" height="1.5em" classes="me-1 flex-grow-0 flex-shrink-0" %}
+                  <span>Wikipedia</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

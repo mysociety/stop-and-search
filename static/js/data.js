@@ -91,4 +91,12 @@ async function getData(conditions = { '1 = ?': 1 }) {
   })
 }
 
-export { getArea, getData }
+async function getQuery(query, values) {
+  return database.then(db => {
+    const stmt = db.prepare(query)
+    stmt.bind(values)
+    return parseResults(stmt)
+  })
+}
+
+export { getArea, getData, getQuery }
