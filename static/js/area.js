@@ -38,6 +38,9 @@ const areaPage = function() {
 
   $('.js-area-url').text(`${absolutePath}area?id=${area.id}&type=${area.type}`)
 
+  const databaseURL = `${absolutePath}static/database.sqlite`
+  $('.js-area-datasette').attr('href', `https://lite.datasette.io/?url=${encodeURI(databaseURL)}#/database/data?area_id=${area.id}`)
+
   if (!area.county) {
     $('.js-area-county').hide()
   } else {

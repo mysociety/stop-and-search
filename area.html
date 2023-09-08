@@ -72,7 +72,7 @@ slug: area
                         {% include metrics.html %}
                     </div>
 
-                    <a href="" class="btn btn-outline-secondary btn-sm d-block my-4">Download CSV data</a>
+                    <a href="https://lite.datasette.io/?url={{ '/static/database.sqlite' | absolute_url | url_encode }}#/database/data" class="js-area-datasette btn btn-outline-secondary btn-sm d-block my-4">Download CSV data</a>
 
                     <div class="card">
                         <a id="copy-to-clipboard-btn" class="rounded-0 btn btn-primary fw-normal">
